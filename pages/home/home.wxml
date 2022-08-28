@@ -1,0 +1,35 @@
+<view>
+  <!-- <button bindtap="refreshIndexData" style="position: absolute; margin-top: 100rpx;">测试banner数据请求</button> -->
+
+  <view id="top_search_bar">
+    <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png"></image>
+    <text id="top_search_bar_text">搜索需要的家政服务</text>
+  </view>
+
+  <swiper id="top_banners" indicator-dots="true" indicator-active-color="rgba(236, 106, 56, 1)" indicator-color="rgba(4, 5, 7, 0.16)" autoplay="true" interval="2000" circular="true" style="position: relative;">
+    <swiper-item wx:for="{{banners}}" wx:key="index" bindtap="onSwiperItemClick" data-index="{{index}}">
+      <!-- TODO 设置默认图 -->
+      <image src="{{item.img_url}}" mode="aspectFill" style="width: 100%;height: 100%; background-color: rgba(67, 186, 135, 1);"></image>
+    </swiper-item>
+  </swiper>
+
+</view>
+<!-- 金刚区 -->
+<!-- 第一列 -->
+<view class="menu_row">
+  <view wx:for="{{firstRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}">
+    <image class="menu_image" src="{{item.icon}}"></image>
+    <text class="menu_text">{{item.name}}</text>
+  </view>
+</view>
+<!-- 第二列 -->
+<view class="menu_row">
+  <view wx:for="{{sencondRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}">
+    <image class="menu_image" src="{{item.icon}}"></image>
+    <text class="menu_text">{{item.name}}</text>
+  </view>
+
+</view>
+
+
+<text id="nav_title" style="margin-top: {{statusBarHeight}}px; line-height: {{navigationBarHeight}}px; ">谯城区我当家政小程序</text>
