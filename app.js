@@ -3,7 +3,9 @@ App({
 
   globalData: {
     statusBarHeight: 0,
-    navigationBarHeight: 0
+    navigationBarHeight: 0,
+    logined: false,
+    userInfo: {}
   },
 
   onLaunch() {
@@ -17,6 +19,18 @@ App({
     this.globalData.statusBarHeight = windowInfo.statusBarHeight
     this.globalData.navigationBarHeight = windowInfo.screenTop
     console.log(this.globalData.navigationBarHeight)
+
+    // 初始化登录状态
+     wx.getStorage({
+      key: 'userInfo',
+      success: res => {
+        if(res.data) {
+          this.globalData.userInfo = JSON.parse(res.data)
+          this.globalData.logined = true
+          console.log("============ globalData.userInfo" + res.data)
+        } 
+      }
+    })
   }
 
 })

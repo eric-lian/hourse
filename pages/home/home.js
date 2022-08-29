@@ -64,7 +64,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    
+
     this.setData({
       statusBarHeight: app.globalData.statusBarHeight,
       navigationBarHeight: app.globalData.navigationBarHeight
@@ -145,8 +145,13 @@ Page({
   onSwiperItemClick: function (e) {
     var index = e.currentTarget.dataset.index
     console.log(index)
+  },
+
+  onSearchBarClick(e) {
+    wx.showToast({
+      title: '点击搜索栏'
+    })
   }
 
-  
 
 })

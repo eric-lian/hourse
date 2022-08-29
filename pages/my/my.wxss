@@ -1,1 +1,6 @@
 /* pages/my/my.wxss */
+page {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}

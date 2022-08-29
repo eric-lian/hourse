@@ -1,7 +1,7 @@
 <view>
   <!-- <button bindtap="refreshIndexData" style="position: absolute; margin-top: 100rpx;">测试banner数据请求</button> -->
 
-  <view id="top_search_bar">
+  <view id="top_search_bar" bindtap="onSearchBarClick">
     <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png"></image>
     <text id="top_search_bar_text">搜索需要的家政服务</text>
   </view>

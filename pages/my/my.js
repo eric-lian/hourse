@@ -1,18 +1,20 @@
 // pages/my/my.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    logined: false,
+    userInfo: {}
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    this.updateLoginData()
   },
 
   /**
@@ -62,5 +64,64 @@ Page({
    */
   onShareAppMessage() {
 
+  },
+
+  getUserProfile(e) {
+    // 推荐使用 wx.getUserProfile 获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
+    // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
+    if (this.data.logined) {
+      return
+    }
+    wx.getUserProfile({
+      desc: '用于完善会员资料' // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+    }).then(res => {
+      const userInfo = res.userInfo
+      console.log(userInfo)
+      this.getOpenId(userInfo)
+    }).catch(reason => {
+      console.error(reason)
+    })
+  },
+
+  getOpenId(userInfo) {
+    wx.showLoading({
+      title: '登录中...', 
+    })
+    // 执行云函数，获取openid
+    wx.cloud.callFunction({
+      name: "get_openid",
+    }).then(res => {
+      // 缓存userInfo 和 openId
+      const openid = res.result.openid
+      userInfo.openid = openid
+      app.globalData.logined = true
+      app.globalData.userInfo = userInfo
+      this.updateLoginData()
+      const userInfoStr = JSON.stringify(userInfo)
+      console.log("=====" + userInfoStr)
+      wx.setStorage({
+        data: userInfoStr,
+        key: 'userInfo',
+        complete: res => {
+          wx.hideLoading({
+            success: (res) => {},
+          })
+        }
+      })
+    }).catch(reason => {
+      wx.hideLoading({
+        success: (res) => {},
+      })
+      console.error(reason)
+    })
+  },
+
+  updateLoginData() {
+    // 刷新页面，同步数据
+    this.setData({
+      userInfo: app.globalData.userInfo,
+      logined: app.globalData.logined
+    })
+    console.log("===========" + this.data.logined)
   }
 })

@@ -1,12 +1,9 @@
 /* pages/home/home.wxss */
-
-/**index.wxss**/
 page {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-
 
 #top_banners {
   height: 690rpx;
