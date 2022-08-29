@@ -1,28 +1,33 @@
 {
-    "pages": [
-        "pages/home/home",
-        "pages/my/my"
-    ],
-    "window": {
-        "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
-        "navigationBarTextStyle": "black"
-    },
-    "tabBar": {
-      "list": [{
+  "pages": [
+    "pages/home/home",
+    "pages/my/my",
+    "pages/company_detail/compay_detail",
+    "pages/company_type_list/company_type_list"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "list": [
+      {
         "pagePath": "pages/home/home",
         "text": "我要家政",
         "iconPath": "pages/images/tab/home_normal.png",
         "selectedIconPath": "pages/images/tab/home_selected.png"
-      },{
+      },
+      {
         "pagePath": "pages/my/my",
         "text": "我的信息",
         "iconPath": "pages/images/tab/my_normal.png",
         "selectedIconPath": "pages/images/tab/my_selected.png"
-      }],
-      "color": "#8E8E93",
-      "selectedColor": "#040507"
-    },
-    "style": "v2",
-    "sitemapLocation": "sitemap.json"
+      }
+    ],
+    "color": "#8E8E93",
+    "selectedColor": "#040507"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
 }

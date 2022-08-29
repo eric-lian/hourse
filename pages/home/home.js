@@ -15,43 +15,53 @@ Page({
     }],
     firstRow: [{
       name: "找保洁",
+      search_key: ["保洁", "找保洁"],
       icon: "/pages/images/menu/zhaobaojie.png",
       type: "0"
     }, {
       name: "找月嫂",
+      search_key: ["月嫂", "找月嫂"],
       icon: "/pages/images/menu/zhaoyuesao.png",
       type: "1"
     }, {
       name: "找保姆",
+      search_key: ["保姆", "找保姆"],
       icon: "/pages/images/menu/zhaobaomu.png",
       type: "2"
     }, {
       name: "找陪护",
+      search_key: ["陪护", "找陪护"],
       icon: "/pages/images/menu/zhaopeihu.png",
       type: "3"
     }, {
       name: "擦玻璃",
+      search_key: ["擦玻璃", "玻璃"],
       icon: "/pages/images/menu/caboli.png",
       type: "4"
     }],
     sencondRow: [{
       name: "疏通管道",
+      search_key: ["疏通", "管道", "疏通管道"],
       icon: "/pages/images/menu/shutongguandao.png",
       type: "5"
     }, {
       name: "修电路",
+      search_key: ["电路", "修电路"],
       icon: "/pages/images/menu/xiudianlu.png",
       type: "6"
     }, {
       name: "修家电",
+      search_key: ["家电", "修家电"],
       icon: "/pages/images/menu/xiujiadian.png",
       type: "7"
     }, {
       name: "清空调",
+      search_key: ["清空调", "空调"],
       icon: "/pages/images/menu/qingkongtiao.png",
       type: "8"
     }, {
       name: "房屋维修",
+      search_key: ["房屋", "维修", "房屋维修"],
       icon: "/pages/images/menu/fangwuweixiu.png",
       type: "9"
     }],
@@ -138,8 +148,10 @@ Page({
   },
 
   onMenuClick: function (e) {
-    var menuType = e.currentTarget.dataset.type
-    console.log(index)
+    var type = e.currentTarget.dataset.type
+    wx.navigateTo({
+      url: '/pages/company_type_list/company_type_list?type=' + type,
+    })
   },
 
   onSwiperItemClick: function (e) {
