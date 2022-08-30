@@ -1,11 +1,15 @@
 <!--pages/search/search.wxml-->
-<view id="search_container">
-  <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png" mode="aspectFit"></image>
-  <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="true" value="{{searchKey}}" bindconfirm="goToSearch" bindfocus="onFocus" />
+<view style=" position: fixed;background-color: white;width: 100%; display: flex;flex-direction: column;align-items: center;">
+  <view id="search_container">
+    <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png" mode="aspectFit"></image>
+    <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="true" value="{{searchKey}}" bindconfirm="goToSearch" bindfocus="onFocus" />
+  </view>
+
+  
 </view>
-<block wx:if="{{status == 2}}" wx:key="index">
-  <view>
-    <view wx:for="{{companyList}}">
+<block wx:if="{{status == 2}}">
+  <view style="margin-top: 94rpx;">
+    <view wx:for="{{companyList}}" wx:key="index">
       <view style="padding: 20rpx;margin-top: 32rpx; display: flex; flex-direction: row;justify-content: start;">
         <!-- 门店头图 -->
         <view>
