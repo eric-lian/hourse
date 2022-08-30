@@ -2,8 +2,7 @@
   "pages": [
     "pages/home/home",
     "pages/my/my",
-    "pages/company_detail/compay_detail",
-    "pages/company_type_list/company_type_list"
+    "pages/search/search"
   ],
   "window": {
     "backgroundTextStyle": "light",

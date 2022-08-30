@@ -148,8 +148,17 @@ Page({
 
   onMenuClick: function (e) {
     var type = e.currentTarget.dataset.type
+     // 获取搜索的内容
+     const typeToSearchKeyArray = app.globalData.typeToSearchKeyArray
+     console.log(typeToSearchKeyArray)
+     const typeToSearchKey = typeToSearchKeyArray.find(res => {
+       return type == res.type
+     })
+     // 拼接正则匹配表达式
+     const joinMatchRegex = typeToSearchKey.search_key.join('|')
+
     wx.navigateTo({
-      url: '/pages/company_type_list/company_type_list?type=' + type,
+      url: '/pages/search/search?searchKey='+ joinMatchRegex
     })
   },
 
@@ -159,8 +168,9 @@ Page({
   },
 
   onSearchBarClick(e) {
-    wx.showToast({
-      title: '点击搜索栏'
+  
+    wx.navigateTo({
+      url: '/pages/search/search'
     })
   }
 
