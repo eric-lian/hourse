@@ -1,2 +1,24 @@
 <!--pages/company_type_list/company_type_list.wxml-->
-<text>pages/company_type_list/company_type_list.wxml</text>
+<block wx:if="true" wx:key="index">
+  <view wx:for="{{companyList}}">
+    <view style="padding: 20rpx;margin-top: 32rpx; display: flex; flex-direction: row;">
+      <!-- 门店头图 -->
+      <view>
+        <image style="width: 224rpx; height: 240rpx; border-radius: 18rpx;" mode="aspectFill" src="{{item.company_main_img}}"></image>
+      </view>
+
+      <view style="display: flex; flex-direction: column;  width: 100%">
+        <!-- 门店名字 -->
+        <text style="font-size: 30rpx;color: #040507; margin-left: 24rpx;">{{item.name}}</text>
+        <!-- 门店地址1 -->
+        <text style="font-size: 24rpx;color: rgba(129, 134, 143, 1); margin-left: 24rpx; margin-top: 12rpx;">{{item.address}}</text>
+        <!-- 联系电话 -->
+        <view style="display: flex; height: 100%;align-items: flex-end;">
+          <text style="font-size: 24rpx;color: rgba(129, 134, 143, 1); margin-left: 24rpx; margin-bottom: 32rpx">联系电话 ：{{item.phone}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view style="height: 0.5px; background-color: rgba(129, 134, 143, 0.2); margin-left: 20rpx; margin-right: 20rpx;"></view>
+  </view>
+</block>

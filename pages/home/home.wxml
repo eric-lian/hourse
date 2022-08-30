@@ -32,4 +32,4 @@
 </view>
 
 
-<text id="nav_title" style="margin-top: {{statusBarHeight}}px; line-height: {{navigationBarHeight}}px; ">谯城区我当家政小程序</text>
+<text id="nav_title" style="margin-top: {{statusBarHeight + 25}}px; line-height: {{navigationBarHeight}}px; ">谯城区我当家政小程序</text>

@@ -8,7 +8,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    companyList: [],
+    // 0 默认 1 loading 2 success 3 empty 4 errror
+    status: 0
   },
 
   /**
@@ -27,15 +29,35 @@ Page({
     const db = wx.cloud.database()
     const _ = db.command
     // 模糊匹配服务
-    db.collection("merchants").where({
-      "scope_of_business": db.RegExp({
-        regexp: matchRegex
+    db.collection("merchants")
+      .where({
+        "scope_of_business": db.RegExp({
+          regexp: matchRegex
+        })
       })
-    }).get().then(res => {
-      console.log(res.data.length)
-    }).catch(reason => {
-      console.error(reason)
-    })
+      //  最多获取50条
+      .limit(50)
+      .get()
+      .then(res => {
+        console.log(res.data)
+        const resultData = res.data
+        if(resultData.length > 0) {
+          this.setData({
+            status: 2,
+            companyList: resultData
+          })
+        } else {
+          this.setData({
+            status: 4,
+            companyList: []
+          })
+        }
+      }).catch(reason => {
+        this.setData({
+          status: 3,
+          companyList: []
+        })
+      })
   },
 
   /**
