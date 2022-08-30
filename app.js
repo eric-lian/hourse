@@ -62,6 +62,18 @@ App({
         }
       }
     })
+  },
+
+  logout(onSuccess, onFail) {
+    wx.removeStorage({
+      key: 'userInfo',
+    }).then(res => {
+      this.globalData.userInfo = {}
+      this.globalData.logined = false
+      onSuccess()
+    }).catch(reason => {
+      onFail()
+    })
   }
 
 })

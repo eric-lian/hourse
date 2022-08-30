@@ -72,6 +72,9 @@ Page({
     if (this.data.logined) {
       return
     }
+    wx.showLoading({
+      title: '登录中...',
+    })
     wx.getUserProfile({
       desc: '用于完善会员资料' // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
     }).then(res => {
@@ -80,13 +83,13 @@ Page({
       this.getOpenId(userInfo)
     }).catch(reason => {
       console.error(reason)
+      wx.hideLoading({
+        success: (res) => {},
+      })
     })
   },
 
   getOpenId(userInfo) {
-    wx.showLoading({
-      title: '登录中...', 
-    })
     // 执行云函数，获取openid
     wx.cloud.callFunction({
       name: "get_openid",
@@ -123,5 +126,28 @@ Page({
       logined: app.globalData.logined
     })
     console.log("===========" + this.data.logined)
+  },
+
+  logout() {
+    wx.showLoading({
+      title: '退出登录中...',
+    })
+    // 清除本地记录
+    app.logout(res => {
+      // 退出登录成功
+      this.updateLoginData()
+      wx.hideLoading({
+        success: (res) => {},
+      })
+    }, res => {
+      wx.hideLoading({
+        success: (res) => {},
+      })
+      // 退出登录失败
+      wx.showToast({
+        title: '退出登录失败',
+        icon: 'none'
+      })
+    })
   }
 })

@@ -4,3 +4,45 @@ page {
   display: flex;
   flex-direction: column;
 }
+
+.avatar {
+  width: 160rpx;
+  height: 160rpx;
+  margin-top: 60rpx;
+  border-radius: 400rpx;
+}
+
+.nickName {
+  margin-top: 30rpx;
+  color: #000000;
+  font-size: 32rpx;
+}
+
+#getUserProfileBtn {
+  background-color: #60CF9C;
+  color: #FFFFFF;
+  font-size: 28rpx;
+  margin-top: 103rpx;
+  width: 630rpx;
+  height: 98rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 80rpx;
+}
+
+#logout {
+  position: absolute;
+  bottom: 128rpx;
+  background-color: white;
+  color: #EC6A38;
+  font-size: 28rpx;
+  margin-top: 103rpx;
+  width: 630rpx;
+  height: 98rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 80rpx;
+  border: 2px solid #E9EBED;
+}

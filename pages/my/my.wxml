@@ -1,3 +1,16 @@
 <!--pages/my/my.wxml-->
-<button wx:if="{{!logined}}" bindtap="getUserProfile">获取头像昵称</button>
-<text wx:if="{{logined}}">{{userInfo.nickName}}</text>
+<block wx:if="{{!logined}}">
+  <!-- justify-content: center; 垂直居中 align-items: center; 水平居中 -->
+  <view style="display: flex; flex-direction: column;align-items: center;">
+    <image class="avatar" src="/pages/images/my/user_default_avatar.png"></image>
+    <text style="margin-top: 30rpx;color: #000000; font-size: 32rpx;">未登录</text>
+    <button id="getUserProfileBtn" bindtap="getUserProfile">登录</button>
+  </view>
+</block>
+<block wx:else>
+  <view style="display: flex; flex-direction: column;align-items: center;">
+    <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+    <text class="nickName">{{userInfo.nickName}}</text>
+    <button id="logout" bindtap="logout">退出登录</button>
+  </view>
+</block>
