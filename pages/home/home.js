@@ -9,9 +9,9 @@ Page({
    */
   data: {
     banners: [{
-      img_url: "cloud://miniprogram-test-4fzwowo753c99a4.6d69-miniprogram-test-4fzwowo753c99a4-1313410386/banner/Banner.png"
+      img_url: "cloud://miniprogram-test-4fzwowo753c99a4.6d69-miniprogram-test-4fzwowo753c99a4-1313410386/banner/Banners.png"
     }, {
-      img_url: "cloud://miniprogram-test-4fzwowo753c99a4.6d69-miniprogram-test-4fzwowo753c99a4-1313410386/banner/Banner.png"
+      img_url: "cloud://miniprogram-test-4fzwowo753c99a4.6d69-miniprogram-test-4fzwowo753c99a4-1313410386/banner/Banners.png"
     }],
     firstRow: [{
       name: "找保洁",
