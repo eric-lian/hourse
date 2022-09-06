@@ -10,11 +10,19 @@ page {
   z-index: -1;
 }
 
-.menu_row {
+.menu_row_1 {
+  height: 160rpx;
+  display: flex;
+  flex-direction: row;
+  margin-top: 32rpx;
+}
+
+.menu_row_2 {
   height: 160rpx;
   display: flex;
   flex-direction: row;
 }
+
 
 .menu_item {
   display: flex;
@@ -95,7 +103,7 @@ page {
   margin-left: 32rpx;
   margin-top: 40rpx;
   margin-right: 32rpx;
-
+/*  最大行数限制 */
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;

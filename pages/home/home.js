@@ -130,7 +130,10 @@ Page({
     const _scrollTop = Math.min(options.scrollTop, this.data.topNavContainerHeight)
     const _alpha = Math.round(_scrollTop / this.data.topNavContainerHeight)
     const _topNavContainerBg = "rgba(96,207,156," + _alpha + ")"
-    console.log(_topNavContainerBg)
+    // console.log(_topNavContainerBg)
+    if (this.data.topNavContainerBg === _topNavContainerBg) {
+      return
+    }
     this.setData({
       topNavContainerBg: _topNavContainerBg,
       nav_opacity: 1 - _alpha
@@ -239,6 +242,14 @@ Page({
 
   onHomeTouchMove(e) {
     console.log(e)
+  },
+
+  onNewItemTap(e) {
+    const newId = e.currentTarget.dataset.new_id
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/news_rich_text_detail/detail?newId=' + newId,
+    })
   }
 
 

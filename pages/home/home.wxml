@@ -1,4 +1,4 @@
-<!-- <scroll-view scroll-y="true"> -->
+<wxs module="dateUtils" src="../utils/index.wxs"></wxs>
 <view>
   <swiper id="top_banners" indicator-dots="true" indicator-active-color="rgba(236, 106, 56, 1)" indicator-color="rgba(4, 5, 7, 0.16)" autoplay="true" interval="2000" circular="true" style="position: relative;">
     <swiper-item wx:for="{{banners}}" wx:key="index" bindtap="onSwiperItemClick" data-index="{{index}}">
@@ -10,37 +10,39 @@
 </view>
 <!-- 金刚区 -->
 <!-- 第一列 -->
-<view class="menu_row">
+<view class="menu_row_1">
   <view wx:for="{{firstRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}">
     <image class="menu_image" src="{{item.icon}}"></image>
     <text class="menu_text">{{item.name}}</text>
   </view>
 </view>
 <!-- 第二列 -->
-<view class="menu_row">
+<view class="menu_row_2">
   <view wx:for="{{sencondRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}">
     <image class="menu_image" src="{{item.icon}}"></image>
     <text class="menu_text">{{item.name}}</text>
   </view>
-
 </view>
 
 <view class="homeNews" hidden="{{homeNews.length <= 0}}">
   <view class="newDivider" />
   <view style="margin-top: 40rpx; padding-left: 32rpx; display: flex;  align-items: center;">
-    <image src="/pages/images/home/home_hot_new_heart.png" style="width: 32rpx; height: 32rpx; " mode="scaleToFill" /><text style="font-weight: 600;font-size: 32rpx;margin-left: 16rpx; color: #000000;">大家都在看</text>
+    <image src="/pages/images/home/home_hot_new_heart.png" style="width: 32rpx; height: 32rpx;" mode="aspectFit" />
+    <text style="font-weight: 600;font-size: 32rpx;margin-left: 16rpx; color: #000000;">大家都在看</text>
   </view>
 
-  <view class="homeNewItem" wx:for="{{homeNews}}" wx:key="index">
+  <view class="homeNewItem" wx:for="{{homeNews}}" wx:key="index" bindtap="onNewItemTap" data-new_id="{{item._id}}" >
 
     <text id="newTitle">{{item.title}}</text>
 
     <text id="newDescription">{{item.description}}</text>
 
+    <!-- <text>{{dateUtils.newFormatTime(item._createTime)}}</text> -->
+
     <view class="newDivider" />
   </view>
 </view>
-<!-- </scroll-view> -->
+
 <view id="top_search_bar" bindtap="onSearchBarClick">
   <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png"></image>
   <text id="top_search_bar_text">搜索需要的家政服务</text>

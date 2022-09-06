@@ -2,7 +2,8 @@
   "pages": [
     "pages/home/home",
     "pages/my/my",
-    "pages/search/search"
+    "pages/search/search",
+    "pages/news_rich_text_detail/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",
