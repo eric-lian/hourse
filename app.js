@@ -40,19 +40,19 @@ App({
   },
 
   onLaunch() {
+    // miniprogram-test-4fzwowo753c99a4  测试
     wx.cloud.init({
-      env: 'miniprogram-test-4fzwowo753c99a4',
+      env: 'house-keeping-7gact5ex37e05233',
       traceUser: true
     });
 
     const windowInfo = wx.getWindowInfo()
     // 状态栏高度
-    this.globalData.statusBarHeight = windowInfo.statusBarHeight
-    this.globalData.navigationBarHeight = windowInfo.screenTop
-    console.log(this.globalData.navigationBarHeight)
+    this.globalData.statusBarHeight = windowInfo.statusBarHeight * 750 / wx.getSystemInfoSync().windowWidth
+    this.globalData.navigationBarHeight = 44  * 750 / wx.getSystemInfoSync().windowWidth
 
     // 初始化登录状态
-    wx.getStorage({
+    wx.getStorage({ 
       key: 'userInfo',
       success: res => {
         if (res.data) {

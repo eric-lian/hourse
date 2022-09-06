@@ -1,11 +1,5 @@
+<!-- <scroll-view scroll-y="true"> -->
 <view>
-  <!-- <button bindtap="refreshIndexData" style="position: absolute; margin-top: 100rpx;">测试banner数据请求</button> -->
-
-  <view id="top_search_bar" bindtap="onSearchBarClick">
-    <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png"></image>
-    <text id="top_search_bar_text">搜索需要的家政服务</text>
-  </view>
-
   <swiper id="top_banners" indicator-dots="true" indicator-active-color="rgba(236, 106, 56, 1)" indicator-color="rgba(4, 5, 7, 0.16)" autoplay="true" interval="2000" circular="true" style="position: relative;">
     <swiper-item wx:for="{{banners}}" wx:key="index" bindtap="onSwiperItemClick" data-index="{{index}}">
       <!-- TODO 设置默认图 -->
@@ -31,5 +25,27 @@
 
 </view>
 
+<view class="homeNews" hidden="{{homeNews.length <= 0}}">
+  <view class="newDivider" />
+  <view style="margin-top: 40rpx; padding-left: 32rpx; display: flex;  align-items: center;">
+    <image src="/pages/images/home/home_hot_new_heart.png" style="width: 32rpx; height: 32rpx; " mode="scaleToFill" /><text style="font-weight: 600;font-size: 32rpx;margin-left: 16rpx; color: #000000;">大家都在看</text>
+  </view>
 
-<text id="nav_title" style="margin-top: {{statusBarHeight + 25}}px; line-height: {{navigationBarHeight}}px; ">谯城区我当家政小程序</text>
+  <view class="homeNewItem" wx:for="{{homeNews}}" wx:key="index">
+
+    <text id="newTitle">{{item.title}}</text>
+
+    <text id="newDescription">{{item.description}}</text>
+
+    <view class="newDivider" />
+  </view>
+</view>
+<!-- </scroll-view> -->
+<view id="top_search_bar" bindtap="onSearchBarClick">
+  <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png"></image>
+  <text id="top_search_bar_text">搜索需要的家政服务</text>
+</view>
+<!-- background-color: {{topNavContainerBg}}; opacity: {{nav_opacity}};-->
+<view id="nav_container" style="height: {{topNavContainerHeight}}rpx; background-color: {{topNavContainerBg}};">
+  <text id="nav_title" style="line-height: {{navigationBarHeight}}rpx; margin-top: {{statusBarHeight}}rpx;">谯城区我当家政小程序</text>
+</view>

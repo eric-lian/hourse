@@ -38,12 +38,18 @@ page {
   margin-top: 16rpx;
 }
 
+#nav_container{
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  width: 100%;
+}
+
 #nav_title {
   font-size: 36rpx;
   color: white;
-  margin-left: 32rpx;
   font-weight: 500;
-  position: absolute;
+  padding-left: 32rpx;
 }
 
 #top_search_bar {
@@ -69,4 +75,54 @@ page {
   width: 32rpx;
   height: 32rpx;
   margin-left: 28rpx;
+}
+
+.homeNews {
+  display: flex;
+  flex-direction: column;
+}
+
+.homeNewItem {
+  display: flex;
+  flex-direction: column;
+}
+
+#newTitle {
+  font-size: 30rpx;
+  color: #040507;
+  font-weight: 500;
+  padding: 0rpx;
+  margin-left: 32rpx;
+  margin-top: 40rpx;
+  margin-right: 32rpx;
+
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+#newDescription {
+  font-size: 26rpx;
+  color: #464D5A;
+  font-weight: 400;
+  padding: 0rpx;
+  margin-left: 32rpx;
+  margin-top: 10rpx;
+  margin-right: 32rpx;
+  /* 设置最大行数 */
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.newDivider {
+  background-color: #F9FAFB;
+  height: 10rpx;
+  margin-top: 40rpx;
 }
