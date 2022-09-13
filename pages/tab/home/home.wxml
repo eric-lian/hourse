@@ -1,4 +1,4 @@
-<wxs module="dateUtils" src="../utils/index.wxs"></wxs>
+<wxs module="dateUtils" src="./../../utils/index.wxs"></wxs>
 <view>
   <swiper id="top_banners" indicator-dots="true" indicator-active-color="rgba(236, 106, 56, 1)" indicator-color="rgba(4, 5, 7, 0.16)" autoplay="true" interval="2000" circular="true" style="position: relative;">
     <swiper-item wx:for="{{banners}}" wx:key="index" bindtap="onSwiperItemClick" data-index="{{index}}">

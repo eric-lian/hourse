@@ -1,0 +1,6 @@
+<!--pages/tab/merchants/merchants.wxml-->
+<text>pages/tab/merchants/merchants.wxml</text>
+
+<!-- 未登录，提示去登录 -->
+
+<!-- 已登录查询用户审核状态。 未注册 、审核中、已通过、 未通过 -->

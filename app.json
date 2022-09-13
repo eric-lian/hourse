@@ -1,7 +1,8 @@
 {
   "pages": [
-    "pages/home/home",
-    "pages/my/my",
+    "pages/tab/home/home",
+    "pages/tab/merchants/merchants",
+    "pages/tab/my/my",
     "pages/search/search",
     "pages/news_rich_text_detail/detail"
   ],
@@ -13,13 +14,19 @@
   "tabBar": {
     "list": [
       {
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/tab/home/home",
         "text": "我要家政",
         "iconPath": "pages/images/tab/home_normal.png",
         "selectedIconPath": "pages/images/tab/home_selected.png"
       },
       {
-        "pagePath": "pages/my/my",
+        "pagePath": "pages/tab/merchants/merchants",
+        "text": "我有家政",
+        "iconPath": "pages/images/tab/merchants_normal.png",
+        "selectedIconPath": "pages/images/tab/merchants_selected.png"
+      },
+      {
+        "pagePath": "pages/tab/my/my",
         "text": "我的信息",
         "iconPath": "pages/images/tab/my_normal.png",
         "selectedIconPath": "pages/images/tab/my_selected.png"
