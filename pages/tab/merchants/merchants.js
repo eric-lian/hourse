@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    logined: false,
+    logined: undefined,
     userInfo: {},
     // status 0 未注册 1 审核中 2 审核通过 3 审核驳回 4 申请修改
     merchant_register_info: {},
@@ -49,7 +49,8 @@ Page({
         emptyTip: "请输入手机号",
         minLength: 11,
         minLengthTip: "请输入正确手机号"
-      }
+      },
+      isRefreshLoading: false
     }
   },
 
@@ -71,11 +72,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // 状态不一致，为了及时刷新审核状态， 每一次页面可见都去刷新审核状态接口
-    this.refreshMerchant(this.data.logined != app.globalData.logined)
+    // 状态不一致，更新
+    if (this.data.logined != app.globalData.logined) {
+      this.refreshMerchant()
+    } else {
+      this.silenceRefreshMerchant()
+    }
   },
-
-  refreshMerchant(showLoading) {
+  refreshMerchant() {
     // 登录状态发生变化，重置请求信息状态
     this.data.data_status = 0
     if (app.globalData.logined) {
@@ -86,12 +90,9 @@ Page({
       this.data.merchant_register_info = {}
       this.setData(this.data)
       this.updateHeader()
-      if (showLoading) {
-        wx.showLoading({
-          title: '加载中...'
-        })
-      }
-
+      wx.showLoading({
+        title: '加载中...'
+      })
       // 获取商家缓存信息
       this.queryMerchant(res => {
         console.log(res.data)
@@ -100,7 +101,7 @@ Page({
           const resultData = resultDataArray[0]
           this.data.data_status = 2
           this.data.merchant_register_info = resultData
-          this.setData(this.data_status)
+          this.setData(this.data)
         } else {
           // 空数据
           this.data.data_status = 4
@@ -108,20 +109,16 @@ Page({
           this.setData(this.data)
         }
         this.updateHeader()
-        if (showLoading) {
-          wx.hideLoading({
-            success: (res) => {},
-          })
-        }
+        wx.hideLoading({
+          success: (res) => {},
+        })
       }, reason => {
         this.data.data_status = 3
         this.data.merchant_register_info = {}
         this.setData(this.data)
-        if (showLoading) {
-          wx.hideLoading({
-            success: (res) => {},
-          })
-        }
+        wx.hideLoading({
+          success: (res) => {},
+        })
       })
     } else {
       this.data.logined = app.globalData.logined
@@ -132,9 +129,29 @@ Page({
       this.updateHeader()
     }
   },
+  silenceRefreshMerchant() {
+    console.log("== silenceRefreshMerchant")
+    this.queryMerchant(res => {
+      console.log(res.data)
+      const resultDataArray = res.data
+      if (resultDataArray.length > 0) {
+        const resultData = resultDataArray[0]
+        if (resultData.status == this.data.merchant_register_info.status) {
+          return
+        }
+        console.log("silenceRefreshMerchant resultDataArray")
+        this.data.merchant_register_info = resultData
+      } else {
+        if (this.data.merchant_register_info.status == 0) {
+          return
+        }
+        console.log("silenceRefreshMerchant empty")
+        this.data.merchant_register_info.status = 0
+      }
+      this.updateHeader()
+    }, reason => {
 
-  onReload() {
-    this.refreshMerchant(true);
+    })
   },
 
   updateHeader() {
@@ -173,6 +190,10 @@ Page({
 
   // 查询一个商家
   queryMerchant(onSuccess, onFail) {
+    if (this.data.isRefreshLoading) {
+      return
+    }
+    this.data.isRefreshLoading = true
     const db = wx.cloud.database()
     db.collection('merchants_register_info')
       .where({
@@ -180,8 +201,14 @@ Page({
       })
       .limit(1)
       .get()
-      .then(onSuccess)
-      .catch(onFail)
+      .then(res => {
+        onSuccess(res)
+        this.data.isRefreshLoading = false
+      })
+      .catch(reason => {
+        onFail(reason)
+        this.data.isRefreshLoading = false
+      })
   },
 
   /**
@@ -202,7 +229,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-    console.log("=========== onPullDownRefresh")
+    console.log("=========== ")
   },
 
   /**
@@ -222,7 +249,7 @@ Page({
   login() {
     app.login(res => {
       // 登录成功，刷新用户状态
-      this.refreshMerchant(true)
+      this.refreshMerchant()
     }, reason => {
       console.log(reason)
     })
