@@ -74,3 +74,34 @@ page {
   color: rgba(96, 207, 156, 1);
   margin-top: 52rpx;
 }
+
+.register_result_reject_reason_desc {
+  font-size: 28rpx;
+  padding: 12rpx 60rpx 0rpx 60rpx;
+  display: -webkit-box;
+  overflow: hidden;
+  word-break: break-all;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+}
+
+.register_info_item {
+  display: flex;
+  flex-direction: column;
+  padding: 32rpx;
+}
+
+.register_info_item_title {
+  font-size: 32rpx;
+  color: #464D5A;
+}
+
+
+.register_info_item_title_value {
+  background-color: #F3F5F7;
+  padding: 22rpx 24rpx 22rpx 24rpx;
+  margin-top: 24rpx;
+  border-radius: 16rpx;
+
+}

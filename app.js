@@ -131,6 +131,12 @@ App({
     }).catch(reason => {
       onFail()
     })
-  }
+  },
 
+  inputIsEmpty(content) {
+    if (content == undefined || content == null || content.trim() == '') {
+      return true
+    }
+    return false
+  }
 })

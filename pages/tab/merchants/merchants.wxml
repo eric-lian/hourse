@@ -14,7 +14,7 @@
 
     <text style="font-size: 30rpx; font-weight: 500;color: rgba(0, 0, 0, 1);position: absolute; left: 125rpx; top: 36rpx;display: -webkit-box;overflow: hidden;word-break: break-all;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 1;padding-right: 30rpx;">{{main_title}}</text>
 
-    <text style="font-size: 22rpx; font-weight: 400;color: rgba(117, 138, 129, 1);position: absolute; left: 125rpx; top: 85rpx;display: -webkit-box;overflow: hidden;word-break: break-all;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 2;padding-right: 30rpx;">{{sub_title}}</text>
+    <text style="font-size: 22rpx; font-weight: 400;color: rgba(117, 138, 129, 1);position: absolute; left: 125rpx; top: 95rpx;display: -webkit-box;overflow: hidden;word-break: break-all;text-overflow: ellipsis;-webkit-box-orient: vertical;-webkit-line-clamp: 2;padding-right: 30rpx;">{{sub_title}}</text>
 
   </view>
 </template>
@@ -36,17 +36,65 @@
 
 
 <block wx:if="{{logined && data_status != 0}}">
-  <!-- 已登录查询用户审核状态。 未注册 、审核中、已通过、 未通过 -->
+  <!-- 已登录查询用户审核状态。 未注册 、1 审核中、 2 已通过, 3 未通过 -->
   <!-- 空数据表示用户还未注册 -->
-  <view wx:if="{{data_status == 4}}" class="register_status_container">
-    <template is="common_header" data="{{...header}}" />
+  <view wx:if="{{merchant_register_info.status == 0 || merchant_register_info.status == 4}}" class="register_status_container">
+
+    <view>
+      <template is="common_header" data="{{...header}}" />
+    </view>
+
     <view class="register_status_body">
 
+      <form bindsubmit="registerInfoSubmit">
+        <view class="register_info_item">
+          <view><text class="register_info_item_title">公司名称</text> <text style="color: red;">*</text></view>
+          <input name="name" class="register_info_item_title_value" maxlength="50" placeholder="公司名称" value="{{merchant_register_info.name}}" />
+        </view>
+
+        <view class="register_info_item">
+          <view><text class="register_info_item_title">公司地址</text> <text style="color: red;">*</text></view>
+          <textarea style="height: 164rpx;" name="address" maxlength="200" class="register_info_item_title_value" placeholder="公司地址" value="{{merchant_register_info.address}}" />
+        </view>
+
+        <view class="register_info_item">
+          <view><text class="register_info_item_title">法人身份证号</text> <text style="color: red;">*</text></view>
+          <input name="id_number" class="register_info_item_title_value" maxlength="18" placeholder="法人身份证号" value="{{merchant_register_info.id_number}}" />
+        </view>
+
+        <view class="register_info_item">
+          <view><text class="register_info_item_title">营业执照编号</text> <text style="color: red;">*</text></view>
+          <input name="business_license_number" class="register_info_item_title_value" placeholder="营业执照编号" value="{{merchant_register_info.business_license_number}}" maxlength="18" />
+        </view>
+
+        <view class="register_info_item">
+          <view><text class="register_info_item_title">最低服务价格</text> <text style="color: red;">*</text></view>
+          <input name="min_service_price" type="number" class="register_info_item_title_value" placeholder="最低价格" value="{{merchant_register_info.min_service_price}}" maxlength="5" />
+        </view>
+
+
+        <view class="register_info_item">
+          <view><text class="register_info_item_title">简介</text> <text style="color: red;">*</text></view>
+          <textarea name="introduction" type="text" style="height: 164rpx;" class="register_info_item_title_value" placeholder="公司简介" value="{{merchant_register_info.introduction}}" maxlength="200" />
+        </view>
+
+        <view class="register_info_item">
+          <view><text class="register_info_item_title">联系电话</text> <text style="color: red;">*</text></view>
+          <input name="phone_number" type="number" class="register_info_item_title_value" placeholder="手机号" value="{{merchant_register_info.phone_number}}" maxlength="20" />
+        </view>
+
+        <view>
+          <button class="common_btn" form-type="submit" style="width: 694rpx; height: 98rpx; margin-bottom: 32rpx;">提交审核</button>
+        </view>
+
+      </form>
     </view>
   </view>
   <!-- 审核中 -->
   <view wx:if="{{merchant_register_info.status == 1}}" class="register_status_container">
-    <template is="common_header" data="{{...header}}" />
+    <view>
+      <template is="common_header" data="{{...header}}" />
+    </view>
 
     <view class="register_status_body">
       <template is="register_status_title" />
@@ -60,31 +108,40 @@
 
   <!-- 已通过 -->
   <view wx:if="{{merchant_register_info.status == 2}}" class="register_status_container">
-    <template is="common_header" data="{{...header}}" />
+    <view>
+      <template is="common_header" data="{{...header}}" />
+    </view>
+
     <view class="register_status_body">
       <template is="register_status_title" />
       <view class="register_result_container">
         <image class="register_result_icon" src="/pages/images/merchant_register/status_review.png" />
         <text class="register_result_desc">审核通过</text>
-        <button class="common_btn" style="width: 630rpx; height: 98rpx; margin-top: 52rpx;" bindtap="login">申请修改</button>
+        <button class="common_btn" style="width: 630rpx; height: 98rpx; margin-top: 52rpx;" bindtap="reSubmitRegisterInfo">申请修改</button>
       </view>
     </view>
   </view>
 
   <!-- 未通过 -->
   <view wx:if="{{merchant_register_info.status == 3}}" class="register_status_container">
-    <template is="common_header" data="{{...header}}" />
+    <view>
+      <template is="common_header" data="{{...header}}" />
+    </view>
+
     <view class="register_status_body">
       <template is="register_status_title" />
       <view class="register_result_container">
         <image class="register_result_icon" src="/pages/images/merchant_register/status_review.png" />
-        <text class="register_result_desc" style="color: rgba(236, 106, 56, 1);">驳回</text>
-        <button class="common_btn" style="width: 630rpx; height: 98rpx; margin-top: 52rpx;" bindtap="login">重新提交</button>
+        <text class="register_result_desc" style="color: red;">驳回</text>
+        <text class="register_result_reject_reason_desc" style="color: red;">{{merchant_register_info.reject_reason}}</text>
+        <button class="common_btn" style="width: 630rpx; height: 98rpx; margin-top: 52rpx;" bindtap="reSubmitRegisterInfo">重新提交</button>
       </view>
     </view>
   </view>
 
-  <view wx:if="{{data_status == 3}}">
-    请求错误
+  <view style="display: flex; flex-direction: column; align-items: center;">
+    <text style="margin-top: 60%;font-weight: 600; font-size: 28rpx;color: rgba(4, 5, 7, 1);">请求失败</text>
+    <text style="margin-top: 32rpx;font-weight: 400; font-size: 26rpx;color: rgba(129, 134, 143, 1);">检查网络连接权限及当前网络状态</text>
+    <button class="common_btn" style="width: 630rpx; height: 98rpx; margin-top: 60rpx;" bindtap="refreshMerchant">点击重试</button>
   </view>
 </block>

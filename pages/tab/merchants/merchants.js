@@ -8,12 +8,48 @@ Page({
   data: {
     logined: false,
     userInfo: {},
+    // status 0 未注册 1 审核中 2 审核通过 3 审核驳回 4 申请修改
     merchant_register_info: {},
     //0 未知 1 请求中 2 成功 3 失败  4 空数据
     data_status: 0,
     header: {
       main_title: "",
       sub_title: ""
+    },
+    inputCheck: {
+      name: {
+        emptyTip: "请输入公司名称",
+        minLength: 2,
+        minLengthTip: "公司名称最小长度为2位"
+      },
+      address: {
+        emptyTip: "请输入公司地址",
+        minLength: 5,
+        minLengthTip: "公司地址最小长度为5位"
+      },
+      id_number: {
+        emptyTip: "请输入法人身份证号",
+        minLength: 15,
+        minLengthTip: "请输入正确法人身份证号"
+      },
+      business_license_number: {
+        emptyTip: "请输入营业执照编号",
+        minLength: 18,
+        minLengthTip: "请输入正确营业执照编号"
+      },
+      min_service_price: {
+        emptyTip: "请输入最低价格",
+      },
+      introduction: {
+        emptyTip: "请输入公司简介",
+        minLength: 15,
+        minLengthTip: "公司简介最小长度为15位"
+      },
+      phone_number: {
+        emptyTip: "请输入手机号",
+        minLength: 11,
+        minLengthTip: "请输入正确手机号"
+      }
     }
   },
 
@@ -21,7 +57,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.refreshMerchant()
+    // this.refreshMerchant()
   },
 
   /**
@@ -45,101 +81,75 @@ Page({
     this.data.data_status = 0
     if (app.globalData.logined) {
       console.log(app.globalData.userInfo)
-      const main_title = "Hey,  " + app.globalData.userInfo.nickName
-      this.setData({
-        logined: app.globalData.logined,
-        userInfo: app.globalData.userInfo,
-        data_status: 1,
-        merchant_register_info: {},
-        header: {
-          main_title: main_title,
-          sub_title: ""
-        }
-      })
+      this.data.logined = app.globalData.logined
+      this.data.userInfo = app.globalData.userInfo
+      this.data.data_status = 1
+      this.data.merchant_register_info = {}
+      this.setData(this.data)
+      this.updateHeader()
       // 获取商家缓存信息
       this.queryMerchant(res => {
         console.log(res.data)
         const resultDataArray = res.data
         if (resultDataArray.length > 0) {
           const resultData = resultDataArray[0]
-          const status = resultData.status
-          let sub_title = ""
-          // 待审核
-          if (status == 1) {
-            sub_title = "我们正在努力的审核中...请耐心等待一下"
-          } else if (status == 2) {
-            sub_title = "恭喜您申请成功"
-          } else if (status == 3) {
-            sub_title = "很抱歉申请信息可能有些问题，仔细检查后重新提交吧~"
-          }
-
-          this.setData({
-            data_status: 2,
-            merchant_register_info: resultData,
-            header: {
-              main_title: main_title,
-              sub_title: sub_title
-            }
-          })
+          this.data.data_status = 2
+          this.data.merchant_register_info = resultData
+          this.setData(this.data_status)
         } else {
           // 空数据
-          this.setData({
-            data_status: 4,
-            merchant_register_info: {},
-            header: {
-              main_title: main_title,
-              sub_title: "赶快填写你的信息吧~"
-            }
-          })
+          this.data.data_status = 4
+          this.data.merchant_register_info.status = 0
+          this.setData(this.data)
         }
+        this.updateHeader()
       }, reason => {
-        this.setData({
-          data_status: 3,
-          merchant_register_info: {}
-        })
+        this.data.data_status = 3
+        this.data.merchant_register_info = {}
+        this.setData(this.data)
       })
     } else {
-      this.setData({
-        logined: app.globalData.logined,
-        userInfo: app.globalData.userInfo,
-        data_status: 1,
-        merchant_register_info: {},
-        header: {
-          main_title: "未登录",
-          sub_title: "赶快登陆完善你的信息吧~"
-        }
-      })
+      this.data.logined = app.globalData.logined
+      this.data.userInfo = app.globalData.userInfo
+      this.data.data_status = 1
+      this.data.merchant_register_info = {}
+      this.setData(this.data)
+      this.updateHeader()
     }
   },
 
-  /**
-   * 插入或者更新一条数据
-   **/
-  setMerchant() {
-    console.log("========== openid : " + this.data.userInfo.openid)
-    // 先查询，再插入
-    const db = wx.cloud.database()
-    db.collection('merchants_register_info')
-      .doc(this.data.userInfo.openid)
-      .set({
-        data: {
-          "name": "军嫂家政",
-          "address": "海淀区军嫂家政",
-          "id_number": "1234567890",
-          "business_license_number": "1234567890",
-          "min_service_price": 15.6,
-          "introduction": "致力于全球最好的家政服务",
-          "phone_number": 15738898831,
-          "merchant_open_id": this.data.userInfo.openid,
-          "status": 1,
-          _createTime: db.serverDate(),
-          _updateTime: db.serverDate()
-        }
-      }).then(res => {
-        console.log(res)
-      }).catch(reason => {
-        console.log(reason)
-      })
+  updateHeader() {
+    let header
+    if (!this.data.logined) {
+      header = {
+        main_title: "未登录",
+        sub_title: "赶快登陆完善你的信息吧~"
+      }
+    } else {
+      const status = this.data.merchant_register_info.status
+      console.log("============= status")
+      console.log(status)
+      const main_title = "Hey,  " + this.data.userInfo.nickName
+      let sub_title
+      // 待审核
+      if (status == 0 || status == 4) {
+        sub_title = "赶快填写你的信息吧~"
+      } else if (status == 1) {
+        sub_title = "我们正在努力的审核中...请耐心等待一下"
+      } else if (status == 2) {
+        sub_title = "恭喜您申请成功"
+      } else if (status == 3) {
+        sub_title = "很抱歉申请信息可能有些问题，仔细检查后重新提交吧~"
+      } else {
+        sub_title = ""
+      }
+      header = {
+        main_title: main_title,
+        sub_title: sub_title
+      }
+    }
+    this.data.header = header
+    this.setData(this.data)
   },
 
   // 查询一个商家
@@ -197,5 +207,91 @@ Page({
     }, reason => {
       console.log(reason)
     })
+  },
+
+  registerInfoSubmit(e) {
+    const submitValue = e.detail.value
+    console.log(submitValue)
+    for (let key in submitValue) {
+      const value = submitValue[key]
+      // tip 为空说明改字段值可以为空
+      const tip = this.data.inputCheck[key]['emptyTip']
+      console.log("=============xxx " + key)
+      console.log(tip)
+      console.log(app.inputIsEmpty(tip))
+      console.log(app.inputIsEmpty(value))
+      if (!app.inputIsEmpty(tip) && app.inputIsEmpty(value)) {
+        wx.showToast({
+          title: tip,
+          icon: 'none'
+        })
+        return
+      }
+      const minLength = this.data.inputCheck[key]['minLength']
+      const minLengthTip = this.data.inputCheck[key]['minLengthTip']
+      const valueLength = value.length
+      console.log("=============xxx")
+      console.log(minLength + "===" + minLengthTip + "=====" + valueLength)
+      // 小于最小长度
+      if (!app.inputIsEmpty(tip) &&
+        !app.inputIsEmpty(minLength + "") &&
+        valueLength < minLength &&
+        !app.inputIsEmpty(minLengthTip)) {
+        wx.showToast({
+          title: minLengthTip,
+          icon: 'none',
+          // mask: true
+        })
+        return
+      }
+    }
+    // 开始提交表单信息
+    wx.showLoading({
+      title: '提交中...',
+      icon: 'none'
+    })
+    const db = wx.cloud.database()
+    submitValue.merchant_open_id = this.data.userInfo.openid
+    submitValue.status = 1
+    const cacheCreateTime = this.data.merchant_register_info._createTime
+    if (cacheCreateTime != undefined) {
+      submitValue._createTime = cacheCreateTime
+    }
+    const cacheRejectReason = this.data.merchant_register_info.reject_reason
+    // 缓存上一次驳回结果
+    if (cacheRejectReason != undefined) {
+      submitValue.reject_reason = cacheRejectReason
+    }
+    submitValue._createTime = db.serverDate()
+    submitValue._updateTime = db.serverDate()
+    db.collection('merchants_register_info')
+      .doc(this.data.userInfo.openid)
+      .set({
+        data: submitValue
+      }).then(res => {
+        // 成功更新本地信息对象 
+        wx.hideLoading({
+          icon: 'none',
+          success: (res) => {},
+        })
+        this.data.merchant_register_info = submitValue
+        this.setData(this.data)
+        console.log("================")
+        console.log(this.data)
+      }).catch(reason => {
+        wx.hideLoading({
+          icon: 'none',
+          success: (res) => {},
+        })
+        wx.showToast({
+          title: '提交失败',
+          icon: 'none'
+        })
+      })
+  },
+
+  reSubmitRegisterInfo() {
+    this.data.merchant_register_info.status = 4
+    this.updateHeader()
   }
 })
