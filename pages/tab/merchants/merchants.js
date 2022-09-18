@@ -71,12 +71,11 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // 状态不一致，更新
-    if (this.data.logined != app.globalData.logined) {
-      this.refreshMerchant()
-    }
+    // 状态不一致，为了及时刷新审核状态， 每一次页面可见都去刷新审核状态接口
+    this.refreshMerchant(this.data.logined != app.globalData.logined)
   },
-  refreshMerchant() {
+
+  refreshMerchant(showLoading) {
     // 登录状态发生变化，重置请求信息状态
     this.data.data_status = 0
     if (app.globalData.logined) {
@@ -87,6 +86,12 @@ Page({
       this.data.merchant_register_info = {}
       this.setData(this.data)
       this.updateHeader()
+      if (showLoading) {
+        wx.showLoading({
+          title: '加载中...'
+        })
+      }
+
       // 获取商家缓存信息
       this.queryMerchant(res => {
         console.log(res.data)
@@ -103,10 +108,20 @@ Page({
           this.setData(this.data)
         }
         this.updateHeader()
+        if (showLoading) {
+          wx.hideLoading({
+            success: (res) => {},
+          })
+        }
       }, reason => {
         this.data.data_status = 3
         this.data.merchant_register_info = {}
         this.setData(this.data)
+        if (showLoading) {
+          wx.hideLoading({
+            success: (res) => {},
+          })
+        }
       })
     } else {
       this.data.logined = app.globalData.logined
@@ -116,6 +131,10 @@ Page({
       this.setData(this.data)
       this.updateHeader()
     }
+  },
+
+  onReload() {
+    this.refreshMerchant(true);
   },
 
   updateHeader() {
@@ -183,7 +202,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh() {
-
+    console.log("=========== onPullDownRefresh")
   },
 
   /**
@@ -203,7 +222,7 @@ Page({
   login() {
     app.login(res => {
       // 登录成功，刷新用户状态
-      this.refreshMerchant()
+      this.refreshMerchant(true)
     }, reason => {
       console.log(reason)
     })
@@ -247,8 +266,7 @@ Page({
     }
     // 开始提交表单信息
     wx.showLoading({
-      title: '提交中...',
-      icon: 'none'
+      title: '提交中...'
     })
     const db = wx.cloud.database()
     submitValue.merchant_open_id = this.data.userInfo.openid
