@@ -139,7 +139,7 @@
     </view>
   </view>
 
-  <view style="display: flex; flex-direction: column; align-items: center;">
+  <view wx:if="{{data_status == 3}}" style="display: flex; flex-direction: column; align-items: center;">
     <text style="margin-top: 60%;font-weight: 600; font-size: 28rpx;color: rgba(4, 5, 7, 1);">请求失败</text>
     <text style="margin-top: 32rpx;font-weight: 400; font-size: 26rpx;color: rgba(129, 134, 143, 1);">检查网络连接权限及当前网络状态</text>
     <button class="common_btn" style="width: 630rpx; height: 98rpx; margin-top: 60rpx;" bindtap="refreshMerchant">点击重试</button>
