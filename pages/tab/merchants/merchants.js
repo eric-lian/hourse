@@ -72,27 +72,36 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // 状态不一致，更新
-    if (this.data.logined != app.globalData.logined) {
-      this.refreshMerchant()
-    } else {
-      this.silenceRefreshMerchant()
-    }
+    // 说明非首次，静默更新即可
+    this._refreshMerchant(this.data.merchant_register_info.status != undefined)
   },
   refreshMerchant() {
+    this._refreshMerchant(false)
+  },
+  _refreshMerchant(isSilence) {
     // 登录状态发生变化，重置请求信息状态
-    this.data.data_status = 0
     if (app.globalData.logined) {
       console.log(app.globalData.userInfo)
-      this.data.logined = app.globalData.logined
-      this.data.userInfo = app.globalData.userInfo
-      this.data.data_status = 1
-      this.data.merchant_register_info = {}
-      this.setData(this.data)
-      this.updateHeader()
-      wx.showLoading({
-        title: '加载中...'
-      })
+      const status = this.data.merchant_register_info.status
+      // 只有审核中需要刷新数据
+      if (status != undefined && status != 1) {
+        return
+      }
+
+      if (this.data.isRefreshLoading) {
+        return
+      }
+
+      if (!isSilence) {
+        this.data.logined = app.globalData.logined
+        this.data.userInfo = app.globalData.userInfo
+        this.data.data_status = 1
+        this.data.merchant_register_info = {}
+        this.updateHeader()
+        wx.showLoading({
+          title: '加载中...'
+        })
+      }
       // 获取商家缓存信息
       this.queryMerchant(res => {
         console.log(res.data)
@@ -109,49 +118,28 @@ Page({
           this.setData(this.data)
         }
         this.updateHeader()
-        wx.hideLoading({
-          success: (res) => {},
-        })
+        if (!isSilence) {
+          wx.hideLoading({
+            success: (res) => {},
+          })
+        }
       }, reason => {
         this.data.data_status = 3
         this.data.merchant_register_info = {}
         this.setData(this.data)
-        wx.hideLoading({
-          success: (res) => {},
-        })
+        if (!isSilence) {
+          wx.hideLoading({
+            success: (res) => {},
+          })
+        }
       })
     } else {
       this.data.logined = app.globalData.logined
       this.data.userInfo = app.globalData.userInfo
       this.data.data_status = 1
       this.data.merchant_register_info = {}
-      this.setData(this.data)
       this.updateHeader()
     }
-  },
-  silenceRefreshMerchant() {
-    console.log("== silenceRefreshMerchant")
-    this.queryMerchant(res => {
-      console.log(res.data)
-      const resultDataArray = res.data
-      if (resultDataArray.length > 0) {
-        const resultData = resultDataArray[0]
-        if (resultData.status == this.data.merchant_register_info.status) {
-          return
-        }
-        console.log("silenceRefreshMerchant resultDataArray")
-        this.data.merchant_register_info = resultData
-      } else {
-        if (this.data.merchant_register_info.status == 0) {
-          return
-        }
-        console.log("silenceRefreshMerchant empty")
-        this.data.merchant_register_info.status = 0
-      }
-      this.updateHeader()
-    }, reason => {
-
-    })
   },
 
   updateHeader() {
@@ -190,9 +178,6 @@ Page({
 
   // 查询一个商家
   queryMerchant(onSuccess, onFail) {
-    if (this.data.isRefreshLoading) {
-      return
-    }
     this.data.isRefreshLoading = true
     const db = wx.cloud.database()
     db.collection('merchants_register_info')
@@ -249,7 +234,7 @@ Page({
   login() {
     app.login(res => {
       // 登录成功，刷新用户状态
-      this.refreshMerchant()
+      this._refreshMerchant(false)
     }, reason => {
       console.log(reason)
     })
