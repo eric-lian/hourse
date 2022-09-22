@@ -26,9 +26,49 @@ page {
 #top_search_bar_icon_input {
   max-lines: 1;
   font-size: 24rpx;
-  padding-left: 22rpx ;
+  padding-left: 22rpx;
   padding-right: 36rpx;
   width: 100%;
   color: #464D5A;
   font-weight: 400;
+}
+
+#merchant_name {
+  font-size: 30rpx;
+  color: #040507;
+  /* 设置最大行数 */
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+#merchant_introducation {
+  font-size: 24rpx;
+  color: rgba(129, 134, 143, 1);
+  padding: 5rpx 10rpx 5rpx 10rpx;
+  border-radius: 8rpx;
+  /* 设置最大行数 */
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+#merchant_address {
+  font-size: 24rpx;
+  color: rgba(129, 134, 143, 1);
+  padding: 5rpx 10rpx 5rpx 10rpx;
+  border-radius: 8rpx;
+  /* 设置最大行数 */
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }

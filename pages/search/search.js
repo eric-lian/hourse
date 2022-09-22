@@ -108,12 +108,14 @@ Page({
     // 模糊匹配服务
     db.collection("merchants")
       .where({
+        "status": 1,
         "scope_of_business": db.RegExp({
           regexp: searchKey
         })
       })
       // 到序排序
       .orderBy('weight', "desc")
+      .orderBy('min_service_price', "asc")
       //  最多获取50条
       .limit(50)
       .get()

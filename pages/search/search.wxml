@@ -5,7 +5,7 @@
     <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="{{focus}}" value="{{searchKey}}" bindconfirm="goToSearch" bindfocus="onFocus" />
   </view>
 
-  
+
 </view>
 <block wx:if="{{status == 2}}">
   <view style="margin-top: 94rpx;">
@@ -17,13 +17,30 @@
         </view>
 
         <view style="display: flex; flex-direction: column;  width: 100%">
-          <!-- 门店名字 -->
-          <text style="font-size: 30rpx;color: #040507; margin-left: 24rpx;">{{item.name}}</text>
+          <!-- 门店名字
+           -->
+          <view style="margin-left: 24rpx;">
+            <text id="merchant_name">{{item.name}}</text>
+          </view>
+          <view style="height: 100%;" />
+
+          <!-- <view style="margin-left: 24rpx;margin-top: 12rpx;" >
+            <text id="merchant_introducation">{{item.introducation}}</text>
+          </view> -->
           <!-- 门店地址1 -->
-          <text style="font-size: 24rpx;color: rgba(129, 134, 143, 1); margin-left: 24rpx; margin-top: 12rpx;">{{item.address}}</text>
+          <view style="margin-left: 24rpx;margin-top: 12rpx;">
+            <text id="merchant_address" style="font-size: 24rpx;color: rgba(129, 134, 143, 1);background-color: rgba(237, 246, 243, 1);">{{item.address}}</text>
+          </view>
+          
+          
+          <view style="margin-left: 24rpx;margin-top: 24rpx;display: flex;flex-direction: row; align-items: baseline; justify-content: space-between;">
           <!-- 联系电话 -->
-          <view style="display: flex; height: 100%;align-items: flex-end;">
-            <text style="font-size: 24rpx;color: rgba(129, 134, 143, 1); margin-left: 24rpx; margin-bottom: 32rpx">联系电话 ：{{item.phone}}</text>
+            <text style="font-size: 24rpx;color: rgba(129, 134, 143, 1);">联系电话 ：{{item.phone}}</text>
+            <view style="display: flex; align-items: baseline; justify-content: flex-end;">
+              <text style="font-size: 26rpx;font-weight: 500;color: #EC6A38;">￥</text>
+              <text style="font-size: 40rpx;font-weight: 500;color: #EC6A38;">{{item.min_service_price}}</text>
+              <text style="font-size: 26rpx;font-weight: 500;color: #EC6A38;">起</text>
+            </view>
           </view>
         </view>
       </view>
