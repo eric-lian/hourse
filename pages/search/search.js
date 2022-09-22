@@ -8,7 +8,8 @@ Page({
     searchKey: "",
     companyList: [],
     // 0 默认 1 loading 2 success 3 errror 4  empty
-    status: 0
+    status: 0,
+    focus: false
   },
 
   /**
@@ -16,10 +17,16 @@ Page({
    */
   onLoad(options) {
     const _searchKey = options.searchKey
-    // 设置默认搜索词
-    if (_searchKey) {
+    // 设置默认搜索词 , 有默认搜索词，直接搜索
+    if (!getApp().inputIsEmpty(_searchKey)) {
       this.setData({
-        searchKey: _searchKey
+        searchKey: _searchKey,
+        focus: false
+      })
+      this._goToSearch(_searchKey)
+    } else {
+      this.setData({
+        focus: true
       })
     }
 
@@ -76,9 +83,11 @@ Page({
 
   goToSearch(event) {
     const searchKey = event.detail.value.trim()
-    const searchKeyLength = searchKey.length
-    console.log(searchKeyLength)
-    if (searchKeyLength == 0) {
+    this._goToSearch(searchKey)
+  },
+
+  _goToSearch(searchKey) {
+    if (getApp().inputIsEmpty(searchKey)) {
       wx.showToast({
         title: '请输入搜索内容',
         icon: 'none'
@@ -103,6 +112,8 @@ Page({
           regexp: searchKey
         })
       })
+      // 到序排序
+      .orderBy('weight', "desc")
       //  最多获取50条
       .limit(50)
       .get()
@@ -137,8 +148,8 @@ Page({
 
   onFocus(event) {
     // 输入框获得焦点，重置状态
-    this.setData({
-      status: 0
-    })
+    this.data.status = 0
+    this.data.focus = true
+    this.setData(this.data)
   }
 })

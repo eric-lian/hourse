@@ -2,7 +2,7 @@
 <view style=" position: fixed;background-color: white;width: 100%; display: flex;flex-direction: column;align-items: center;">
   <view id="search_container">
     <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png" mode="aspectFit"></image>
-    <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="true" value="{{searchKey}}" bindconfirm="goToSearch" bindfocus="onFocus" />
+    <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="{{focus}}" value="{{searchKey}}" bindconfirm="goToSearch" bindfocus="onFocus" />
   </view>
 
   

@@ -230,8 +230,17 @@ Page({
   },
 
   onSwiperItemClick: function (e) {
-    var index = e.currentTarget.dataset.index
-    console.log(index)
+    const index = e.currentTarget.dataset.index
+    const banner = this.data.banners[index]
+    const type = banner.type
+    const jump_detail_link = banner.jump_detail_link
+    console.log("onSwiperItemClick: " + type)
+    if (type == 4 && !getApp().inputIsEmpty(jump_detail_link)) {
+      wx.switchTab({
+        url: jump_detail_link,
+      })
+    }
+  
   },
 
   onSearchBarClick(e) {
