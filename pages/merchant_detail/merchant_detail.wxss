@@ -1,6 +1,6 @@
 /* pages/merchant_detail/merchant_detail.wxss */
 .merchant_detail_bottom_operation{
-  font-size: 28rpx;
+  font-size: 20rpx;
 }
 
 .merchant_content{

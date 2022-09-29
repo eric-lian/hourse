@@ -18,7 +18,8 @@
         </view>
       </view>
       <view style="width: 100%; display: flex;flex-direction: row;justify-content: flex-end;margin-top: 18rpx;">
-        <image style="background-color: violet; width: 128rpx;height: 128rpx;"></image>
+        <image style="width: 200rpx;height: 200rpx;" src="/pages/images/order/stamp.png"></image>
+
       </view>
     </view>
 
@@ -77,22 +78,27 @@
     </view>
   </view>
 </view>
+<view style="display: flex; flex-direction: column;">
 
-<view style="display: flex;flex-direction: row;justify-content: space-around; align-items: center; position: fixed;width: 100%;height: 100rpx; bottom: 0%;background-color: white;">
-  <view>
-    <text class="merchant_detail_bottom_operation">收藏</text>
-  </view>
-  <view bindtap="evaluate">
-    <text class="merchant_detail_bottom_operation">评价</text>
-  </view>
+  <view style="display: flex;flex-direction: row;justify-content: space-around; align-items: center; position: fixed;width: 100%;height: 100rpx; bottom: 0%;background-color: white;">
 
-  <view>
+    <view style="display: flex; flex-direction: column;" bindtap="evaluate">
+      <image src="/pages/images/order/like.png" style="width: 36rpx; height: 36rpx;"></image>
+      <text class="merchant_detail_bottom_operation">收藏</text>
+    </view>
+    <view style="display: flex; flex-direction: column;" bindtap="evaluate">
+      <image src="/pages/images/order/comment.png" style="width: 36rpx; height: 36rpx;"></image>
+      <text class="merchant_detail_bottom_operation">评价</text>
+    </view>
 
-    <text class="merchant_detail_bottom_operation" bindtap="callPhone">拨号</text>
-  </view>
+    <view style="display: flex; flex-direction: column;" bindtap="evaluate">
+      <image src="/pages/images/order/phone_call.png" style="width: 36rpx; height: 36rpx;"></image>
+      <text class="merchant_detail_bottom_operation" bindtap="callPhone">拨号</text>
+    </view>
 
-  <view style="background-color: cornflowerblue;padding: 12rpx 24rpx 12rpx 24rpx; border-radius: 40rpx;">
-    <text style="color: white;" bindtap="subscribe">立即预约</text>
+    <view style="background-color: cornflowerblue;padding: 12rpx 24rpx 12rpx 24rpx; border-radius: 40rpx;">
+      <text style="color: white;" bindtap="subscribe">立即预约</text>
+    </view>
   </view>
 
 </view>

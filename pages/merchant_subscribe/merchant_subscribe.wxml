@@ -9,8 +9,8 @@
 
 <view>
   <view style="display: flex;flex-direction: row; height: 180rpx;align-items: center;justify-content: center;">
-    <view style="display: flex;flex-direction: column; align-items: center;">
-      <view style="display: flex;flex-direction: row;justify-content: center;">
+    <view style="display: flex;flex-direction: column; justify-content: center;align-items: center;">
+      <view style="display: flex;flex-direction: row;justify-content: center; align-items: center;">
         <view class="status_line_translate" />
         <view class="status_circle" />
         <view class="status_line" />
@@ -20,7 +20,7 @@
     </view>
 
     <view style="display: flex;flex-direction: column; align-items: center;">
-      <view style="display: flex;flex-direction: row;justify-content: center;">
+      <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
         <view class="status_line_alpha_50" wx:if="{{status < 1}}" />
         <view class="status_line" wx:if="{{status >= 1}}" />
         <view class="status_circle" wx:if="{{status >= 2}}" />
@@ -34,7 +34,7 @@
 
 
     <view style="display: flex;flex-direction: column; align-items: center;">
-      <view style="display: flex;flex-direction: row;justify-content: center;">
+      <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
         <view class="status_line_alpha_50" wx:if="{{status < 2}}" />
         <view class="status_line" wx:if="{{status >= 2}}" />
         <view class="status_circle" wx:if="{{status >= 2}}" />
@@ -48,7 +48,7 @@
 
 
     <view style="display: flex;flex-direction: column; align-items: center;">
-      <view style="display: flex;flex-direction: row;justify-content: center;">
+      <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
         <view class="status_line_alpha_50" wx:if="{{status < 3}}" />
         <view class="status_line" wx:if="{{status >= 3}}" />
         <view class="status_circle" wx:if="{{status >= 3}}" />
@@ -61,7 +61,7 @@
     </view>
 
     <view style="display: flex;flex-direction: column; align-items: center;">
-      <view style="display: flex;flex-direction: row;justify-content: center;">
+      <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
         <view class="status_line_alpha_50" wx:if="{{status < 4}}" />
         <view class="status_line" wx:if="{{status >= 4}}" />
         <view class="status_circle" wx:if="{{status >= 4}}" />

@@ -15,21 +15,19 @@
 }
 
 .status_line {
-  margin-top: 12rpx;
   height: 4rpx;
   width: 60rpx;
   background-color: rgba(67, 186, 135, 1);
 }
 
 .status_line_alpha_50 {
-  margin-top: 12rpx;
+
   height: 4rpx;
-width: 60rpx;
+  width: 60rpx;
   background-color: rgba(67, 186, 135, 0.5);
 }
 
 .status_line_translate {
-  margin-top: 12rpx;
   height: 4rpx;
   width: 60rpx;
   background-color: rgba(67, 186, 135, 0);
