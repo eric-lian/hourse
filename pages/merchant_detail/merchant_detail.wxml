@@ -1,0 +1,98 @@
+<!--pages/merchant_detail/merchant_detail.wxml-->
+<template name="divier_line">
+  <view style="height: 2rpx; width: 100%; background-color: rgba(142, 142, 147, 0.2);margin-top: 40rpx;"></view>
+</template>
+<view style="display: flex;flex-direction: column;">
+
+  <view style="padding: 12rpx 24rpx 12rpx 24rpx; display: flex; flex-direction: row;">
+    <view>
+      <image style="width: 224rpx; height: 240rpx; border-radius: 18rpx;background-color: grey;" mode="aspectFill" src="{{merchant_detail_info.company_main_img}}"></image>
+    </view>
+
+    <view style="width: 100%;margin-left: 32rpx;">
+      <view style="display: flex;flex-direction: column;width: 100%;">
+        <text>{{merchant_detail_info.name}}</text>
+        <view style="display: flex;flex-direction: row;justify-content: space-between;margin-top: 18rpx;">
+          <text>16人持证</text>
+          <text>8人已收藏</text>
+        </view>
+      </view>
+      <view style="width: 100%; display: flex;flex-direction: row;justify-content: flex-end;margin-top: 18rpx;">
+        <image style="background-color: violet; width: 128rpx;height: 128rpx;"></image>
+      </view>
+    </view>
+
+  </view>
+
+  <view style="margin-top: 20rpx; padding: 20rpx; padding-bottom: 120rpx;">
+    <view>
+      <text style="color: white;background-color: cornflowerblue;padding: 12rpx 24rpx 12rpx 24rpx; border-radius: 20rpx;">基本信息</text>
+    </view>
+
+    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
+      <text style="flex-shrink: 0;">统一社会信用代码: </text> <text class="merchant_content">{{merchant_detail_info.credit_code}}</text>
+    </view>
+
+    <template is="divier_line"> </template>
+
+    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
+      <!-- {{merchant_info.credit_code}} -->
+      <text style="flex-shrink: 0;">官方网站: </text> <text class="merchant_content"></text>
+    </view>
+
+    <template is="divier_line"> </template>
+
+    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
+      <!-- {{merchant_info.credit_code}} -->
+      <text style="flex-shrink: 0;">电子邮箱: </text> <text class="merchant_content"></text>
+    </view>
+
+    <template is="divier_line"> </template>
+
+    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
+      <!-- {{merchant_info.credit_code}} -->
+      <text style="flex-shrink: 0;">负责人: </text> <text>{{merchant_detail_info.master}}</text>
+    </view>
+
+    <template is="divier_line"> </template>
+
+    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
+      <!-- {{merchant_info.credit_code}} -->
+      <text style="flex-shrink: 0;">地址: </text> <text class="merchant_content">{{merchant_detail_info.address}}</text>
+    </view>
+
+    <template is="divier_line"> </template>
+
+
+    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
+      <!-- {{merchant_info.credit_code}} -->
+      <text style="flex-shrink: 0;">服务范围: </text> <text class="merchant_content">{{merchant_detail_info.scope_of_business}}</text>
+    </view>
+
+    <template is="divier_line"> </template>
+
+    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
+      <!-- {{merchant_info.credit_code}} -->
+      <text style="flex-shrink: 0;">企业介绍: </text> <text class="merchant_content">{{merchant_detail_info.introducation}}</text>
+    </view>
+  </view>
+</view>
+
+<view style="display: flex;flex-direction: row;justify-content: space-around; align-items: center; position: fixed;width: 100%;height: 100rpx; bottom: 0%;background-color: white;">
+  <view>
+    <text class="merchant_detail_bottom_operation">收藏</text>
+  </view>
+  <view bindtap="evaluate">
+    <text class="merchant_detail_bottom_operation">评价</text>
+  </view>
+
+  <view>
+
+    <text class="merchant_detail_bottom_operation" bindtap="callPhone">拨号</text>
+  </view>
+
+  <view style="background-color: cornflowerblue;padding: 12rpx 24rpx 12rpx 24rpx; border-radius: 40rpx;">
+    <text style="color: white;" bindtap="subscribe">立即预约</text>
+  </view>
+
+</view>

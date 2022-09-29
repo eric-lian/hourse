@@ -1,0 +1,9 @@
+/* pages/merchant_detail/merchant_detail.wxss */
+.merchant_detail_bottom_operation{
+  font-size: 28rpx;
+}
+
+.merchant_content{
+  padding-left: 20rpx;
+  padding-right: 20rpx;
+}

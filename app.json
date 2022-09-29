@@ -4,7 +4,10 @@
     "pages/tab/merchants/merchants",
     "pages/tab/my/my",
     "pages/search/search",
-    "pages/news_rich_text_detail/detail"
+    "pages/news_rich_text_detail/detail",
+    "pages/merchant_detail/merchant_detail",
+    "pages/merchant_subscribe/merchant_subscribe",
+    "pages/evaluate/evaluate"
   ],
   "window": {
     "backgroundTextStyle": "light",

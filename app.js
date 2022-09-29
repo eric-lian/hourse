@@ -138,5 +138,9 @@ App({
       return true
     }
     return false
+  },
+
+  random(max) {
+    return Math.floor(Math.random() * 10)
   }
 })

@@ -153,5 +153,21 @@ Page({
     this.data.status = 0
     this.data.focus = true
     this.setData(this.data)
+  },
+
+  gotoDetail(event) {
+    const _id = event.currentTarget.dataset.id
+    wx.navigateTo({
+      url: '/pages/merchant_detail/merchant_detail?_id=' + _id,
+    })
+  },
+
+  gotoGuidePrice() {
+    wx.previewImage({
+      urls: ["cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/price_guide_20220927102917_00.png"],
+    }) 
+    // wx.navigateTo({
+    //   url: '/pages/price_guide/price_guide',
+    // })
   }
 })

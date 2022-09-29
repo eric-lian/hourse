@@ -1,0 +1,13 @@
+<!--pages/evaluate/evaluate.wxml-->
+<view>
+  <view>
+    <view style="justify-content: center;">
+      <textarea placeholder="请输入评论内容" style="padding: 24rpx; height: 500rpx;width: 600rpx;margin: 48rpx;" bindinput="evaluteInputChange" maxlength="200" />
+    </view>
+
+
+    <view style="height: 100rpx;background-color: rgba(67, 186, 135, 1);display: flex;justify-content: center;align-items: center;margin-bottom: 100rpx;border-radius: 18rpx;margin: 48rpx;" bindtap="submitOrder">
+      <text style="color: white;font-size: 38rpx;">确定提交 </text>
+    </view>
+  </view>
+</view>

@@ -1,5 +1,6 @@
 <!--pages/search/search.wxml-->
 <view style=" position: fixed;background-color: white;width: 100%; display: flex;flex-direction: column;align-items: center;">
+  <button style="padding: 18rpx 24rpx 24rpx 18rpx; background-color: rgba(67, 186, 135, 1); border-radius: 18rpx; margin-top: 18rpx; color: white;" bindtap="gotoGuidePrice">查阅服务指导价</button>
   <view id="search_container">
     <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png" mode="aspectFit"></image>
     <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="{{focus}}" value="{{searchKey}}" bindconfirm="goToSearch" bindfocus="onFocus" />
@@ -10,7 +11,7 @@
 <block wx:if="{{status == 2}}">
   <view style="margin-top: 94rpx;">
     <view wx:for="{{companyList}}" wx:key="index">
-      <view style="padding: 20rpx;margin-top: 32rpx; display: flex; flex-direction: row;justify-content: start;">
+      <view style="padding: 20rpx;margin-top: 32rpx; display: flex; flex-direction: row;justify-content: start;" bindtap="gotoDetail" data-id="{{item._id}}">
         <!-- 门店头图 -->
         <view>
           <image style="width: 224rpx; height: 240rpx; border-radius: 18rpx;" mode="aspectFill" src="{{item.company_main_img}}"></image>
