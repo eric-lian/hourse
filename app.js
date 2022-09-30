@@ -7,19 +7,19 @@ App({
     logined: false,
     userInfo: {},
     typeToSearchKeyArray: [{
-      search_key: ["找保洁"],
+      search_key: ["保洁"],
       type: "0"
     }, {
-      search_key: ["找月嫂"],
+      search_key: ["月嫂"],
       type: "1"
     }, {
-      search_key: ["找保姆"],
+      search_key: ["保姆"],
       type: "2"
     }, {
-      search_key: ["找陪护"],
+      search_key: ["陪护"],
       type: "3"
     }, {
-      search_key: ["擦玻璃"],
+      search_key: ["玻璃"],
       type: "4"
     }, {
       search_key: ["疏通管道"],

@@ -17,7 +17,7 @@
     <text class="nickName">{{userInfo.nickName}}</text>
     <template is="divier_line"></template>
     <view style="display: flex; flex-direction: row;align-items: center;width: 100%; padding-left: 88rpx;margin-top: 20rpx;">
-      <image src="/pages/images/order/comment.png" style="width: 48rpx; height: 48rpx;" />
+      <image src="/pages/images/order/comment.png" style="width: 36rpx; height: 36rpx;" />
       <text style="margin-left: 50rpx;">我的评价</text>
     </view>
     <template is="divier_line"></template>

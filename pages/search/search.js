@@ -109,9 +109,9 @@ Page({
     db.collection("merchants")
       .where({
         "status": 1,
-        "scope_of_business": db.RegExp({
-          regexp: searchKey
-        })
+        // "scope_of_business": db.RegExp({
+        //   regexp: searchKey
+        // })
       })
       // 到序排序
       .orderBy('weight', "desc")
