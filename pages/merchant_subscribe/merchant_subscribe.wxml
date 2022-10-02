@@ -129,7 +129,7 @@
     <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">联系人</text>
 
-      <input id="contact" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系人姓名" bindinput="onInputChange" type="number" maxlength="100" />
+      <input id="contact" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系人姓名" bindinput="onInputChange" maxlength="100" />
 
     </view>
 
@@ -138,7 +138,7 @@
     <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">联系电话</text>
 
-      <input id="phone" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系电话" bindinput="onInputChange" maxlength="100"/>
+      <input id="phone" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系电话" bindinput="onInputChange" type="number" maxlength="100"/>
 
     </view>
 

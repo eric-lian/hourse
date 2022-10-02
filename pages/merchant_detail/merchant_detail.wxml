@@ -82,7 +82,7 @@
 
   <view style="display: flex;flex-direction: row;justify-content: space-around; align-items: center; position: fixed;width: 100%;height: 100rpx; bottom: 0%;background-color: white;">
 
-    <view style="display: flex; flex-direction: column;" bindtap="evaluate">
+    <view style="display: flex; flex-direction: column;" bindtap="collect">
       <image src="/pages/images/order/like.png" style="width: 36rpx; height: 36rpx;"></image>
       <text class="merchant_detail_bottom_operation">收藏</text>
     </view>
@@ -91,9 +91,9 @@
       <text class="merchant_detail_bottom_operation">评价</text>
     </view>
 
-    <view style="display: flex; flex-direction: column;" bindtap="evaluate">
+    <view style="display: flex; flex-direction: column;" bindtap="callPhone">
       <image src="/pages/images/order/phone_call.png" style="width: 36rpx; height: 36rpx;"></image>
-      <text class="merchant_detail_bottom_operation" bindtap="callPhone">拨号</text>
+      <text class="merchant_detail_bottom_operation">拨号</text>
     </view>
 
     <view style="background-color: cornflowerblue;padding: 12rpx 24rpx 12rpx 24rpx; border-radius: 40rpx;">

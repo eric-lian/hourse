@@ -114,7 +114,7 @@ Page({
   },
 
   selectService() {
-    const _itemList = ["保洁", "修空调"]
+    const _itemList = ["保洁", "月嫂","保姆","陪护","电器维修"]
     wx.showActionSheet({
       itemList: _itemList,
       success: res => {

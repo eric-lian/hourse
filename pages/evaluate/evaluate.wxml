@@ -2,7 +2,7 @@
 <view>
   <view>
     <view style="justify-content: center;">
-      <textarea placeholder="请输入评论内容" style="padding: 24rpx; height: 500rpx;width: 600rpx;margin: 48rpx;" bindinput="evaluteInputChange" maxlength="200" />
+      <textarea auto-focus="true" placeholder="请输入评论内容" style="padding: 24rpx; height: 500rpx;width: 600rpx;margin: 48rpx;" bindinput="evaluteInputChange" maxlength="200"/>
     </view>
 
 

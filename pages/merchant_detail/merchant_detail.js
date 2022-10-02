@@ -125,5 +125,11 @@ Page({
     wx.navigateTo({
       url: '/pages/evaluate/evaluate',
     })
+  },
+
+  collect(){
+    wx.showToast({
+      title: '已收藏',
+    })
   }
 })
