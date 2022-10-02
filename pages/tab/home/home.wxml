@@ -7,6 +7,26 @@
     </swiper-item>
   </swiper>
 
+  <view style="height: 164rpx; display: flex; flex-direction: row;align-items: center;justify-content: space-around;">
+
+    <view class="main_menu_item" bindtap="onLookMerchant">
+      <!-- src="/pages/images/main_menu/look_merchant.png" -->
+      <image class="main_menu_item_img" style="background-color: rgb(62,195, 247);"></image>
+      <text class="main_menu_item_title">找商家</text>
+    </view>
+    <!-- src="/pages/images/main_menu/look_service.png" -->
+    <view class="main_menu_item" bindtap="onLookService">
+      <image class="main_menu_item_img"  style="background-color: rgb(251,131, 81);"></image>
+      <text class="main_menu_item_title">找服务</text>
+    </view>
+
+    <view class="main_menu_item" bindtap="onMerchantEnter">
+      <!-- src="/pages/images/main_menu/merchant_enter.png" -->
+      <image class="main_menu_item_img" style="background-color: royalblue;"></image>
+      <text class="main_menu_item_title">企业入驻</text>
+    </view>
+
+  </view>
 </view>
 <!-- 金刚区 -->
 <!-- 第一列 -->
@@ -31,7 +51,7 @@
     <text style="font-weight: 600;font-size: 32rpx;margin-left: 16rpx; color: #000000;">家政讯息</text>
   </view>
 
-  <view class="homeNewItem" wx:for="{{homeNews}}" wx:key="index" bindtap="onNewItemTap" data-new_id="{{item._id}}" >
+  <view class="homeNewItem" wx:for="{{homeNews}}" wx:key="index" bindtap="onNewItemTap" data-new_id="{{item._id}}">
 
     <text id="newTitle">{{item.title}}</text>
 

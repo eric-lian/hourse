@@ -18,7 +18,7 @@
         </view>
       </view>
       <view style="width: 100%; display: flex;flex-direction: row;justify-content: flex-end;margin-top: 18rpx;">
-        <image style="width: 200rpx;height: 200rpx;" src="/pages/images/order/stamp.png"></image>
+        <image style="width: 200rpx;height: 200rpx;" src="/pages/images/order/stamp.png" mode="aspectFit"></image>
 
       </view>
     </view>

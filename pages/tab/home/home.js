@@ -240,7 +240,7 @@ Page({
         url: jump_detail_link,
       })
     }
-  
+
   },
 
   onSearchBarClick(e) {
@@ -259,7 +259,24 @@ Page({
     wx.navigateTo({
       url: '/pages/news_rich_text_detail/detail?newId=' + newId,
     })
-  }
+  },
 
+  onLookMerchant() {
+    wx.navigateTo({
+      url: '/pages/search/search',
+    })
+  },
+
+  onLookService() {
+    wx.navigateTo({
+      url: '/pages/look_service/look_service',
+    })
+  },
+
+  onMerchantEnter() {
+    wx.navigateTo({
+      url: '/pages/tab/merchants/merchants',
+    })
+  }
 
 })

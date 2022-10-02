@@ -9,7 +9,8 @@ Page({
     companyList: [],
     // 0 默认 1 loading 2 success 3 errror 4  empty
     status: 0,
-    focus: false
+    focus: false,
+    showSearchBar: true
   },
 
   /**
@@ -17,16 +18,20 @@ Page({
    */
   onLoad(options) {
     const _searchKey = options.searchKey
+    const _showSearchBar = options.showSearchBar
+    console.log(_showSearchBar)
     // 设置默认搜索词 , 有默认搜索词，直接搜索
     if (!getApp().inputIsEmpty(_searchKey)) {
       this.setData({
         searchKey: _searchKey,
-        focus: false
+        focus: false,
+        showSearchBar: _showSearchBar
       })
       this._goToSearch(_searchKey)
     } else {
       this.setData({
-        focus: true
+        focus: true,
+        showSearchBar: _showSearchBar
       })
     }
 

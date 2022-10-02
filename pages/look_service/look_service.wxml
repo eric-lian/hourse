@@ -1,0 +1,24 @@
+<!--pages/look_service/look_service.wxml-->
+<view style="display: flex; flex-direction: row;">
+  <view style="width: 200rpx;">
+    <view wx:for="{{services}}" wx:key="index" style="width: 200rpx;height: 100rpx;justify-content: center; align-items: center; display: flex;background-color: {{currentSelectIndex == index ? '#F3F5F7': '#FFFFFF'}};" data-index="{{index}}" bindtap="onSwitchServiceMenu">
+      <text style="color: {{currentSelectIndex == index ? '#43BA87': '#464D5A'}};;">{{item.name}}</text>
+    </view>
+  </view>
+
+  <view style="width: 100%; display: flex ; flex-direction: column;">
+
+    <view style="margin: 20rpx; display: flex;flex-direction: row;border-color: #F3F5F7; border-width: 2rpx; border-style: solid;padding: 20rpx;border-radius: 16rpx;" wx:for="{{currentKinds}}" wx:key="index" data-parent_index="{{index}}" bindtap="onSelectServiceKind">
+      <view>
+        <image style="width: 150rpx; height: 215rpx;background-color: #464D5A;border-radius: 16rpx;" src="{{item.img}}"></image>
+      </view>
+
+      <view style="display: flex; flex-direction: column;">
+
+        <text style="font-size: 36rpx; margin-left: 20rpx;margin-right: 20rpx;">{{item.name}}</text>
+        <text style="font-size: 30rpx; margin-left: 20rpx;margin-right: 20rpx; color: #464D5A;">{{item.desc}}</text>
+      </view>
+    </view>
+  </view>
+
+</view>

@@ -46,7 +46,7 @@ page {
   margin-top: 16rpx;
 }
 
-#nav_container{
+#nav_container {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -103,7 +103,7 @@ page {
   margin-left: 32rpx;
   margin-top: 40rpx;
   margin-right: 32rpx;
-/*  最大行数限制 */
+  /*  最大行数限制 */
   display: -webkit-box;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -133,4 +133,30 @@ page {
   background-color: #F9FAFB;
   height: 10rpx;
   margin-top: 40rpx;
+}
+
+.main_menu_item {
+  border-radius: 16rpx;
+  justify-content: center;
+  align-items: center;
+  font-size: 26rpx;
+  color: white;
+  display: flex;
+  flex-direction: row;
+}
+
+.main_menu_item_img {
+  width: 198rpx;
+height: 100rpx;
+  border-radius: 18rpx;
+  
+}
+
+
+
+
+.main_menu_item_title {
+  font-size: 26rpx;
+  color: white;
+  position: absolute;
 }
