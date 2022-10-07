@@ -37,7 +37,8 @@ Page({
       desc: {
         emptyTip: "请输入需求描述",
       }
-    }
+    },
+    home: ""
   },
 
 
@@ -114,7 +115,7 @@ Page({
   },
 
   selectService() {
-    const _itemList = ["保洁", "月嫂","保姆","陪护","电器维修"]
+    const _itemList = ["保洁", "月嫂", "保姆", "陪护", "电器维修"]
     wx.showActionSheet({
       itemList: _itemList,
       success: res => {
@@ -237,5 +238,16 @@ Page({
           success: (res) => {},
         })
       })
+  },
+  selectLocation() {
+    var _this = this
+    wx.chooseLocation({
+      success: function (e) {
+        var home = e.name
+        _this.setData({
+          home: home
+        })
+      }
+    })
   }
 })

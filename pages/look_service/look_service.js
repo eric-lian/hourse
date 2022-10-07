@@ -10,15 +10,15 @@ Page({
         kinds: [{
           name: "住家型",
           desc: "日常家务、做饭、服务时间6：00-21：00",
-          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/保姆/住家型.png"
+          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/保姆/www.alltoall.net_住家型_3pwFqzoOKR.webp"
         }, {
           name: "早出晚归型",
           desc: "日常家务、做饭、服务时间协商约定",
-          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/保姆/早出晚归型.png"
+          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/保姆/www.alltoall.net_早出晚归型_w01JKNujbn.webp"
         }, {
           name: "半日型",
           desc: "日常家务、做饭、服务时间8：00-12：00或14：00-18：00",
-          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/保姆/半日型.png"
+          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/保姆/www.alltoall.net_半日型_XSYb2qvxPV.webp"
         }]
       },
       {
@@ -26,23 +26,23 @@ Page({
         kinds: [{
           name: "初级住家型",
           desc: "产妇、婴儿护理、服务时间全天24小时。",
-          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/初级住家型.png"
+          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/www.alltoall.net_初级住家型_SGbJlwHjR7.webp"
         }, {
           name: "初级早出晚归型",
           desc: "产妇、婴儿护理、服务时间9：00-19:00。",
-          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/初级早出晚归型.png"
+          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/www.alltoall.net_初级早出晚归型_qkxWtgGaYd.webp"
         }, {
           name: "中级住家型",
           desc: "产妇、婴儿护理、服务时间全天24小时。",
-          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/中级住家型.png"
+          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/www.alltoall.net_中级住家型_ePXt3cgakM.webp"
         }, {
           name: "中级早出晚归型",
           desc: "产妇、婴儿护理、服务时间全天24小时。",
-          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/中级早出晚归型.png"
+          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/www.alltoall.net_高级早出晚归型_wYcN1V8gx5.webp"
         }, {
           name: "高级住家型",
           desc: "产妇、婴儿护理、服务时间全天24小时。",
-          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/高级住家型.png"
+          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/www.alltoall.net_高级住家型_W_q5U4rBK9.webp"
         }, {
           name: "高级早出晚归型",
           desc: "产妇、婴儿护理、服务时间9：00-19:00。",

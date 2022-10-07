@@ -10,7 +10,7 @@
 
     <view style="margin: 20rpx; display: flex;flex-direction: row;border-color: #F3F5F7; border-width: 2rpx; border-style: solid;padding: 20rpx;border-radius: 16rpx;" wx:for="{{currentKinds}}" wx:key="index" data-parent_index="{{index}}" bindtap="onSelectServiceKind">
       <view>
-        <image style="width: 150rpx; height: 215rpx;background-color: #464D5A;border-radius: 16rpx;" src="{{item.img}}"></image>
+        <image style="width: 150rpx; height: 215rpx;background-color: rgba(243, 245, 247, 1);border-radius: 16rpx;" src="{{item.img}}"></image>
       </view>
 
       <view style="display: flex; flex-direction: column;">

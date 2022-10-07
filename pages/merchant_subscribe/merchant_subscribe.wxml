@@ -120,7 +120,17 @@
     <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">服务地址</text>
 
-      <input id="service_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入详细地址" bindinput="onInputChange" maxlength="100"/>
+      <input id="service_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入地址" bindinput="onInputChange" maxlength="100" value="{{home}}" />
+
+      <text style="flex-shrink: 0;color: red;" bindtap="selectLocation">自动定位</text>
+    </view>
+
+    <template is="divier_line"></template>
+
+    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
+      <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">详细地址</text>
+
+      <input id="service_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入详细地址" bindinput="onInputChange" maxlength="100" />
 
     </view>
 
@@ -138,7 +148,7 @@
     <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">联系电话</text>
 
-      <input id="phone" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系电话" bindinput="onInputChange" type="number" maxlength="100"/>
+      <input id="phone" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系电话" bindinput="onInputChange" type="number" maxlength="100" />
 
     </view>
 
@@ -147,7 +157,7 @@
     <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">需求描述</text>
 
-      <input id="desc" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入需求描述" bindinput="onInputChange" maxlength="100"/>
+      <input id="desc" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入需求描述" bindinput="onInputChange" maxlength="100" />
 
     </view>
 
@@ -198,6 +208,8 @@
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">服务地址</text>
 
       <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{service_address}}</text>
+
+
 
     </view>
 
