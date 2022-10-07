@@ -1,5 +1,8 @@
 <wxs module="dateUtils" src="./../../utils/index.wxs"></wxs>
 <view>
+  <view style="height: 260rpx;background-color: rgba(96,207,156,1)">
+
+  </view>
   <swiper id="top_banners" indicator-dots="true" indicator-active-color="rgba(236, 106, 56, 1)" indicator-color="rgba(4, 5, 7, 0.16)" autoplay="true" interval="2000" circular="true">
     <swiper-item wx:for="{{banners}}" wx:key="index" bindtap="onSwiperItemClick" data-index="{{index}}">
       <!-- TODO 设置默认图 -->
@@ -10,39 +13,54 @@
   <view style="height: 164rpx; display: flex; flex-direction: row;align-items: center;justify-content: space-around;">
 
     <view class="main_menu_item" bindtap="onLookMerchant">
-      <!-- src="/pages/images/main_menu/look_merchant.png" -->
-      <image class="main_menu_item_img" style="background-color: rgb(62,195, 247);"></image>
-      <text class="main_menu_item_title">找商家</text>
+      <image class="main_menu_item_img" src="/pages/images/main_menu/look_merchant.png"></image>
+      <!-- <text class="main_menu_item_title">找商家</text> -->
     </view>
-    <!-- src="/pages/images/main_menu/look_service.png" -->
+
     <view class="main_menu_item" bindtap="onLookService">
-      <image class="main_menu_item_img"  style="background-color: rgb(251,131, 81);"></image>
-      <text class="main_menu_item_title">找服务</text>
+      <image class="main_menu_item_img" src="/pages/images/main_menu/look_service.png"></image>
+      <!-- <text class="main_menu_item_title">找服务</text> -->
     </view>
 
     <view class="main_menu_item" bindtap="onMerchantEnter">
-      <!-- src="/pages/images/main_menu/merchant_enter.png" -->
-      <image class="main_menu_item_img" style="background-color: royalblue;"></image>
-      <text class="main_menu_item_title">企业入驻</text>
+      <image class="main_menu_item_img" src="/pages/images/main_menu/merchant_enter.png"></image>
+      <!-- <text class="main_menu_item_title">企业入驻</text> -->
     </view>
-
   </view>
+  <view style="height: 16rpx;background-color: rgba(243, 245, 247, 1);"></view>
 </view>
 <!-- 金刚区 -->
+<view style="align-items: center;display: flex;padding-top: 32rpx;padding-bottom: 24rpx;">
+  <text style="font-size: 32rpx;margin-left: 32rpx;font-weight: 600rpx; color: rgba(0, 0, 0, 1);">家政服务</text>
+</view>
+<view>
+  <view style="height: 2rpx;  background-color: rgba(243, 245, 247, 1);"></view>
+</view>
+
 <!-- 第一列 -->
-<view class="menu_row_1">
+<view class="menu_row" style="margin-top: 32rpx;">
   <view wx:for="{{firstRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}">
     <image class="menu_image" src="{{item.icon}}"></image>
     <text class="menu_text">{{item.name}}</text>
   </view>
 </view>
 <!-- 第二列 -->
-<view class="menu_row_2">
+<view class="menu_row">
   <view wx:for="{{sencondRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}">
     <image class="menu_image" src="{{item.icon}}"></image>
     <text class="menu_text">{{item.name}}</text>
   </view>
 </view>
+
+<!-- 第三列 -->
+<view class="menu_row">
+  <view wx:for="{{thridRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}">
+    <image class="menu_image" src="{{item.icon}}"></image>
+    <text class="menu_text">{{item.name}}</text>
+  </view>
+</view>
+
+
 
 <view class="homeNews" hidden="{{homeNews.length <= 0}}">
   <view class="newDivider" />

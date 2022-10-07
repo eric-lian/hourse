@@ -6,22 +6,19 @@ page {
 }
 
 #top_banners {
-  height: 690rpx;
+  height: 390rpx;
   z-index: -1;
 }
 
-.menu_row_1 {
+.menu_row {
   height: 160rpx;
   display: flex;
   flex-direction: row;
-  margin-top: 32rpx;
+  margin-top: 16rpx;
+  margin-bottom: 16rpx;
 }
 
-.menu_row_2 {
-  height: 160rpx;
-  display: flex;
-  flex-direction: row;
-}
+
 
 
 .menu_item {
@@ -64,7 +61,7 @@ page {
   display: flex;
   flex-direction: row;
   position: absolute;
-  margin-top: 200rpx;
+  margin-top: 160rpx;
   width: 686rpx;
   height: 74rpx;
   background-color: white;
@@ -135,6 +132,12 @@ page {
   margin-top: 40rpx;
 }
 
+
+.newDivider_1 {
+  background-color: #F9FAFB;
+  height: 10rpx;
+}
+
 .main_menu_item {
   border-radius: 16rpx;
   justify-content: center;
@@ -159,4 +162,5 @@ height: 100rpx;
   font-size: 26rpx;
   color: white;
   position: absolute;
+  font-weight: 400;
 }

@@ -9,7 +9,7 @@ Page({
    */
   data: {
     banners: [{
-      img_url: "https://686f-house-keeping-7gact5ex37e05233-1313608840.tcb.qcloud.la/cloudbase-cms/upload/2022-08-31/knqggo8ef31lhpzw61rm6kmgdvjvq5ff_.png",
+      img_url: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/banner/Frame 43.png",
       type: 3
     }],
     firstRow: [{
@@ -32,11 +32,6 @@ Page({
       search_key: ["陪护", "找陪护"],
       icon: "/pages/images/menu/zhaopeihu.png",
       type: "3"
-    }, {
-      name: "擦玻璃",
-      search_key: ["擦玻璃", "玻璃"],
-      icon: "/pages/images/menu/caboli.png",
-      type: "4"
     }],
     sencondRow: [{
       name: "疏通管道",
@@ -58,11 +53,17 @@ Page({
       search_key: ["清空调", "空调"],
       icon: "/pages/images/menu/qingkongtiao.png",
       type: "8"
-    }, {
+    }],
+    thridRow: [ {
       name: "房屋维修",
       search_key: ["房屋", "维修", "房屋维修"],
       icon: "/pages/images/menu/fangwuweixiu.png",
       type: "9"
+    }, {
+      name: "擦玻璃",
+      search_key: ["擦玻璃", "玻璃"],
+      icon: "/pages/images/menu/caboli.png",
+      type: "4"
     }],
     homeNews: [],
     statusBarHeight: 0,
