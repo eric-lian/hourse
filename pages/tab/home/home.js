@@ -54,7 +54,7 @@ Page({
       icon: "/pages/images/menu/qingkongtiao.png",
       type: "8"
     }],
-    thridRow: [ {
+    thridRow: [{
       name: "房屋维修",
       search_key: ["房屋", "维修", "房屋维修"],
       icon: "/pages/images/menu/fangwuweixiu.png",
@@ -129,7 +129,8 @@ Page({
 
   onPageScroll(options) {
     const _scrollTop = Math.min(options.scrollTop, this.data.topNavContainerHeight)
-    const _alpha = Math.round(_scrollTop / this.data.topNavContainerHeight)
+    // const _alpha = Math.round(_scrollTop / this.data.topNavContainerHeight) 
+    const _alpha = 1
     const _topNavContainerBg = "rgba(96,207,156," + _alpha + ")"
     // console.log(_topNavContainerBg)
     if (this.data.topNavContainerBg === _topNavContainerBg) {

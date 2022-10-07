@@ -7,6 +7,7 @@ Page({
   data: {
     // 0 下单 1 接单 2 上门 3 评价
     status: "0",
+    coarse_address: "",
     service_name: "",
     start_time: "",
     end_time: "",
@@ -23,8 +24,12 @@ Page({
         emptyTip: "请选择服务类型",
       },
 
-      service_address: {
+      coarse_address: {
         emptyTip: "请输入服务地址",
+      },
+
+      service_address: {
+        emptyTip: "请输入详细地址",
       },
       contact: {
         emptyTip: "请输入联系人姓名",
@@ -152,6 +157,10 @@ Page({
       this.setData({
         service_address: value
       })
+    } else if ("coarse_address" == id) {
+      this.setData({
+        coarse_address: value
+      })
     } else if ("contact" == id) {
       this.setData({
         contact: value
@@ -210,6 +219,7 @@ Page({
       end_time: this.data.end_time,
       merchant_id: this.data.merchant_id,
       service_type: this.data.service_type,
+      coarse_address: this.data.coarse_address,
       service_address: this.data.service_address,
       contact: this.data.contact,
       phone: this.data.phone,
@@ -243,9 +253,9 @@ Page({
     var _this = this
     wx.chooseLocation({
       success: function (e) {
-        var home = e.name
+        var coarse_address = e.name
         _this.setData({
-          home: home
+          coarse_address: coarse_address
         })
       }
     })
