@@ -46,7 +46,7 @@ Page({
         }, {
           name: "高级早出晚归型",
           desc: "产妇、婴儿护理、服务时间9：00-19:00。",
-          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/高级早出晚归型.png"
+          img: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/services_list/月嫂/www.alltoall.net_高级早出晚归型_wYcN1V8gx5.webp"
         }]
       }
     ],
