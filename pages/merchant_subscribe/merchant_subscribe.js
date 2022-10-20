@@ -161,7 +161,7 @@ Page({
       this.setData({
         coarse_address: value
       })
-    } else if ("contact" == id) {
+    }  else if ("contact" == id) {
       this.setData({
         contact: value
       })
