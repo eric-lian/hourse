@@ -117,7 +117,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+   
   },
 
   /**
@@ -182,7 +182,7 @@ Page({
       .where({
         status: 0
       })
-      // .orderBy('weig', 'desc')
+      // .orderBy('weight', 'desc')
       .limit(10)
       .get()
       .then(res => {
@@ -230,18 +230,18 @@ Page({
   },
 
   onMenuClick: function (e) {
-    var type = e.currentTarget.dataset.type
+    var name = e.currentTarget.dataset.name
     // 获取搜索的内容
-    const typeToSearchKeyArray = app.globalData.typeToSearchKeyArray
-    console.log(typeToSearchKeyArray)
-    const typeToSearchKey = typeToSearchKeyArray.find(res => {
-      return type == res.type
-    })
+    // const typeToSearchKeyArray = app.globalData.typeToSearchKeyArray
+    // console.log(typeToSearchKeyArray)
+    // const typeToSearchKey = typeToSearchKeyArray.find(res => {
+    //   return type == res.type
+    // })
     // 拼接正则匹配表达式
-    const joinMatchRegex = typeToSearchKey.search_key.join('|')
+    // const joinMatchRegex = typeToSearchKey.search_key.join('|')
 
     wx.navigateTo({
-      url: '/pages/search/search?searchKey=' + joinMatchRegex
+      url: '/pages/search/search?searchKey=' + name
     })
   },
 

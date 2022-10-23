@@ -19,8 +19,10 @@ Page({
       id: _id
     })
     this.queryMerchant(res => {
-      console.log(res)
-      const merchant_detail_info_array = res.data
+      const merchant_detail_info_array = res.result.list
+      console.log("==========") 
+      console.log(merchant_detail_info_array) 
+      console.log("==========")
       if (merchant_detail_info_array.length > 0) {
         const merchant_detail_info = merchant_detail_info_array[0]
         this.setData({
@@ -86,14 +88,12 @@ Page({
 
   queryMerchant(onSuccess, onFail) {
     this.data.isRefreshLoading = true
-    const db = wx.cloud.database()
-    db.collection('merchants')
-      .where({
-        _id: this.data.id
-      })
-      .limit(1)
-      .get()
-      .then(res => {
+    wx.cloud.callFunction({
+      name: "query_merchant",
+      data: { 
+        merchant_id: this.data.id
+      }
+    }).then(res => {
         onSuccess(res)
       })
       .catch(reason => {
@@ -130,6 +130,16 @@ Page({
   collect(){
     wx.showToast({
       title: '已收藏',
+    })
+  },
+
+
+  immediately_subscribe(e) {
+    const merchant_id = e.currentTarget.dataset.merchant_id
+    const merchant_name = e.currentTarget.dataset.merchant_name
+    console.log(merchant_id)
+    wx.navigateTo({
+      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name + "&merchant_id=" + merchant_id
     })
   }
 })

@@ -5,6 +5,17 @@ text {
   word-break: break-all;
 }
 
+.person_item {
+  margin: 20rpx;
+  display: flex;
+  flex-direction: row;
+  border-color: #F3F5F7;
+  border-width: 2rpx;
+  border-style: solid;
+  padding: 20rpx;
+  border-radius: 16rpx;
+}
+
 #immediately_subscribe {
   font-size: 26rpx;
   padding: 0rpx;

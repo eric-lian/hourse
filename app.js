@@ -5,38 +5,7 @@ App({
     statusBarHeight: 0,
     navigationBarHeight: 0,
     logined: false,
-    userInfo: {},
-    typeToSearchKeyArray: [{
-      search_key: ["保洁"],
-      type: "0"
-    }, {
-      search_key: ["月嫂"],
-      type: "1"
-    }, {
-      search_key: ["保姆"],
-      type: "2"
-    }, {
-      search_key: ["陪护"],
-      type: "3"
-    }, {
-      search_key: ["玻璃"],
-      type: "4"
-    }, {
-      search_key: ["疏通管道"],
-      type: "5"
-    }, {
-      search_key: ["修电路"],
-      type: "6"
-    }, {
-      search_key: ["修家电"],
-      type: "7"
-    }, {
-      search_key: ["清空调"],
-      type: "8"
-    }, {
-      search_key: ["房屋维修"],
-      type: "9"
-    }]
+    userInfo: {}
   },
 
   onLaunch() {

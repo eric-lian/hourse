@@ -3,12 +3,12 @@
 <view style="display: flex; flex-direction: row;" wx:if="{{status == 3}}">
   <view style="width: 200rpx;">
     <view wx:for="{{services}}" wx:key="index" style="width: 200rpx;height: 100rpx;justify-content: center; align-items: center; display: flex;background-color: {{currentSelectIndex == index ? '#F3F5F7': '#FFFFFF'}};" data-index="{{index}}" bindtap="onSwitchServiceMenu">
-      <text style="color: {{currentSelectIndex == index ? 'rgba(21, 92, 205, 1);': 'rgba(4, 5, 7, 1)'}};font-size: {{currentSelectIndex == index ? 28: 26}}rpx;font-weight: {{currentSelectIndex == index ? 500: 400}};">{{item._id}}</text>
+      <text style="color: {{currentSelectIndex == index ? 'rgba(21, 92, 205, 1);': 'rgba(4, 5, 7, 1)'}};font-size: {{currentSelectIndex == index ? 34: 32}}rpx;font-weight: {{currentSelectIndex == index ? 500: 400}};">{{item._id}}</text>
     </view>
   </view>
 
   <view style="width: 100%; display: flex ; flex-direction: column;">
-    <view style="margin: 20rpx; display: flex;flex-direction: row;border-color: #F3F5F7; border-width: 2rpx; border-style: solid;padding: 20rpx;border-radius: 16rpx;" wx:for="{{services[currentSelectIndex].list}}" wx:key="index">
+    <view class="person_item" wx:for="{{services[currentSelectIndex].list}}" wx:key="index">
       <view style="margin-right: 24rpx;">
         <image style="width: 176rpx; height: 235rpx;background-color: rgba(243, 245, 247, 1);border-radius: 16rpx;" src="{{item.person_photo}}"></image>
       </view>

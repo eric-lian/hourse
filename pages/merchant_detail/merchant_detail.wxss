@@ -51,11 +51,40 @@
   font-size: 32rpx;
 }
 
-#basic_info_tag {
+.moudle_item_tag {
   font-weight: 600;
   font-size: 30rpx;
   color: white;
-  background-color: rgba(23,115,215,1);
+  background-color: rgba(21, 92, 205, 1);
   padding: 12rpx 24rpx 12rpx 24rpx;
   border-radius: 20rpx;
+}
+
+.moudle_item {
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+.person_item {
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
+  display: flex;
+  flex-direction: row;
+  /* border-color: #F3F5F7; */
+  /* border-width: 2rpx; */
+  /* border-style: solid; */
+  /* padding: 20rpx; */
+  /* border-radius: 16rpx; */
+}
+
+.immediately_subscribe {
+  font-size: 26rpx;
+  background-color: rgba(21, 92, 205, 1);
+  padding: 12rpx 32rpx ;
+  border-radius: 80rpx;
+  color: white;
+  font-weight: 400;
 }

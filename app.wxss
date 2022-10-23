@@ -14,6 +14,12 @@
   background-color: rgba(243, 245, 247, 1);
 }
 
+
+.mid_line {
+  background-color: #F9FAFB;
+  height: 10rpx;
+}
+
 .varify_passed_tag {
   background-color: rgba(248, 234, 225, 1);
   font-weight: 400;
