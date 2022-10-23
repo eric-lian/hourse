@@ -41,14 +41,14 @@
 
 <!-- 第一列 -->
 <view class="menu_row">
-  <view wx:for="{{firstRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}">
+  <view wx:for="{{firstRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}" data-name="{{item.name}}">
     <image class="menu_image" src="{{item.icon}}"></image>
     <text class="menu_text">{{item.name}}</text>
   </view>
 </view>
 <!-- 第二列 -->
 <view class="menu_row">
-  <view wx:for="{{sencondRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}">
+  <view wx:for="{{sencondRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}" data-name="{{item.name}}">
     <image class="menu_image" src="{{item.icon}}"></image>
     <text class="menu_text">{{item.name}}</text>
   </view>
@@ -56,7 +56,7 @@
 
 <!-- 第三列 -->
 <view class="menu_row">
-  <view wx:for="{{thridRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}">
+  <view wx:for="{{thridRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}" data-name="{{item.name}}">
     <image class="menu_image" src="{{item.icon}}"></image>
     <text class="menu_text">{{item.name}}</text>
   </view>

@@ -5,7 +5,8 @@ App({
     statusBarHeight: 0,
     navigationBarHeight: 0,
     logined: false,
-    userInfo: {}
+    userInfo: {},
+    homeSearchKeyOptimized: []
   },
 
   onLaunch() {
@@ -31,6 +32,32 @@ App({
         }
       }
     })
+
+    wx.getStorage({
+      key: "homeSearchKeyOptimized",
+      success: res => {
+        if (res.data) {
+          console.log("======= getStorage homeSearchKeyOptimized")
+          console.log(res.data)
+          this.globalData.homeSearchKeyOptimized = res.data
+        }
+      }
+    })
+
+    const db = wx.cloud.database()
+    db.collection("home_search_key_optimized")
+      .where({
+        status: 1
+      })
+      .get()
+      .then(res => {
+        console.log(res)
+        const _homeSearchKeyOptimized = res.data
+        this.globalData.homeSearchKeyOptimized = _homeSearchKeyOptimized
+        wx.setStorageSync('homeSearchKeyOptimized', Json.stringify(_homeSearchKeyOptimized))
+      }).catch(reason => {
+        console.log(reason)
+      })
   },
 
   login(onSuccess, onFail) {

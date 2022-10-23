@@ -188,7 +188,7 @@ Page({
         _updateTime: false
       })
       .where({
-        status: 0
+        status: 1
       })
       // .orderBy('weight', 'desc')
       .limit(10)
@@ -239,15 +239,36 @@ Page({
 
   onMenuClick: function (e) {
     var type = e.currentTarget.dataset.type
-    // 获取搜索的内容
-    const menu = this.data.menus.find(res => {
+    var name = e.currentTarget.dataset.name
+    console.log(e)
+    var search_key = null
+    // 查找服务端增强关键词
+    const serverSearchKeyObj = app.globalData.homeSearchKeyOptimized.find(res => {
       return type == res.type
     })
+    if (serverSearchKeyObj != undefined &&
+      serverSearchKeyObj != null &&
+      serverSearchKeyObj.search_key.length > 0) {
+      search_key = serverSearchKeyObj.search_key
+      console.log("用服务端缓存关键词搜索：")
+      console.log(search_key)
+    }
+    
+    if (search_key == null) {
+      // 获取搜索的内容
+      const menu = this.data.menus.find(res => {
+        return type == res.type
+      })
+      search_key = menu.search_key
+      console.log("用客户单缓存关键词搜索：")
+      console.log(search_key)
+    }
+
     // 拼接正则匹配表达式
-    const joinMatchRegex = menu.search_key.join('|')
+    const joinMatchRegex = search_key.join('|')
 
     wx.navigateTo({
-      url: '/pages/search/search?searchKey=' + joinMatchRegex + '&searchShowKey=' + menu.name
+      url: '/pages/search/search?searchKey=' + joinMatchRegex + '&searchShowKey=' + name
     })
   },
 
