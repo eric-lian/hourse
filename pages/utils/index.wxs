@@ -14,7 +14,12 @@ function getDateYearDiff(startDateMills, endDateMills) {
   return getDate(endDateMills).getFullYear() - getDate(startDateMills).getFullYear()
 }
 
+function slice(array, start, end) {
+  return array.slice(start, end)
+}
+
 module.exports = {
   newFormatTime: newFormatTime,
-  getDateYearDiff: getDateYearDiff
+  getDateYearDiff: getDateYearDiff,
+  slice: slice
 }

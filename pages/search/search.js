@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    searchKey: "",
+    searchShowKey: "",
     companyList: [],
     // 0 默认 1 loading 2 success 3 errror 4  empty
     status: 0,
@@ -17,13 +17,14 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    const _searchShowKey = options.searchShowKey
     const _searchKey = options.searchKey
     const _showSearchBar = options.showSearchBar
     console.log(_showSearchBar)
     // 设置默认搜索词 , 有默认搜索词，直接搜索
     if (!getApp().inputIsEmpty(_searchKey)) {
       this.setData({
-        searchKey: _searchKey,
+        searchShowKey: _searchShowKey,
         focus: false,
         showSearchBar: _showSearchBar
       })

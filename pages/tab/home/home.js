@@ -12,8 +12,7 @@ Page({
       img_url: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/banner/Frame 43.png",
       type: 3
     }],
-
-    firstRow: [{
+    menus: [{
         name: "保洁",
         search_key: ["保洁"],
         icon: "/pages/images/menu/baojie.png",
@@ -21,7 +20,7 @@ Page({
       },
       {
         name: "母婴护理",
-        search_key: ["母婴护理"],
+        search_key: ["母婴", "护理", "月嫂", "母婴护理", "育婴师"],
         icon: "/pages/images/menu/muyinghuli.png",
         type: "1"
       }, {
@@ -32,53 +31,57 @@ Page({
       },
       {
         name: "疏通管道",
-        search_key: ["疏通", "管道", "疏通管道"],
+        search_key: ["疏通", "管道", "疏通管道", "疏通管道"],
         icon: "/pages/images/menu/guandao.png",
         type: "3"
+      },
+      {
+        name: "水电安装",
+        search_key: ["水电", "安装", "水电安装"],
+        icon: "/pages/images/menu/shuidiananzhuang.png",
+        type: "4"
+      }, {
+        name: "家电清洗",
+        search_key: ["家电", "清洗", "家电清洗"],
+        icon: "/pages/images/menu/jiadianqingxi.png",
+        type: "5"
+      }, {
+        name: "家电维修",
+        search_key: ["家电", "维修", "家电维修"],
+        icon: "/pages/images/menu/jiadianweixiu.png",
+        type: "6"
+      }, {
+        name: "养老护理",
+        search_key: ["养老", "护理", "养老护理", "护工", "老年", "护理", "老年护理",
+          "病人陪护"
+        ],
+        icon: "/pages/images/menu/yanglaohuli.png",
+        type: "7"
+      }, {
+        name: "搬家",
+        search_key: ["搬家"],
+        icon: "/pages/images/menu/banjia.png",
+        type: "8"
+      }, {
+        name: "收纳干洗",
+        search_key: ["收纳", "干洗", "收纳干洗"],
+        icon: "/pages/images/menu/shounaganxi.png",
+        type: "9"
+      }, {
+        name: "甲醛治理",
+        search_key: ["甲醛", "治理", "甲醛治理"],
+        icon: "/pages/images/menu/jiaquanzhili.png",
+        type: "11"
+      }, {
+        name: "家政培训",
+        search_key: ["家政培训"],
+        icon: "/pages/images/menu/jiazhengpeixun.png",
+        type: "12"
       }
     ],
-    sencondRow: [{
-      name: "水电安装",
-      search_key: ["水电安装"],
-      icon: "/pages/images/menu/shuidiananzhuang.png",
-      type: "4"
-    }, {
-      name: "家电清洗",
-      search_key: ["家电清洗", "家电清洗"],
-      icon: "/pages/images/menu/jiadianqingxi.png",
-      type: "5"
-    }, {
-      name: "家电维修",
-      search_key: ["家电", "家电维修"],
-      icon: "/pages/images/menu/jiadianweixiu.png",
-      type: "6"
-    }, {
-      name: "养老护理",
-      search_key: ["养老", "护理", "养老护理"],
-      icon: "/pages/images/menu/yanglaohuli.png",
-      type: "7"
-    }],
-    thridRow: [{
-      name: "搬家",
-      search_key: ["搬家"],
-      icon: "/pages/images/menu/banjia.png",
-      type: "8"
-    }, {
-      name: "收纳干洗",
-      search_key: ["收纳干洗"],
-      icon: "/pages/images/menu/shounaganxi.png",
-      type: "9"
-    }, {
-      name: "甲醛治理",
-      search_key: ["甲醛治理"],
-      icon: "/pages/images/menu/jiaquanzhili.png",
-      type: "11"
-    }, {
-      name: "家政培训",
-      search_key: ["家政培训"],
-      icon: "/pages/images/menu/jiazhengpeixun.png",
-      type: "12"
-    }],
+    firstRow: [],
+    sencondRow: [],
+    thridRow: [],
     homeNews: [],
     statusBarHeight: 0,
     navigationBarHeight: 0,
@@ -88,11 +91,16 @@ Page({
     nav_opacity: 1
   },
 
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+
     this.setData({
+      firstRow: this.data.menus.slice(0, 4),
+      sencondRow: this.data.menus.slice(4, 8),
+      thridRow: this.data.menus.slice(8, 12),
       statusBarHeight: app.globalData.statusBarHeight,
       navigationBarHeight: app.globalData.navigationBarHeight
     })
@@ -117,7 +125,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-   
+
   },
 
   /**
@@ -230,18 +238,16 @@ Page({
   },
 
   onMenuClick: function (e) {
-    var name = e.currentTarget.dataset.name
+    var type = e.currentTarget.dataset.type
     // 获取搜索的内容
-    // const typeToSearchKeyArray = app.globalData.typeToSearchKeyArray
-    // console.log(typeToSearchKeyArray)
-    // const typeToSearchKey = typeToSearchKeyArray.find(res => {
-    //   return type == res.type
-    // })
+    const menu = this.data.menus.find(res => {
+      return type == res.type
+    })
     // 拼接正则匹配表达式
-    // const joinMatchRegex = typeToSearchKey.search_key.join('|')
+    const joinMatchRegex = menu.search_key.join('|')
 
     wx.navigateTo({
-      url: '/pages/search/search?searchKey=' + name
+      url: '/pages/search/search?searchKey=' + joinMatchRegex + '&searchShowKey=' + menu.name
     })
   },
 
