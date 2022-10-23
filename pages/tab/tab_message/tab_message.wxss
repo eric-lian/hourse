@@ -1,1 +1,31 @@
 /* pages/tab_message/tab_message.wxss */
+.item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 32rpx 21rpx;
+}
+
+.item_cover {
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 24rpx;
+}
+
+.item_main_title {
+  font-size: 30rpx;
+  color: rgba(4, 5, 7, 1);
+  font-weight: 500;
+}
+
+.item_sub_title {
+  font-size: 26rpx;
+  color: rgba(129, 134, 143, 1);
+  font-weight: 400;
+  margin-top: 4rpx;
+}
+
+.item_messge {
+  display: flex;
+  flex-direction: column;
+}

@@ -6,16 +6,14 @@ page {
 }
 
 #top_banners {
-  height: 390rpx;
+  height: 356rpx;
   z-index: -1;
 }
 
 .menu_row {
-  height: 160rpx;
   display: flex;
   flex-direction: row;
-  margin-top: 16rpx;
-  margin-bottom: 16rpx;
+  margin-top: 32rpx;
 }
 
 
@@ -31,12 +29,12 @@ page {
 }
 
 .menu_image {
-  width: 72rpx;
-  height: 72rpx;
+  width: 88rpx;
+  height: 88rpx;
 }
 
 .menu_text {
-  font-size: 22rpx;
+  font-size: 26rpx;
   color: #474654;
   font-weight: 500;
   text-align: center;
@@ -90,6 +88,7 @@ page {
 .homeNewItem {
   display: flex;
   flex-direction: column;
+  margin-top: 24rpx
 }
 
 #newTitle {
@@ -98,7 +97,6 @@ page {
   font-weight: 500;
   padding: 0rpx;
   margin-left: 32rpx;
-  margin-top: 40rpx;
   margin-right: 32rpx;
   /*  最大行数限制 */
   display: -webkit-box;
@@ -111,12 +109,12 @@ page {
 
 #newDescription {
   font-size: 26rpx;
-  color: #464D5A;
-  font-weight: 400;
+  color: #81868F;
+  font-weight: 300;
   padding: 0rpx;
   margin-left: 32rpx;
-  margin-top: 10rpx;
   margin-right: 32rpx;
+  margin-top: 10rpx;
   /* 设置最大行数 */
   display: -webkit-box;
   overflow: hidden;
@@ -150,9 +148,9 @@ page {
 
 .main_menu_item_img {
   width: 198rpx;
-height: 100rpx;
+  height: 100rpx;
   border-radius: 18rpx;
-  
+
 }
 
 

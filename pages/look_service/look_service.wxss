@@ -1,1 +1,19 @@
 /* pages/look_service/look_service.wxss */
+
+text {
+  /* 控制text分行 */
+  word-break: break-all;
+}
+
+#immediately_subscribe {
+  font-size: 26rpx;
+  padding: 0rpx;
+  background-color: rgba(21, 92, 205, 1);
+  width: 173rpx;
+  line-height: 56rpx;
+  border-radius: 80rpx;
+  color: white;
+  position: fixed;
+  margin-top: 20rpx;
+  font-weight: 400;
+}

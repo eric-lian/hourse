@@ -1,37 +1,41 @@
 <!--pages/tab_message/tab_message.wxml-->
 
 <view>
-  <view style="display: flex;flex-direction: row;align-items: center; border-color: transparent;border-bottom-color: #22464D5A; border-style: solid;border-width: 1rpx;">
-    <view style="padding: 40rpx">
-      <image src="/pages/images/message_center/agreement.png" style="width: 50rpx;height: 50rpx;"></image>
+  <view class="item">
+    <view>
+      <image src="/pages/images/message_center/hetong.png" class="item_cover" />
     </view>
 
-    <view style="display: flex;flex-direction: column;">
-      <text style="font-size: 40rpx;color: #040507;">合同确定</text>
-      <text style="font-size: 26rpx; color: rgba(129, 134, 143, 1);">暂无消息</text>
-    </view>
-  </view>
-
-  <view style="display: flex;flex-direction: row;align-items: center; border-color: transparent;border-bottom-color: #22464D5A; border-style: solid;border-width: 1rpx;">
-    <view style="padding: 40rpx">
-      <image src="/pages/images/message_center/delivery.png" style="width: 50rpx;height: 50rpx;"></image>
-    </view>
-
-    <view style="display: flex;flex-direction: column;">
-      <text style="font-size: 38rpx;color: #040507;">服务结束</text>
-      <text style="font-size: 28rpx; color: rgba(129, 134, 143, 1);">暂无消息</text>
+    <view class="item_messge">
+      <text class="item_main_title">合同确定</text>
+      <text class="item_sub_title">暂无消息</text>
     </view>
   </view>
 
+  <view class="min_line" />
 
-  <view style="display: flex;flex-direction: row;align-items: center; border-color: transparent;border-bottom-color: #22464D5A; border-style: solid;border-width: 1rpx;">
-    <view style="padding: 40rpx">
-      <image src="/pages/images/message_center/star.png" style="width: 50rpx;height: 50rpx;"></image>
+  <view class="item">
+    <view>
+      <image src="/pages/images/message_center/fuwujieshu.png" class="item_cover" />
     </view>
 
     <view style="display: flex;flex-direction: column;">
-      <text style="font-size: 38rpx;color: #040507;">评价提醒</text>
-      <text style="font-size: 28rpx; color: rgba(129, 134, 143, 1);">暂无消息</text>
+      <text class="item_main_title">服务结束</text>
+      <text class="item_sub_title">暂无消息</text>
     </view>
   </view>
+
+  <view class="min_line" />
+
+  <view class="item">
+    <view>
+      <image src="/pages/images/message_center/pingjiatixing.png" class="item_cover"></image>
+    </view>
+
+    <view style="display: flex;flex-direction: column;">
+      <text class="item_main_title">评价提醒</text>
+      <text class="item_sub_title">暂无消息</text>
+    </view>
+  </view>
+  <view class="min_line" />
 </view>

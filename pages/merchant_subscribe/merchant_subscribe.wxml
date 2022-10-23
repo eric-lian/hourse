@@ -1,11 +1,9 @@
 <!--pages/merchant_subscribe/merchant_subscribe.wxml-->
 <template name="divier_line">
-  <view style="height: 2rpx; width: 100%; background-color: rgba(142, 142, 147, 0.2);margin-top: 40rpx;"></view>
+  <view class="min_line"></view>
 </template>
 
-<template name="order_item">
 
-</template>
 
 <view>
   <view style="display: flex;flex-direction: row; height: 180rpx;align-items: center;justify-content: center;">
@@ -74,11 +72,11 @@
   </view>
   <!-- 上 左 下 右  -->
 
-  <view style="display: flex;flex-direction: column; padding:40rpx 24rpx 0rpx 24rpx;" wx:if="{{status == 0}}">
+  <view style="display: flex;flex-direction: column; padding: 32rpx;" wx:if="{{status == 0}}">
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
-      <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1); width: 150rpx;">服务类型</text>
+    <view class="subscribe_info_item">
+      <text class="subscribe_info_item_key">服务类型</text>
 
       <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{service_type}}</text>
 
@@ -87,17 +85,17 @@
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
-      <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">服务机构</text>
+    <view class="subscribe_info_item">
+      <text class="subscribe_info_item_key">服务机构</text>
 
-      <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{service_name}}</text>
+      <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx; font-weight: 500;font-size: 32rpx;">{{service_name}}</text>
 
     </view>
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
-      <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">服务时间</text>
+    <view class="subscribe_info_item" style="align-items: center;justify-content: center;">
+      <text class="subscribe_info_item_key">服务时间</text>
 
       <view class="wrap">
         <picker mode="date" value="{{curDate}}" start="2021年01月01日" end="2021年01月01日" bindchange="onDateChangeLeft">
@@ -117,62 +115,62 @@
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
-      <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">服务地址</text>
+    <view class="subscribe_info_item">
+      <text class="subscribe_info_item_key">服务地址</text>
 
-      <input id="coarse_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入地址" bindinput="onInputChange" maxlength="100" value="{{coarse_address}}" />
+      <input id="coarse_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入地址" bindinput="onInputChange" maxlength="100" value="{{coarse_address}}" placeholder-class="subscribe_input" />
 
       <text style="flex-shrink: 0;color: red;" bindtap="selectLocation">自动定位</text>
     </view>
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
-      <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">详细地址</text>
+    <view class="subscribe_info_item">
+      <text class="subscribe_info_item_key">详细地址</text>
 
-      <input id="service_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入详细地址" bindinput="onInputChange" maxlength="100" />
-
-    </view>
-
-    <template is="divier_line"></template>
-
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
-      <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">联系人</text>
-
-      <input id="contact" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系人姓名" bindinput="onInputChange" maxlength="100" />
+      <input id="service_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入详细地址" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />
 
     </view>
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
-      <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">联系电话</text>
+    <view class="subscribe_info_item">
+      <text class="subscribe_info_item_key">联系人</text>
 
-      <input id="phone" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系电话" bindinput="onInputChange" type="number" maxlength="100" />
-
-    </view>
-
-    <template is="divier_line"></template>
-
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
-      <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">需求描述</text>
-
-      <input id="desc" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入需求描述" bindinput="onInputChange" maxlength="100" />
+      <input id="contact" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系人姓名" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />
 
     </view>
 
     <template is="divier_line"></template>
 
-    <view style="height: 100rpx;background-color: rgba(67, 186, 135, 1);display: flex;justify-content: center;align-items: center;margin-bottom: 100rpx;border-radius: 18rpx;" bindtap="submitOrder">
+    <view class="subscribe_info_item">
+      <text class="subscribe_info_item_key">联系电话</text>
+
+      <input id="phone" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系电话" bindinput="onInputChange" type="number" maxlength="100" placeholder-class="subscribe_input"/>
+
+    </view>
+
+    <template is="divier_line"></template>
+
+    <view class="subscribe_info_item">
+      <text class="subscribe_info_item_key">需求描述</text>
+
+      <input id="desc" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入需求描述" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />
+
+    </view>
+
+    <template is="divier_line"></template>
+
+    <view style="height: 100rpx;background-color: rgba(26, 115, 214, 1);display: flex;justify-content: center;align-items: center;margin-bottom: 32rpx;margin-top: 32rpx;border-radius: 18rpx;" bindtap="submitOrder">
       <text style="color: white;font-size: 38rpx;">确定提交 </text>
     </view>
   </view>
 
 
-  <view style="display: flex;flex-direction: column; padding:40rpx 24rpx 0rpx 24rpx;" wx:if="{{status == 1}}">
+  <view style="display: flex;flex-direction: column; padding: 32rpx;" wx:if="{{status == 1}}">
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
+    <view class="subscribe_info_item">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1); width: 150rpx;">服务类型</text>
 
       <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{service_type}}</text>
@@ -180,7 +178,7 @@
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
+    <view class="subscribe_info_item">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">服务机构</text>
 
       <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{service_name}}</text>
@@ -189,7 +187,7 @@
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
+    <view class="subscribe_info_item">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">服务时间</text>
 
       <view class="wrap">
@@ -204,7 +202,7 @@
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
+    <view class="subscribe_info_item">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">服务地址</text>
 
       <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{coarse_address}}</text>
@@ -213,7 +211,7 @@
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
+    <view class="subscribe_info_item">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">详细地址</text>
 
       <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{service_address}}</text>
@@ -222,7 +220,7 @@
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
+    <view class="subscribe_info_item">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">联系人</text>
 
       <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{contact}}</text>
@@ -231,7 +229,7 @@
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
+    <view class="subscribe_info_item">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">联系电话</text>
 
       <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{phone}}</text>
@@ -240,13 +238,13 @@
 
     <template is="divier_line"></template>
 
-    <view style="display: flex;flex-direction: row;margin-top: 40rpx;">
+    <view class="subscribe_info_item">
       <text style="font-size: 32rpx; flex-shrink: 0; color: rgba(142, 142, 147, 1);width: 150rpx;">需求描述</text>
 
       <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{desc}}</text>
     </view>
     <template is="divier_line"></template>
-    <view style="height: 100rpx;background-color: rgba(67, 186, 135, 0.5);display: flex;justify-content: center;align-items: center;margin-bottom: 100rpx;;border-radius: 18rpx;" bindtap="submitOrder">
+    <view style="height: 100rpx;background-color: rgba(67, 186, 135, 0.5);display: flex;justify-content: center;align-items: center;margin-bottom: 32rpx;margin-top: 32rpx;border-radius: 18rpx;" bindtap="submitOrder">
       <text style="color: white;font-size: 38rpx;">待接单</text>
     </view>
   </view>

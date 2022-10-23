@@ -12,58 +12,72 @@ Page({
       img_url: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/banner/Frame 43.png",
       type: 3
     }],
+
     firstRow: [{
-      name: "找保洁",
-      search_key: ["保洁", "找保洁"],
-      icon: "/pages/images/menu/zhaobaojie.png",
-      type: "0"
-    }, {
-      name: "找月嫂",
-      search_key: ["月嫂", "找月嫂"],
-      icon: "/pages/images/menu/zhaoyuesao.png",
-      type: "1"
-    }, {
-      name: "找保姆",
-      search_key: ["保姆", "找保姆"],
-      icon: "/pages/images/menu/zhaobaomu.png",
-      type: "2"
-    }, {
-      name: "找陪护",
-      search_key: ["陪护", "找陪护"],
-      icon: "/pages/images/menu/zhaopeihu.png",
-      type: "3"
-    }],
+        name: "保洁",
+        search_key: ["保洁"],
+        icon: "/pages/images/menu/zhaobaojie.png",
+        type: "0"
+      },
+      {
+        name: "母婴护理",
+        search_key: ["母婴护理"],
+        icon: "/pages/images/menu/zhaoyuesao.png",
+        type: "1"
+      }, {
+        name: "保姆",
+        search_key: ["保姆"],
+        icon: "/pages/images/menu/zhaobaomu.png",
+        type: "2"
+      },
+      {
+        name: "疏通管道",
+        search_key: ["疏通", "管道", "疏通管道"],
+        icon: "/pages/images/menu/shutongguandao.png",
+        type: "3"
+      }
+    ],
     sencondRow: [{
-      name: "疏通管道",
-      search_key: ["疏通", "管道", "疏通管道"],
-      icon: "/pages/images/menu/shutongguandao.png",
+      name: "水电安装",
+      search_key: ["水电安装"],
+      icon: "/pages/images/menu/zhaopeihu.png",
+      type: "4"
+    }, {
+      name: "家电清洗",
+      search_key: ["家电清洗", "家电清洗"],
+      icon: "/pages/images/menu/xiudianlu.png",
       type: "5"
     }, {
-      name: "修电路",
-      search_key: ["电路", "修电路"],
-      icon: "/pages/images/menu/xiudianlu.png",
+      name: "家电维修",
+      search_key: ["家电", "家电维修"],
+      icon: "/pages/images/menu/xiujiadian.png",
       type: "6"
     }, {
-      name: "修家电",
-      search_key: ["家电", "修家电"],
-      icon: "/pages/images/menu/xiujiadian.png",
-      type: "7"
-    }, {
-      name: "清空调",
-      search_key: ["清空调", "空调"],
+      name: "养老护理",
+      search_key: ["养老", "护理", "养老护理"],
       icon: "/pages/images/menu/qingkongtiao.png",
-      type: "8"
+      type: "7"
     }],
     thridRow: [{
-      name: "房屋维修",
-      search_key: ["房屋", "维修", "房屋维修"],
+      name: "搬家",
+      search_key: ["搬家"],
       icon: "/pages/images/menu/fangwuweixiu.png",
+      type: "8"
+    }, {
+      name: "收纳干洗",
+      search_key: ["收纳干洗"],
+      icon: "/pages/images/menu/caboli.png",
       type: "9"
     }, {
-      name: "擦玻璃",
-      search_key: ["擦玻璃", "玻璃"],
+      name: "甲醛治理",
+      search_key: ["甲醛治理"],
       icon: "/pages/images/menu/caboli.png",
-      type: "4"
+      type: "11"
+    }, {
+      name: "家政培训",
+      search_key: ["家政培训"],
+      icon: "/pages/images/menu/caboli.png",
+      type: "12"
     }],
     homeNews: [],
     statusBarHeight: 0,
@@ -131,7 +145,7 @@ Page({
     const _scrollTop = Math.min(options.scrollTop, this.data.topNavContainerHeight)
     // const _alpha = Math.round(_scrollTop / this.data.topNavContainerHeight) 
     const _alpha = 1
-    const _topNavContainerBg = "rgba(96,207,156," + _alpha + ")"
+    const _topNavContainerBg = "rgba(23,115,215," + _alpha + ")"
     // console.log(_topNavContainerBg)
     if (this.data.topNavContainerBg === _topNavContainerBg) {
       return
@@ -166,7 +180,7 @@ Page({
         _updateTime: false
       })
       .where({
-        status: 1
+        status: 0
       })
       // .orderBy('weig', 'desc')
       .limit(10)

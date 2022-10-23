@@ -1,12 +1,14 @@
 <wxs module="dateUtils" src="./../../utils/index.wxs"></wxs>
+
+<!-- rgba(23,115,215,1)  -->
 <view>
-  <view style="height: 260rpx;background-color: rgba(96,207,156,1)">
+  <view style="height: 260rpx;background-color: rgba(23,115,215,1)">
 
   </view>
   <swiper id="top_banners" indicator-dots="true" indicator-active-color="rgba(236, 106, 56, 1)" indicator-color="rgba(4, 5, 7, 0.16)" autoplay="true" interval="2000" circular="true">
     <swiper-item wx:for="{{banners}}" wx:key="index" bindtap="onSwiperItemClick" data-index="{{index}}">
       <!-- TODO 设置默认图 -->
-      <image src="{{item.img_url}}" mode="aspectFill" style="width: 100%;height: 100%; background-color: rgba(67, 186, 135, 1);"></image>
+      <image src="{{item.img_url}}" mode="aspectFill" style="width: 100%;height: 100%; background-color: rgba(23,115,215,1);"></image>
     </swiper-item>
   </swiper>
 
@@ -31,14 +33,14 @@
 </view>
 <!-- 金刚区 -->
 <view style="align-items: center;display: flex;padding-top: 32rpx;padding-bottom: 24rpx;">
-  <text style="font-size: 32rpx;margin-left: 32rpx;font-weight: 600rpx; color: rgba(0, 0, 0, 1);">家政服务</text>
+  <text style="font-size: 36rpx;margin-left: 36rpx;font-weight: 600; color: rgba(23,115,215,1);">家政服务</text>
 </view>
 <view>
-  <view style="height: 2rpx;  background-color: rgba(243, 245, 247, 1);"></view>
+  <view class="min_line"></view>
 </view>
 
 <!-- 第一列 -->
-<view class="menu_row" style="margin-top: 32rpx;">
+<view class="menu_row">
   <view wx:for="{{firstRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}">
     <image class="menu_image" src="{{item.icon}}"></image>
     <text class="menu_text">{{item.name}}</text>
@@ -64,16 +66,30 @@
 
 <view class="homeNews" hidden="{{homeNews.length <= 0}}">
   <view class="newDivider" />
-  <view style="margin-top: 40rpx; padding-left: 32rpx; display: flex;  align-items: center;">
+  <view style="margin-top: 32rpx; margin-bottom: 24rpx;padding-left: 32rpx; display: flex;  align-items: center;">
     <image src="/pages/images/home/home_hot_new_heart.png" style="width: 32rpx; height: 32rpx;" mode="aspectFit" />
-    <text style="font-weight: 600;font-size: 32rpx;margin-left: 16rpx; color: #000000;">家政讯息</text>
+    <text style="font-weight: 600;font-size: 36rpx;margin-left: 16rpx; color:rgba(23,115,215,1);">家政讯息</text>
+  </view>
+
+  <view>
+    <view class="min_line"></view>
   </view>
 
   <view class="homeNewItem" wx:for="{{homeNews}}" wx:key="index" bindtap="onNewItemTap" data-new_id="{{item._id}}">
 
-    <text id="newTitle">{{item.title}}</text>
+    <view style="display: flex; flex-direction: column;">
+      <view style="display: flex; flex-direction: row; margin-top: 10rpx;">
+        <view wx:if="{{item.cover != undefined}}">
+          <image style="background-color: #888E8E93; width: 281rpx;height: 201rpx; border-radius: 8rpx;margin-left: 32rpx;" src="{{item.cover}}" />
+        </view>
+        <view>
+          <text id="newTitle">{{item.title}}</text>
+          <text id="newDescription">{{item.description}}</text>
+        </view>
+      </view>
 
-    <text id="newDescription">{{item.description}}</text>
+    </view>
+
 
     <!-- <text>{{dateUtils.newFormatTime(item._createTime)}}</text> -->
 

@@ -33,10 +33,10 @@
               <text style="font-size: 40rpx;font-weight: 500;color: #EC6A38;">{{item.min_service_price}}</text>
               <text style="font-size: 26rpx;font-weight: 500;color: #EC6A38;">起</text>
             </view> -->
+
+            <text class="varify_passed_tag">已认证</text>
           </view>
         </view>
-
-        <image src="/pages/images/order/stamp.png" style="width: 100rpx; height: 100rpx;position: absolute; right: 0;z-index: 0; margin-top: 40rpx;" mode="aspectFill"></image>
       </view>
 
       <view style="height: 0.5px; background-color: rgba(129, 134, 143, 0.2); margin-left: 20rpx; margin-right: 20rpx;"></view>
@@ -55,7 +55,7 @@
 </view>
 
 <view style=" position: fixed;background-color: white;width: 100%; display: flex;flex-direction: column;align-items: center;">
-  <button style="padding: 18rpx 24rpx 24rpx 18rpx; background-color: rgba(67, 186, 135, 1); border-radius: 18rpx; margin-top: 18rpx; color: white;" bindtap="gotoGuidePrice">查阅服务指导价</button>
+  <button style="padding: 18rpx 24rpx 24rpx 18rpx; background-color: rgba(26, 115, 214, 1); border-radius: 18rpx; margin-top: 18rpx; color: white;" bindtap="gotoGuidePrice">查阅服务指导价</button>
   <view id="search_container" wx:if="{{showSearchBar != 'false'}}">
     <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png" mode="aspectFit"></image>
     <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="{{focus}}" value="{{searchKey}}" bindconfirm="goToSearch" bindfocus="onFocus" />

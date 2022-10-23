@@ -7,4 +7,18 @@
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-} 
+}
+
+.min_line {
+  height: 2rpx;
+  background-color: rgba(243, 245, 247, 1);
+}
+
+.varify_passed_tag {
+  background-color: rgba(248, 234, 225, 1);
+  font-weight: 400;
+  font-size: 22rpx;
+  color: #EC6A38;
+  padding: 5rpx 12rpx;
+  border-radius: 80rpx;
+}

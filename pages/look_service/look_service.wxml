@@ -1,24 +1,52 @@
 <!--pages/look_service/look_service.wxml-->
-<view style="display: flex; flex-direction: row;">
+<wxs module="dateUtils" src="./../utils/index.wxs"></wxs>
+<view style="display: flex; flex-direction: row;" wx:if="{{status == 3}}">
   <view style="width: 200rpx;">
     <view wx:for="{{services}}" wx:key="index" style="width: 200rpx;height: 100rpx;justify-content: center; align-items: center; display: flex;background-color: {{currentSelectIndex == index ? '#F3F5F7': '#FFFFFF'}};" data-index="{{index}}" bindtap="onSwitchServiceMenu">
-      <text style="color: {{currentSelectIndex == index ? '#43BA87': '#464D5A'}};;">{{item.name}}</text>
+      <text style="color: {{currentSelectIndex == index ? 'rgba(21, 92, 205, 1);': 'rgba(4, 5, 7, 1)'}};font-size: {{currentSelectIndex == index ? 28: 26}}rpx;font-weight: {{currentSelectIndex == index ? 500: 400}};">{{item._id}}</text>
     </view>
   </view>
 
   <view style="width: 100%; display: flex ; flex-direction: column;">
-
-    <view style="margin: 20rpx; display: flex;flex-direction: row;border-color: #F3F5F7; border-width: 2rpx; border-style: solid;padding: 20rpx;border-radius: 16rpx;" wx:for="{{currentKinds}}" wx:key="index" data-parent_index="{{index}}" bindtap="onSelectServiceKind">
-      <view>
-        <image style="width: 150rpx; height: 215rpx;background-color: rgba(243, 245, 247, 1);border-radius: 16rpx;" src="{{item.img}}"></image>
+    <view style="margin: 20rpx; display: flex;flex-direction: row;border-color: #F3F5F7; border-width: 2rpx; border-style: solid;padding: 20rpx;border-radius: 16rpx;" wx:for="{{services[currentSelectIndex].list}}" wx:key="index">
+      <view style="margin-right: 24rpx;">
+        <image style="width: 176rpx; height: 235rpx;background-color: rgba(243, 245, 247, 1);border-radius: 16rpx;" src="{{item.person_photo}}"></image>
       </view>
 
-      <view style="display: flex; flex-direction: column;">
+      <view style="display: flex; flex-direction: column;width: 100%;height: auto;">
+        <view style="display: flex;flex-direction: row; align-items: center;justify-content: space-between;">
+          <text style="font-size: 28rpx;font-weight: 500;margin-right: 24rpx;color: #040507;">{{item.person_name}}</text>
 
-        <text style="font-size: 36rpx; margin-left: 20rpx;margin-right: 20rpx;">{{item.name}}</text>
-        <text style="font-size: 30rpx; margin-left: 20rpx;margin-right: 20rpx; color: #464D5A;">{{item.desc}}</text>
+          <text class="varify_passed_tag">已认证</text>
+        </view>
+
+        <view style="margin-top: 10rpx;">
+          <text style="font-size: 22rpx; color: rgba(70, 77, 90, 1);"> {{dateUtils.getDateYearDiff(item.brithday, item.serverMills)}}岁 | {{item.province}} | {{dateUtils.getDateYearDiff(item.work_begin_date, item.serverMills)}}年经验</text>
+        </view>
+
+        <view style="margin-top: 8rpx;">
+          <text style="font-size: 24rpx;color: rgba(70, 77, 90, 1);">{{item.name}}</text>
+        </view>
+
+        <!-- 立即预约 -->
+        <view>
+          <button id="immediately_subscribe" data-merchant_id="{{item.company_name}}" data-merchant_name="{{item.name}}" bindtap="immediately_subscribe">立即预约</button>
+        </view>
       </view>
     </view>
   </view>
+</view>
 
+<view>
+  <!-- fail -->
+</view>
+
+
+<view>
+  <!-- empty -->
+</view>
+
+<view wx:if="{{status == 0}}">
+  <!-- loading -->
+  <loading>加载中...</loading>
 </view>

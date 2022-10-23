@@ -1,104 +1,100 @@
 <!--pages/merchant_detail/merchant_detail.wxml-->
-<template name="divier_line">
-  <view style="height: 2rpx; width: 100%; background-color: rgba(142, 142, 147, 0.2);margin-top: 40rpx;"></view>
-</template>
-<view style="display: flex;flex-direction: column;">
-
-  <view style="padding: 12rpx 24rpx 12rpx 24rpx; display: flex; flex-direction: row;">
+<view style="display: flex;flex-direction: column;padding: 32rpx;">
+  <view style="display: flex; flex-direction: row;">
     <view>
-      <image style="width: 224rpx; height: 240rpx; border-radius: 18rpx;background-color: grey;" mode="aspectFill" src="{{merchant_detail_info.company_main_img}}"></image>
+      <image id="merchant_cover" mode="aspectFill" src="{{merchant_detail_info.company_main_img}}"></image>
     </view>
 
     <view style="width: 100%;margin-left: 32rpx;">
       <view style="display: flex;flex-direction: column;width: 100%;">
-        <text>{{merchant_detail_info.name}}</text>
+        <text id="merchant_name">{{merchant_detail_info.name}}</text>
         <view style="display: flex;flex-direction: row;justify-content: space-between;margin-top: 18rpx;">
-          <text>16人持证</text>
-          <text>8人已收藏</text>
+          <!-- <text>16人持证</text>
+          <text>8人已收藏</text> -->
+          <text class="varify_passed_tag">已认证</text>
         </view>
       </view>
-      <view style="width: 100%; display: flex;flex-direction: row;justify-content: flex-end;margin-top: 18rpx;">
+      <!-- <view style="width: 100%; display: flex;flex-direction: row;justify-content: flex-end;margin-top: 18rpx;">
         <image style="width: 200rpx;height: 200rpx;" src="/pages/images/order/stamp.png" mode="aspectFill"></image>
-
-      </view>
+      </view> -->
     </view>
 
   </view>
 
-  <view style="margin-top: 20rpx; padding: 20rpx; padding-bottom: 120rpx;">
+  <view style="padding-top: 20rpx; padding-bottom: 120rpx; display: flex; flex-direction: column;">
     <view>
-      <text style="color: white;background-color: cornflowerblue;padding: 12rpx 24rpx 12rpx 24rpx; border-radius: 20rpx;">基本信息</text>
+      <text id="basic_info_tag">基本信息</text>
     </view>
 
-    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
-      <text style="flex-shrink: 0;">统一社会信用代码: </text> <text class="merchant_content">{{merchant_detail_info.credit_code}}</text>
+    <view class="item_basic_info" style="margin-top: 20rpx;">
+      <text class="basic_item_key">统一社会信用代码 : </text>
+      <text class="basic_item_value">{{merchant_detail_info.credit_code}}</text>
     </view>
 
-    <template is="divier_line"> </template>
+    <view class="min_line" />
 
-    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
+    <view class="item_basic_info">
       <!-- {{merchant_info.credit_code}} -->
-      <text style="flex-shrink: 0;">官方网站: </text> <text class="merchant_content"></text>
+      <text class="basic_item_key">官方网站 : </text> <text class="basic_item_value"></text>
     </view>
 
-    <template is="divier_line"> </template>
+    <view class="min_line" />
 
-    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
+    <view class="item_basic_info">
       <!-- {{merchant_info.credit_code}} -->
-      <text style="flex-shrink: 0;">电子邮箱: </text> <text class="merchant_content"></text>
+      <text class="basic_item_key">电子邮箱 : </text> <text class="basic_item_value"></text>
     </view>
 
-    <template is="divier_line"> </template>
+    <view class="min_line" />
 
-    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
-      <!-- {{merchant_info.credit_code}} -->
-      <text style="flex-shrink: 0;">负责人: </text> <text>{{merchant_detail_info.master}}</text>
+    <view class="item_basic_info">
+      <text class="basic_item_key">负责人 : </text> <text class="basic_item_value">{{merchant_detail_info.master}}</text>
     </view>
 
-    <template is="divier_line"> </template>
+    <view class="min_line" />
 
-    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
-      <!-- {{merchant_info.credit_code}} -->
-      <text style="flex-shrink: 0;">地址: </text> <text class="merchant_content">{{merchant_detail_info.address}}</text>
+    <view class="item_basic_info">
+
+      <text class="basic_item_key">地址 : </text> <text class="basic_item_value">{{merchant_detail_info.address}}</text>
     </view>
 
-    <template is="divier_line"> </template>
+    <view class="min_line" />
 
 
-    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
-      <!-- {{merchant_info.credit_code}} -->
-      <text style="flex-shrink: 0;">服务范围: </text> <text class="merchant_content">{{merchant_detail_info.scope_of_business}}</text>
+    <view class="item_basic_info">
+      <text class="basic_item_key">服务范围 : </text>
+      <text class="basic_item_value">{{merchant_detail_info.scope_of_business}}</text>
     </view>
 
-    <template is="divier_line"> </template>
+    <view class="min_line" />
 
-    <view style="display: flex; flex-direction: row;margin-top: 40rpx;">
+    <view class="item_basic_info">
       <!-- {{merchant_info.credit_code}} -->
-      <text style="flex-shrink: 0;">企业介绍: </text> <text class="merchant_content">{{merchant_detail_info.introducation}}</text>
+      <text class="basic_item_key">企业介绍 : </text>
+      <text class="basic_item_value">{{merchant_detail_info.introducation}}</text>
     </view>
   </view>
 </view>
-<view style="display: flex; flex-direction: column;">
+<view style="display: flex; flex-direction: column;position: fixed;width: 100%; bottom: 0%; background-color: white;">
+  <view class="min_line" />
+  <view style="display: flex;flex-direction: row;justify-content: space-around; align-items: center;padding: 32rpx;">
 
-  <view style="display: flex;flex-direction: row;justify-content: space-around; align-items: center; position: fixed;width: 100%;height: 100rpx; bottom: 0%;background-color: white;">
-
-    <view style="display: flex; flex-direction: column;" bindtap="collect">
-      <image src="/pages/images/order/like.png" style="width: 36rpx; height: 36rpx;"></image>
+    <view class="merchant_detail_bottom_item" bindtap="collect">
+      <image src="/pages/images/order/collect_default.png" class="merchant_detail_bottom_icon" />
       <text class="merchant_detail_bottom_operation">收藏</text>
     </view>
-    <view style="display: flex; flex-direction: column;" bindtap="evaluate">
-      <image src="/pages/images/order/comment.png" style="width: 36rpx; height: 36rpx;"></image>
+    <view class="merchant_detail_bottom_item" bindtap="evaluate">
+      <image src="/pages/images/order/pingjia.png" class="merchant_detail_bottom_icon" />
       <text class="merchant_detail_bottom_operation">评价</text>
     </view>
 
-    <view style="display: flex; flex-direction: column;" bindtap="callPhone">
-      <image src="/pages/images/order/phone_call.png" style="width: 36rpx; height: 36rpx;"></image>
+    <view class="merchant_detail_bottom_item" bindtap="callPhone">
+      <image src="/pages/images/order/iphone.png" class="merchant_detail_bottom_icon" />
       <text class="merchant_detail_bottom_operation">拨号</text>
     </view>
 
-    <view style="background-color: cornflowerblue;padding: 12rpx 24rpx 12rpx 24rpx; border-radius: 40rpx;">
-      <text style="color: white;" bindtap="subscribe">立即预约</text>
+    <view style="background-color: cornflowerblue; width: 339rpx; height: 90rpx;  border-radius: 40rpx; display: flex; align-items: center;justify-content: center;">
+      <text style="color: white; font-weight: 600; " bindtap="subscribe">立即预约</text>
     </view>
   </view>
-
 </view>

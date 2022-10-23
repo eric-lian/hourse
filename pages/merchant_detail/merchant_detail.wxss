@@ -1,9 +1,61 @@
 /* pages/merchant_detail/merchant_detail.wxss */
-.merchant_detail_bottom_operation{
-  font-size: 20rpx;
+.merchant_detail_bottom_item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.merchant_content{
-  padding-left: 20rpx;
-  padding-right: 20rpx;
+.merchant_detail_bottom_icon {
+  width: 56rpx;
+  height: 56rpx;
+}
+
+.merchant_detail_bottom_operation {
+  font-size: 20rpx;
+  color: rgba(129, 134, 143, 1);
+}
+
+
+
+.basic_item_key {
+  flex-shrink: 0;
+  color: rgba(129, 134, 143, 1);
+  font-size: 28rpx;
+  font-weight: 400;
+}
+
+
+.basic_item_value {
+  color: rgba(0, 0, 0, 1);
+  font-size: 30rpx;
+  font-weight: 400;
+  margin-left: 12rpx;
+}
+
+.item_basic_info {
+  display: flex;
+  flex-direction: row;
+  padding-top: 32rpx;
+  padding-bottom: 32rpx;
+}
+
+#merchant_cover {
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 18rpx;
+  background-color: grey;
+}
+
+#merchant_name {
+  font-weight: 600;
+  font-size: 32rpx;
+}
+
+#basic_info_tag {
+  font-weight: 600;
+  font-size: 30rpx;
+  color: white;
+  background-color: cornflowerblue;
+  padding: 12rpx 24rpx 12rpx 24rpx;
+  border-radius: 20rpx;
 }
