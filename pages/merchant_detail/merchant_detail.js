@@ -6,7 +6,9 @@ Page({
    */
   data: {
     id: "",
-    merchant_detail_info: {}
+    merchant_detail_info: {},
+    //0 加载中  1 加载成功 2 加载失败 3 加载为空
+    status: 0
   },
 
   /**
@@ -20,21 +22,25 @@ Page({
     })
     this.queryMerchant(res => {
       const merchant_detail_info_array = res.result.list
-      console.log("==========") 
-      console.log(merchant_detail_info_array) 
-      console.log("==========")
+
       if (merchant_detail_info_array.length > 0) {
         const merchant_detail_info = merchant_detail_info_array[0]
         this.setData({
+          status: 1,
           merchant_detail_info: merchant_detail_info
         })
       } else {
-        // @TODO
+        this.setData({
+          status: 3
+        })
       }
     }, reason => {
       console.log(reason)
+      this.setData({
+        status: 2
+      })
     })
-    
+
   },
 
   /**
@@ -89,11 +95,11 @@ Page({
   queryMerchant(onSuccess, onFail) {
     this.data.isRefreshLoading = true
     wx.cloud.callFunction({
-      name: "query_merchant",
-      data: { 
-        merchant_id: this.data.id
-      }
-    }).then(res => {
+        name: "query_merchant",
+        data: {
+          merchant_id: this.data.id
+        }
+      }).then(res => {
         onSuccess(res)
       })
       .catch(reason => {
@@ -106,7 +112,7 @@ Page({
       itemList: ["呼叫 " + this.data.merchant_detail_info.phone],
       success: res => {
         console.log(res)
-        if(res.tapIndex == 0){
+        if (res.tapIndex == 0) {
           wx.makePhoneCall({
             phoneNumber: this.data.merchant_detail_info.phone,
           })
@@ -115,9 +121,9 @@ Page({
     })
   },
 
-  subscribe(){
+  subscribe() {
     wx.navigateTo({
-      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name='+ this.data.merchant_detail_info.name + "&merchant_id=" + this.data.merchant_detail_info._id,
+      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + this.data.merchant_detail_info.name + "&merchant_id=" + this.data.merchant_detail_info._id,
     })
   },
 
@@ -127,7 +133,7 @@ Page({
     })
   },
 
-  collect(){
+  collect() {
     wx.showToast({
       title: '已收藏',
     })
