@@ -16,67 +16,67 @@ Page({
     firstRow: [{
         name: "保洁",
         search_key: ["保洁"],
-        icon: "/pages/images/menu/zhaobaojie.png",
+        icon: "/pages/images/menu/baojie.png",
         type: "0"
       },
       {
         name: "母婴护理",
         search_key: ["母婴护理"],
-        icon: "/pages/images/menu/zhaoyuesao.png",
+        icon: "/pages/images/menu/muyinghuli.png",
         type: "1"
       }, {
         name: "保姆",
         search_key: ["保姆"],
-        icon: "/pages/images/menu/zhaobaomu.png",
+        icon: "/pages/images/menu/baomu.png",
         type: "2"
       },
       {
         name: "疏通管道",
         search_key: ["疏通", "管道", "疏通管道"],
-        icon: "/pages/images/menu/shutongguandao.png",
+        icon: "/pages/images/menu/guandao.png",
         type: "3"
       }
     ],
     sencondRow: [{
       name: "水电安装",
       search_key: ["水电安装"],
-      icon: "/pages/images/menu/zhaopeihu.png",
+      icon: "/pages/images/menu/shuidiananzhuang.png",
       type: "4"
     }, {
       name: "家电清洗",
       search_key: ["家电清洗", "家电清洗"],
-      icon: "/pages/images/menu/xiudianlu.png",
+      icon: "/pages/images/menu/jiadianqingxi.png",
       type: "5"
     }, {
       name: "家电维修",
       search_key: ["家电", "家电维修"],
-      icon: "/pages/images/menu/xiujiadian.png",
+      icon: "/pages/images/menu/jiadianweixiu.png",
       type: "6"
     }, {
       name: "养老护理",
       search_key: ["养老", "护理", "养老护理"],
-      icon: "/pages/images/menu/qingkongtiao.png",
+      icon: "/pages/images/menu/yanglaohuli.png",
       type: "7"
     }],
     thridRow: [{
       name: "搬家",
       search_key: ["搬家"],
-      icon: "/pages/images/menu/fangwuweixiu.png",
+      icon: "/pages/images/menu/banjia.png",
       type: "8"
     }, {
       name: "收纳干洗",
       search_key: ["收纳干洗"],
-      icon: "/pages/images/menu/caboli.png",
+      icon: "/pages/images/menu/shounaganxi.png",
       type: "9"
     }, {
       name: "甲醛治理",
       search_key: ["甲醛治理"],
-      icon: "/pages/images/menu/caboli.png",
+      icon: "/pages/images/menu/jiaquanzhili.png",
       type: "11"
     }, {
       name: "家政培训",
       search_key: ["家政培训"],
-      icon: "/pages/images/menu/caboli.png",
+      icon: "/pages/images/menu/jiazhengpeixun.png",
       type: "12"
     }],
     homeNews: [],
@@ -142,18 +142,18 @@ Page({
   },
 
   onPageScroll(options) {
-    const _scrollTop = Math.min(options.scrollTop, this.data.topNavContainerHeight)
-    // const _alpha = Math.round(_scrollTop / this.data.topNavContainerHeight) 
-    const _alpha = 1
-    const _topNavContainerBg = "rgba(23,115,215," + _alpha + ")"
+    // const _scrollTop = Math.min(options.scrollTop, this.data.topNavContainerHeight)
+    // // const _alpha = Math.round(_scrollTop / this.data.topNavContainerHeight) 
+    // const _alpha = 1
+    // const _topNavContainerBg = "rgba(23,115,215," + _alpha + ")"
     // console.log(_topNavContainerBg)
-    if (this.data.topNavContainerBg === _topNavContainerBg) {
-      return
-    }
-    this.setData({
-      topNavContainerBg: _topNavContainerBg,
-      nav_opacity: 1 - _alpha
-    })
+    // if (this.data.topNavContainerBg === _topNavContainerBg) {
+    //   return
+    // }
+    // this.setData({
+    //   topNavContainerBg: _topNavContainerBg,
+    //   nav_opacity: 1 - _alpha
+    // })
   },
 
   /**

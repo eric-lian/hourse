@@ -18,6 +18,7 @@ exports.main = async (event, context) => {
       foreignField: '_id',
       as: 'merchants',
     })
+    // 排序
     .replaceRoot({
       newRoot: $.mergeObjects([$.arrayElemAt(['$merchants', 0]), '$$ROOT'])
     }) 

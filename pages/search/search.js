@@ -112,12 +112,17 @@ Page({
     const _ = db.command
     // 模糊匹配服务
     db.collection("merchants")
-      .where({
+      .where(_.or([{
         "status": 1,
-        // "scope_of_business": db.RegExp({
-        //   regexp: searchKey
-        // })
-      })
+        "scope_of_business": db.RegExp({
+          regexp: searchKey
+        })
+      }, {
+        "status": 1,
+        "name": db.RegExp({
+          regexp: searchKey
+        })
+      }]))
       // 到序排序
       .orderBy('weight', "desc")
       .orderBy('min_service_price', "asc")
@@ -170,7 +175,7 @@ Page({
   gotoGuidePrice() {
     wx.previewImage({
       urls: ["cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/price_guide_20220927102917_00.png"],
-    }) 
+    })
     // wx.navigateTo({
     //   url: '/pages/price_guide/price_guide',
     // })

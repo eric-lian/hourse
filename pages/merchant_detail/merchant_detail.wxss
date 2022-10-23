@@ -55,7 +55,7 @@
   font-weight: 600;
   font-size: 30rpx;
   color: white;
-  background-color: cornflowerblue;
+  background-color: rgba(23,115,215,1);
   padding: 12rpx 24rpx 12rpx 24rpx;
   border-radius: 20rpx;
 }

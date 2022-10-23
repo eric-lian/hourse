@@ -16,17 +16,17 @@
 
     <view class="main_menu_item" bindtap="onLookMerchant">
       <image class="main_menu_item_img" src="/pages/images/main_menu/look_merchant.png"></image>
-      <!-- <text class="main_menu_item_title">找商家</text> -->
+      <text class="main_menu_item_title">找商家</text>
     </view>
 
     <view class="main_menu_item" bindtap="onLookService">
       <image class="main_menu_item_img" src="/pages/images/main_menu/look_service.png"></image>
-      <!-- <text class="main_menu_item_title">找服务</text> -->
+      <text class="main_menu_item_title">找服务</text>
     </view>
 
     <view class="main_menu_item" bindtap="onMerchantEnter">
       <image class="main_menu_item_img" src="/pages/images/main_menu/merchant_enter.png"></image>
-      <!-- <text class="main_menu_item_title">企业入驻</text> -->
+      <text class="main_menu_item_title">企业入驻</text>
     </view>
   </view>
   <view style="height: 16rpx;background-color: rgba(243, 245, 247, 1);"></view>
@@ -102,6 +102,6 @@
   <text id="top_search_bar_text">搜索需要的家政服务</text>
 </view>
 <!-- background-color: {{topNavContainerBg}}; opacity: {{nav_opacity}};-->
-<view id="nav_container" style="height: {{topNavContainerHeight}}rpx; background-color: {{topNavContainerBg}};">
+<view id="nav_container" style="height: {{topNavContainerHeight}}rpx; background-color: rgba(23,115,215,1);">
   <text id="nav_title" style="line-height: {{navigationBarHeight}}rpx; margin-top: {{statusBarHeight}}rpx;">谯城区我当家政小程序</text>
 </view>
