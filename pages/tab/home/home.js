@@ -67,16 +67,26 @@ Page({
         search_key: ["收纳", "干洗", "收纳干洗"],
         icon: "/pages/images/menu/shounaganxi.png",
         type: "9"
-      }, {
-        name: "甲醛治理",
-        search_key: ["甲醛", "治理", "甲醛治理"],
-        icon: "/pages/images/menu/jiaquanzhili.png",
-        type: "11"
-      }, {
+      },
+
+      // {
+      //   name: "甲醛治理",
+      //   search_key: ["甲醛", "治理", "甲醛治理"],
+      //   icon: "/pages/images/menu/jiaquanzhili.png",
+      //   type: "11"
+      // },
+
+      {
         name: "家政培训",
         search_key: ["家政培训"],
         icon: "/pages/images/menu/jiazhengpeixun.png",
         type: "12"
+      },
+      {
+        name: "更多服务",
+        search_key: [""],
+        icon: "/pages/images/menu/gengduofuwu.png",
+        type: "13"
       }
     ],
     firstRow: [],
@@ -208,6 +218,12 @@ Page({
   },
   // 请求新闻数据
   requestHomeNews() {
+    // console.log("=================")
+    // console.log(app.globalData.globalConfig)
+    // 服务端控制下线
+    if (app.globalData.globalConfig.home_news != 1) {
+      return
+    }
     const db = wx.cloud.database()
     db.collection("home_news")
       .field({
@@ -239,6 +255,12 @@ Page({
 
   onMenuClick: function (e) {
     var type = e.currentTarget.dataset.type
+    // 等于更多服务
+    if (type == 13) {
+      this.onLookService()
+      return
+    }
+
     var name = e.currentTarget.dataset.name
     console.log(e)
     var search_key = null
@@ -253,7 +275,7 @@ Page({
       console.log("用服务端缓存关键词搜索：")
       console.log(search_key)
     }
-    
+
     if (search_key == null) {
       // 获取搜索的内容
       const menu = this.data.menus.find(res => {

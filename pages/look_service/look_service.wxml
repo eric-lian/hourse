@@ -10,7 +10,7 @@
   <view style="width: 100%; display: flex ; flex-direction: column;">
     <view class="person_item" wx:for="{{services[currentSelectIndex].list}}" wx:key="index">
       <view style="margin-right: 24rpx;">
-        <image style="width: 176rpx; height: 235rpx;background-color: rgba(243, 245, 247, 1);border-radius: 16rpx;" src="{{item.person_photo}}"></image>
+        <image style="width: 193rpx; height: 256rpx;background-color: rgba(243, 245, 247, 1);border-radius: 16rpx;" src="{{item.person_photo}}"></image>
       </view>
 
       <view style="display: flex; flex-direction: column;width: 100%;height: auto;">
@@ -29,8 +29,8 @@
         </view>
 
         <!-- 立即预约 -->
-        <view>
-          <button id="immediately_subscribe" data-merchant_id="{{item.company_name}}" data-merchant_name="{{item.name}}" bindtap="immediately_subscribe">立即预约</button>
+        <view style="margin-top: 20rpx;">
+          <text id="immediately_subscribe" data-merchant_id="{{item.company_name}}" data-merchant_name="{{item.name}}" bindtap="immediately_subscribe">立即预约</text>
         </view>
       </view>
     </view>

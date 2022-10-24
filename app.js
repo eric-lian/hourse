@@ -6,7 +6,8 @@ App({
     navigationBarHeight: 0,
     logined: false,
     userInfo: {},
-    homeSearchKeyOptimized: []
+    homeSearchKeyOptimized: [],
+    globalConfig: {}
   },
 
   onLaunch() {
@@ -57,6 +58,15 @@ App({
         wx.setStorageSync('homeSearchKeyOptimized', Json.stringify(_homeSearchKeyOptimized))
       }).catch(reason => {
         console.log(reason)
+      })
+
+    db.collection("global_config")
+      .get()
+      .then(res => {
+        if (res.data.length > 0) {
+          const _globalConfig = res.data[0]
+          this.globalData.globalConfig = _globalConfig
+        }
       })
   },
 

@@ -55,14 +55,12 @@
 </view>
 
 <!-- 第三列 -->
-<view class="menu_row">
+<view class="menu_row" style="padding-bottom: {{homeNews.length <= 0 ? 32 : 0}}rpx;">
   <view wx:for="{{thridRow}}" wx:key="index" class="menu_item" bindtap="onMenuClick" data-type="{{item.type}}" data-name="{{item.name}}">
     <image class="menu_image" src="{{item.icon}}"></image>
     <text class="menu_text">{{item.name}}</text>
   </view>
 </view>
-
-
 
 <view class="homeNews" hidden="{{homeNews.length <= 0}}">
   <view class="newDivider" />

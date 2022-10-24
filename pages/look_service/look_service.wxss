@@ -18,13 +18,9 @@ text {
 
 #immediately_subscribe {
   font-size: 26rpx;
-  padding: 0rpx;
   background-color: rgba(21, 92, 205, 1);
-  width: 173rpx;
-  line-height: 56rpx;
+  padding: 10rpx 32rpx;
   border-radius: 80rpx;
   color: white;
-  position: fixed;
-  margin-top: 20rpx;
   font-weight: 400;
 }

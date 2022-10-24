@@ -107,7 +107,7 @@
             </view>
 
             <!-- 立即预约 -->
-            <view style="margin-top: 20rpx;">
+            <view style="margin-top: 30rpx;">
               <text class="immediately_subscribe" bindtap="immediately_subscribe" data-merchant_id="{{item.company_name}}" data-merchant_name="{{merchant_detail_info.name}}">立即预约</text>
             </view>
           </view>
