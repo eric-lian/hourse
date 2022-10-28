@@ -112,20 +112,25 @@ Page({
     const _ = db.command
     // 模糊匹配服务
     db.collection("merchants")
+      // .where({
+      //   scope_of_business: db.RegExp({
+      //     regexp: searchKey,
+      //   })
+      // })
       .where(_.or([{
-        "status": 1,
-        "scope_of_business": db.RegExp({
+        status: 1,
+        scope_of_business: db.RegExp({
           regexp: searchKey
         })
       }, {
-        "status": 1,
-        "name": db.RegExp({
+        status: 1,
+        name: db.RegExp({
           regexp: searchKey
         })
       }]))
       // 到序排序
       .orderBy('weight', "desc")
-      .orderBy('min_service_price', "asc")
+      // .orderBy('min_service_price', "asc")
       //  最多获取50条
       .limit(50)
       .get()
@@ -179,5 +184,11 @@ Page({
     // wx.navigateTo({
     //   url: '/pages/price_guide/price_guide',
     // })
+  },
+
+  onSearchInputChanged(event) {
+    this.setData({
+      searchShowKey: event.detail.value
+    })
   }
 })
