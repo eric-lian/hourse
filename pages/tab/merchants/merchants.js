@@ -249,9 +249,9 @@ Page({
       const tip = this.data.inputCheck[key]['emptyTip']
       console.log("=============xxx " + key)
       console.log(tip)
-      console.log(app.inputIsEmpty(tip))
-      console.log(app.inputIsEmpty(value))
-      if (!app.inputIsEmpty(tip) && app.inputIsEmpty(value)) {
+      console.log(app.isNullOrEmpty(tip))
+      console.log(app.isNullOrEmpty(value))
+      if (!app.isNullOrEmpty(tip) && app.isNullOrEmpty(value)) {
         wx.showToast({
           title: tip,
           icon: 'none'
@@ -264,10 +264,10 @@ Page({
       console.log("=============xxx")
       console.log(minLength + "===" + minLengthTip + "=====" + valueLength)
       // 小于最小长度
-      if (!app.inputIsEmpty(tip) &&
-        !app.inputIsEmpty(minLength + "") &&
+      if (!app.isNullOrEmpty(tip) &&
+        !app.isNullOrEmpty(minLength + "") &&
         valueLength < minLength &&
-        !app.inputIsEmpty(minLengthTip)) {
+        !app.isNullOrEmpty(minLengthTip)) {
         wx.showToast({
           title: minLengthTip,
           icon: 'none',

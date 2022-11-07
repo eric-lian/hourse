@@ -1,0 +1,74 @@
+page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#search_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 686rpx;
+  height: 74rpx;
+  background: #F3F5F7;
+  border: 2rpx solid #F3F5F7;
+  border-radius: 16rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+#top_search_bar_icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 28rpx;
+}
+
+#top_search_bar_icon_input {
+  max-lines: 1;
+  font-size: 24rpx;
+  padding-left: 22rpx;
+  padding-right: 36rpx;
+  width: 100%;
+  color: #464D5A;
+  font-weight: 400;
+}
+
+#merchant_name {
+  font-size: 30rpx;
+  color: #040507;
+  /* 设置最大行数 */
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+#merchant_introducation {
+  font-size: 24rpx;
+  color: rgba(129, 134, 143, 1);
+  padding: 5rpx 10rpx 5rpx 10rpx;
+  border-radius: 8rpx;
+  /* 设置最大行数 */
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+#merchant_address {
+  font-size: 24rpx;
+  color: rgba(129, 134, 143, 1);
+  padding: 5rpx 10rpx 5rpx 10rpx;
+  border-radius: 8rpx;
+  /* 设置最大行数 */
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-all;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}

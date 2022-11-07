@@ -1,0 +1,63 @@
+<!--pages/search/search.wxml-->
+<block wx:if="{{status == 2}}">
+  <view style="margin-top: {{ showSearchBar != 'false' ? 200 : 100}}rpx;">
+    <view wx:for="{{companyList}}" wx:key="index">
+      <view style="padding: 20rpx;margin-top: 32rpx; display: flex; flex-direction: row;justify-content: start;" bindtap="gotoDetail" data-id="{{item._id}}">
+        <!-- 门店头图 -->
+        <view>
+          <image style="width: 180rpx; height: 180rpx; border-radius: 18rpx;" mode="aspectFill" src="{{item.company_main_img}}"></image>
+        </view>
+
+        <view style="display: flex; flex-direction: column;  width: 100%">
+          <!-- 门店名字
+           -->
+          <view style="margin-left: 24rpx;">
+            <text id="merchant_name">{{item.name}}</text>
+          </view>
+          <view style="height: 100%;" />
+
+          <!-- <view style="margin-left: 24rpx;margin-top: 12rpx;" >
+            <text id="merchant_introducation">{{item.introducation}}</text>
+          </view> -->
+          <!-- 门店地址1 -->
+          <view style="margin-left: 24rpx;margin-top: 12rpx;">
+            <text id="merchant_address" style="font-size: 24rpx;color: rgba(129, 134, 143, 1);background-color: rgba(237, 246, 243, 1);">{{item.address}}</text>
+          </view>
+
+
+          <view style="margin-left: 24rpx;margin-top: 24rpx;display: flex;flex-direction: row; align-items: baseline; justify-content: space-between;">
+            <!-- 联系电话 -->
+            <text style="font-size: 24rpx;color: rgba(129, 134, 143, 1);">联系电话 ：{{item.phone}}</text>
+            <!-- <view style="display: flex; align-items: baseline; justify-content: flex-end;">
+              <text style="font-size: 26rpx;font-weight: 500;color: #EC6A38;">￥</text>
+              <text style="font-size: 40rpx;font-weight: 500;color: #EC6A38;">{{item.min_service_price}}</text>
+              <text style="font-size: 26rpx;font-weight: 500;color: #EC6A38;">起</text>
+            </view> -->
+
+            <text class="varify_passed_tag">已认证</text>
+          </view>
+        </view>
+      </view>
+
+      <view style="height: 0.5px; background-color: rgba(129, 134, 143, 0.2); margin-left: 20rpx; margin-right: 20rpx;"></view>
+
+    </view>
+  </view>
+  <text style="color: #22464D5A;height: 100rpx; align-items: center;display: flex;font-size: 22rpx">没有更多数据了</text>
+</block>
+
+<view wx:if="{{status == 4}}" style="height: 100%;display: flex; flex-direction: column;">
+  <text style="color: #22464D5A;margin-top: 300rpx; font-size: 22rpx;">对不起，暂未找到你想要的服务</text>
+</view>
+
+<view wx:if="{{status == 3}}" style="height: 100%;display: flex; flex-direction: column;">
+  <text style="color: #22464D5A;margin-top: 300rpx; font-size: 22rpx;">网络错误，请检查网络</text>
+</view>
+
+<view style=" position: fixed;background-color: white;width: 100%; display: flex;flex-direction: column;align-items: center;">
+  <button style="padding: 18rpx 24rpx 24rpx 18rpx; background-color: rgba(26, 115, 214, 1); border-radius: 18rpx; margin-top: 18rpx; color: white;" bindtap="gotoGuidePrice">查阅服务指导价</button>
+  <view id="search_container" wx:if="{{showSearchBar != 'false'}}">
+    <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png" mode="aspectFit"></image>
+    <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="{{focus}}" value="{{searchShowKey}}" bindconfirm="goToSearch" bindfocus="onFocus" bindinput="onSearchInputChanged"/>
+  </view>
+</view>

@@ -8,7 +8,8 @@ Page({
     services: [],
     currentSelectIndex: 0,
     // 0 loading 1 fail 2 empty 3 success
-    status: 0
+    status: 0,
+    topNum: 0
   },
 
   /**
@@ -78,6 +79,7 @@ Page({
     }
     this.setData({
       currentSelectIndex: index,
+      topNum: 0
     })
   },
 

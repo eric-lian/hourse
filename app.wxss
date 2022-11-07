@@ -1,4 +1,8 @@
 /**app.wxss**/
+page {
+  height: 100%;
+}
+
 .container {
   height: 100%;
   display: flex;
@@ -11,7 +15,8 @@
 
 .min_line {
   height: 2rpx;
-  background-color: rgba(243, 245, 247, 1);
+  background-color: rgb(247, 245, 243);
+  width: 100%;
 }
 
 

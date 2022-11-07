@@ -31,6 +31,26 @@ page {
   border-radius: 80rpx;
 }
 
+.item_container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding-left: 88rpx;
+  height: 95rpx;
+}
+
+.item_text {
+  margin-left: 50rpx;
+  font-size: 28rpx;
+  color: #000000;
+}
+
+.item_img {
+  width: 44rpx;
+  height: 44rpx;
+}
+
 #logout {
   position: absolute;
   bottom: 128rpx;

@@ -45,7 +45,7 @@
     </view>
 
 
-    <view style="display: flex;flex-direction: column; align-items: center;">
+    <!-- <view style="display: flex;flex-direction: column; align-items: center;">
       <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
         <view class="status_line_alpha_50" wx:if="{{status < 3}}" />
         <view class="status_line" wx:if="{{status >= 3}}" />
@@ -56,18 +56,18 @@
       </view>
 
       <text class="status_title">上门</text>
-    </view>
+    </view> -->
 
     <view style="display: flex;flex-direction: column; align-items: center;">
       <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
-        <view class="status_line_alpha_50" wx:if="{{status < 4}}" />
-        <view class="status_line" wx:if="{{status >= 4}}" />
-        <view class="status_circle" wx:if="{{status >= 4}}" />
-        <view class="status_circle_alpha" wx:if="{{status < 4}}" />
+        <view class="status_line_alpha_50" wx:if="{{status < 3}}" />
+        <view class="status_line" wx:if="{{status >= 3}}" />
+        <view class="status_circle" wx:if="{{status >= 3}}" />
+        <view class="status_circle_alpha" wx:if="{{status < 3}}" />
         <view class="status_line_translate" />
       </view>
 
-      <text class="status_title" bindtap="evaluate">评价</text>
+      <text class="status_title" bindtap="evaluate">已完成</text>
     </view>
   </view>
   <!-- 上 左 下 右  -->

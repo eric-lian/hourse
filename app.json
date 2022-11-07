@@ -3,13 +3,16 @@
     "pages/tab/home/home",
     "pages/tab/merchants/merchants",
     "pages/tab/my/my",
+    "pages/tab/search/search",
     "pages/search/search",
     "pages/news_rich_text_detail/detail",
     "pages/merchant_detail/merchant_detail",
     "pages/merchant_subscribe/merchant_subscribe",
     "pages/evaluate/evaluate",
     "pages/look_service/look_service",
-    "pages/tab/tab_message/tab_message"
+    "pages/tab/tab_message/tab_message",
+    "pages/order/order",
+    "pages/merchant/order_manager/order_manager"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -20,21 +23,33 @@
     "list": [
       {
         "pagePath": "pages/tab/home/home",
-        "text": "我要家政",
-        "iconPath": "pages/images/tab/home_normal.png",
-        "selectedIconPath": "pages/images/tab/home_selected.png"
+        "text": "首页",
+        "iconPath": "pages/images/tab/ic_index_nor.png",
+        "selectedIconPath": "pages/images/tab/ic_index_sel.png"
       },
       {
-        "pagePath": "pages/tab/tab_message/tab_message",
-        "text": "消息",
-        "iconPath": "pages/images/tab/message_normal.png",
-        "selectedIconPath": "pages/images/tab/message_selected.png"
+        "pagePath": "pages/look_service/look_service",
+        "text": "找服务",
+        "iconPath": "pages/images/tab/ic_sevice_nor.png",
+        "selectedIconPath": "pages/images/tab/ic_service_sel.png"
+      },
+      {
+        "pagePath": "pages/tab/search/search",
+        "text": "找商家",
+        "iconPath": "pages/images/tab/ic_merchant_nor.png",
+        "selectedIconPath": "pages/images/tab/ic_merchant_sel.png"
+      },
+      {
+        "pagePath": "pages/order/order",
+        "text": "订单",
+        "iconPath": "pages/images/tab/ic_order_nor.png",
+        "selectedIconPath": "pages/images/tab/ic_order_sel.png"
       },
       {
         "pagePath": "pages/tab/my/my",
-        "text": "我的信息",
-        "iconPath": "pages/images/tab/my_normal.png",
-        "selectedIconPath": "pages/images/tab/my_selected.png"
+        "text": "我的",
+        "iconPath": "pages/images/tab/ic_mine_nor.png",
+        "selectedIconPath": "pages/images/tab/ic_mine_sel.png"
       }
     ],
     "color": "#8E8E93",

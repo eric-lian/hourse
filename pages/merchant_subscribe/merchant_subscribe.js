@@ -1,11 +1,11 @@
 // pages/merchant_subscribe/merchant_subscribe.js
+const app = getApp()
 Page({
-
   /**
    * 页面的初始数据
    */
   data: {
-    // 0 下单 1 接单 2 上门 3 评价
+    // 0 下单 1 待接单 2 已接单 3 已完成 4 商家取消订单 5 用户取消订单
     status: "0",
     coarse_address: "",
     service_name: "",
@@ -19,6 +19,7 @@ Page({
     contact: "",
     phone: "",
     desc: "",
+    merchant_open_id: "",
     inputCheck: {
       service_type: {
         emptyTip: "请选择服务类型",
@@ -65,7 +66,8 @@ Page({
       start_time: this.getCurrentData(),
       end_time: this.getCurrentData(),
       service_name: options.service_merchant_name,
-      merchant_id: options.merchant_id
+      merchant_id: options.merchant_id,
+      merchant_open_id: options.merchant_open_id
     })
     console.log(options)
   },
@@ -120,7 +122,8 @@ Page({
   },
 
   selectService() {
-    const _itemList = ["保洁", "月嫂", "保姆", "陪护", "电器维修"]
+    // ,"家电维修", "养老护理", "搬家", "收纳干洗", "甲醛治理", "保育员", "开锁", "其他"
+    const _itemList = ["保洁", "母婴护理", "保姆", "疏通管道", "水电安装", "家电清洗"]
     wx.showActionSheet({
       itemList: _itemList,
       success: res => {
@@ -161,7 +164,7 @@ Page({
       this.setData({
         coarse_address: value
       })
-    }  else if ("contact" == id) {
+    } else if ("contact" == id) {
       this.setData({
         contact: value
       })
@@ -187,7 +190,7 @@ Page({
       }
       const value = submitValue[key]
       const tip = checkValue['emptyTip']
-      if (app.inputIsEmpty(value)) {
+      if (app.isNullOrEmpty(value)) {
         wx.showToast({
           title: tip,
           icon: 'none'
@@ -199,10 +202,10 @@ Page({
       const minLengthTip = this.data.inputCheck[key]['minLengthTip']
       const valueLength = value.length
       // 小于最小长度
-      if (!app.inputIsEmpty(tip) &&
-        !app.inputIsEmpty(minLength + "") &&
+      if (!app.isNullOrEmpty(tip) &&
+        !app.isNullOrEmpty(minLength + "") &&
         valueLength < minLength &&
-        !app.inputIsEmpty(minLengthTip)) {
+        !app.isNullOrEmpty(minLengthTip)) {
         wx.showToast({
           title: minLengthTip,
           icon: 'none',
@@ -211,7 +214,50 @@ Page({
         return
       }
     }
-    const db = wx.cloud.database()
+
+    // 确认是否登录
+    if (!app.globalData.logined) {
+      app.login(res => {
+        // 登录成功，下单 
+        this.checkAcceptOrderMsgTemplateId()
+      }, reason => {
+        wx.showToast({
+          title: '登录后再预约吧~',
+        })
+      })
+      return
+    } else {
+      this.checkAcceptOrderMsgTemplateId()
+    }
+  },
+
+  checkAcceptOrderMsgTemplateId() {
+    // 检测是否开启订阅消息权限
+    const templateId = app.globalData.MERCHANT_ACCEPT_ORDER_MSG__TEMPLATE_ID
+    app.checkAcceptOrderMsgTemplateId(templateId, res => {
+      if (res) {
+        // 永久同意消息订阅 ，直接下单
+        this.placeAnOrder()
+      } else {
+        // 申请权限
+        app.requestSubscribeMessage(templateId, res => {
+          // 同意消息订阅，下单
+          if (res) {
+            this.placeAnOrder()
+          } else {
+            wx.showToast({
+              title: '请同意开启消息订阅，方便接受订单最新状态',
+              icon: 'none'
+            })
+          }
+        })
+      }
+    })
+  }
+
+  ,
+  placeAnOrder() {
+
     const subscribe = {
       status: "1",
       service_name: this.data.service_name,
@@ -224,30 +270,32 @@ Page({
       contact: this.data.contact,
       phone: this.data.phone,
       desc: this.data.desc,
-      _createTime: db.serverDate(),
-      _updateTime: db.serverDate()
+      user_open_id: app.globalData.userInfo.openid,
+      merchant_open_id: this.data.merchant_open_id
+      // _updateTime: db.serverDate(),
+      // _createTime: db.serverDate()
     }
     console.log(subscribe)
     wx.showLoading({
       title: '提交中...',
     })
-    db.collection("subscribe")
-      .add({
-        data: this.data
-      }).then(res => {
-        console.log(res)
-        this.setData({
-          status: "1"
-        })
-        wx.hideLoading({
-          success: (res) => {},
-        })
-      }).catch(reason => {
-        console.log(reason)
-        wx.hideLoading({
-          success: (res) => {},
-        })
+    wx.cloud.callFunction({
+      name: "placeAnOrder",
+      data: subscribe
+    }).then(res => {
+      // 下单成功，给商家发送下单消息
+      this.setData({
+        status: "1"
       })
+      wx.hideLoading({
+        success: (res) => {},
+      })
+    }).catch(reason => {
+      console.log(reason)
+      wx.hideLoading({
+        success: (res) => {},
+      })
+    })
   },
   selectLocation() {
     var _this = this

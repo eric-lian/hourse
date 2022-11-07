@@ -73,7 +73,7 @@ Page({
 
   submitOrder() {
     const evaluate = this.data.evaluate
-    if (getApp().inputIsEmpty(evaluate)) {
+    if (getApp().isNullOrEmpty(evaluate)) {
       wx.showToast({
         title: '请输入评论内容',
         icon: "none"

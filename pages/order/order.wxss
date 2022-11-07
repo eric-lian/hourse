@@ -1,0 +1,22 @@
+.order_item_container {
+  border-radius: 20rpx;
+  background-color: white;
+  margin: 24rpx;
+  padding: 24rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.order_item_order_code_container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.order_item_order_code_text{
+  font-size: 26rpx;
+  line-height: 36rpx;
+  color: #29313D;
+}
+

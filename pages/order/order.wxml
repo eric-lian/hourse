@@ -1,0 +1,18 @@
+<!--pages/order/order.wxml-->
+<view style="background-color: #F6F6F6;width: 100%; display: flex; flex-direction: column; height: 100%;">
+  <block wx:for="{{roles == 1 ? merchantOrders : userOrders}}" wx:key="index">
+    <view class="order_item_container">
+      <view class="order_item_order_code_container">
+        <text class="order_item_order_code_text">订单号： {{item._id}}</text>
+        <image src="/pages/images/order/right_arrow.png" style="width: 9rpx; height: 20rpx;align-items: center;"></image>
+      </view>
+      <!-- 订单状态 -->
+      <text style="font-size: 28rpx; color: #29313D;margin-top: 12rpx;">订单状态：{{order_status_text[item.status]}}</text>
+      <!-- 公司 -->
+      <text style="font-size: 28rpx; color: #29313D;margin-top: 12rpx">订单类型：{{item.service_type}}</text>
+      <!-- 地址 -->
+      <text style="font-size: 28rpx; color: #29313D;;margin-top: 12rpx">家政公司: {{item.service_name}}</text>
+
+    </view>
+  </block>
+</view>

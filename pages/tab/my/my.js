@@ -28,6 +28,8 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    // 获取当前最新角色信息
+
 
   },
 
@@ -78,11 +80,21 @@ Page({
   getUserProfile(e) {
     app.login(res => {
         this.updateLoginData()
-    },
-    res => {
+      },
+      res => {
         console.log("getUserProfile login error ")
+      })
+  },
+  enterMyEvaluate(e) {
+
+  },
+
+  enterOrderManager(e) {
+    wx.navigateTo({
+      url: '/pages/merchant/order_manager/order_manager',
     })
   },
+
   logout() {
     wx.showLoading({
       title: '退出登录中...',

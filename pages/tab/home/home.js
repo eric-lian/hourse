@@ -218,8 +218,8 @@ Page({
   },
   // 请求新闻数据
   requestHomeNews() {
-    // console.log("=================")
-    // console.log(app.globalData.globalConfig)
+    console.log("=================requestHomeNews")
+    console.log(app.globalData.globalConfig)
     // 服务端控制下线
     if (app.globalData.globalConfig.home_news != 1) {
       return
@@ -288,7 +288,7 @@ Page({
 
     // 拼接正则匹配表达式
     const joinMatchRegex = search_key.join('|')
-
+    console.log("===" + joinMatchRegex)
     wx.navigateTo({
       url: '/pages/search/search?searchKey=' + joinMatchRegex + '&searchShowKey=' + name
     })
@@ -300,7 +300,7 @@ Page({
     const type = banner.type
     const jump_detail_link = banner.jump_detail_link
     console.log("onSwiperItemClick: " + type)
-    if (type == 4 && !getApp().inputIsEmpty(jump_detail_link)) {
+    if (type == 4 && !getApp().isNullOrEmpty(jump_detail_link)) {
       wx.switchTab({
         url: jump_detail_link,
       })

@@ -123,7 +123,7 @@ Page({
 
   subscribe() {
     wx.navigateTo({
-      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + this.data.merchant_detail_info.name + "&merchant_id=" + this.data.merchant_detail_info._id,
+      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + this.data.merchant_detail_info.name + "&merchant_id=" + this.data.merchant_detail_info._id + "&merchant_open_id=" + this.data.merchant_detail_info.merchant_open_id,
     })
   },
 
@@ -139,13 +139,13 @@ Page({
     })
   },
 
-
+  // 家政人员预约
   immediately_subscribe(e) {
     const merchant_id = e.currentTarget.dataset.merchant_id
     const merchant_name = e.currentTarget.dataset.merchant_name
     console.log(merchant_id)
     wx.navigateTo({
-      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name + "&merchant_id=" + merchant_id
+      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name + "&merchant_id=" + merchant_id + "&merchant_open_id=" + this.data.merchant_detail_info.merchant_open_id,
     })
   }
 })
