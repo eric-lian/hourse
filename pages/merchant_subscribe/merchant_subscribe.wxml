@@ -6,46 +6,47 @@
 
 
 <view>
-  <view style="display: flex;flex-direction: row; height: 180rpx;align-items: center;justify-content: center;">
-    <view style="display: flex;flex-direction: column; justify-content: center;align-items: center;">
-      <view style="display: flex;flex-direction: row;justify-content: center; align-items: center;">
-        <view class="status_line_translate" />
-        <view class="status_circle" />
-        <view class="status_line" />
+  <view wx:if="{{status >= 0}}">
+    <view style="display: flex;flex-direction: row; height: 180rpx;align-items: center;justify-content: center;">
+      <view style="display: flex;flex-direction: column; justify-content: center;align-items: center;">
+        <view style="display: flex;flex-direction: row;justify-content: center; align-items: center;">
+          <view class="status_line_translate" />
+          <view class="status_circle" />
+          <view class="status_line" />
+        </view>
+
+        <text class="status_title">下单</text>
       </view>
 
-      <text class="status_title">下单</text>
-    </view>
+      <view style="display: flex;flex-direction: column; align-items: center;">
+        <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
+          <view class="status_line_alpha_50" wx:if="{{status < 1}}" />
+          <view class="status_line" wx:if="{{status >= 1}}" />
+          <view class="status_circle" wx:if="{{status >= 1}}" />
+          <view class="status_circle_alpha" wx:if="{{status < 1}}" />
+          <view class="status_line" wx:if="{{status >= 1}}" />
+          <view class="status_line_alpha_50" wx:if="{{status < 1}}" />
+        </view>
 
-    <view style="display: flex;flex-direction: column; align-items: center;">
-      <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
-        <view class="status_line_alpha_50" wx:if="{{status < 1}}" />
-        <view class="status_line" wx:if="{{status >= 1}}" />
-        <view class="status_circle" wx:if="{{status >= 2}}" />
-        <view class="status_circle_alpha" wx:if="{{status < 2}}" />
-        <view class="status_line" wx:if="{{status >= 1}}" />
-        <view class="status_line_alpha_50" wx:if="{{status < 1}}" />
+        <text class="status_title">待接单</text>
       </view>
 
-      <text class="status_title">待接单</text>
-    </view>
 
+      <view style="display: flex;flex-direction: column; align-items: center;">
+        <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
+          <view class="status_line_alpha_50" wx:if="{{status < 2}}" />
+          <view class="status_line" wx:if="{{status >= 2}}" />
+          <view class="status_circle" wx:if="{{status >= 2}}" />
+          <view class="status_circle_alpha" wx:if="{{status < 2}}" />
+          <view class="status_line" wx:if="{{status >= 2}}" />
+          <view class="status_line_alpha_50" wx:if="{{status < 2}}" />
+        </view>
 
-    <view style="display: flex;flex-direction: column; align-items: center;">
-      <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
-        <view class="status_line_alpha_50" wx:if="{{status < 2}}" />
-        <view class="status_line" wx:if="{{status >= 2}}" />
-        <view class="status_circle" wx:if="{{status >= 2}}" />
-        <view class="status_circle_alpha" wx:if="{{status < 2}}" />
-        <view class="status_line" wx:if="{{status >= 2}}" />
-        <view class="status_line_alpha_50" wx:if="{{status < 2}}" />
+        <text class="status_title">已接单</text>
       </view>
 
-      <text class="status_title">已接单</text>
-    </view>
 
-
-    <!-- <view style="display: flex;flex-direction: column; align-items: center;">
+      <!-- <view style="display: flex;flex-direction: column; align-items: center;">
       <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
         <view class="status_line_alpha_50" wx:if="{{status < 3}}" />
         <view class="status_line" wx:if="{{status >= 3}}" />
@@ -58,116 +59,116 @@
       <text class="status_title">上门</text>
     </view> -->
 
-    <view style="display: flex;flex-direction: column; align-items: center;">
-      <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
-        <view class="status_line_alpha_50" wx:if="{{status < 3}}" />
-        <view class="status_line" wx:if="{{status >= 3}}" />
-        <view class="status_circle" wx:if="{{status >= 3}}" />
-        <view class="status_circle_alpha" wx:if="{{status < 3}}" />
-        <view class="status_line_translate" />
+      <view style="display: flex;flex-direction: column; align-items: center;">
+        <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
+          <view class="status_line_alpha_50" wx:if="{{status < 3}}" />
+          <view class="status_line" wx:if="{{status >= 3}}" />
+          <view class="status_circle" wx:if="{{status >= 3}}" />
+          <view class="status_circle_alpha" wx:if="{{status < 3}}" />
+          <view class="status_line_translate" />
+        </view>
+
+        <text class="status_title" bindtap="evaluate">已完成</text>
+      </view>
+    </view>
+    <!-- 上 左 下 右  -->
+
+    <view style="display: flex;flex-direction: column; padding: 32rpx;" wx:if="{{status == 0}}">
+      <template is="divier_line"></template>
+
+      <view class="subscribe_info_item">
+        <text class="subscribe_info_item_key">服务类型</text>
+
+        <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{service_type}}</text>
+
+        <text style="flex-shrink: 0;color: red;" bindtap="selectService">选择</text>
       </view>
 
-      <text class="status_title" bindtap="evaluate">已完成</text>
-    </view>
-  </view>
-  <!-- 上 左 下 右  -->
+      <template is="divier_line"></template>
 
-  <view style="display: flex;flex-direction: column; padding: 32rpx;" wx:if="{{status == 0}}">
-    <template is="divier_line"></template>
+      <view class="subscribe_info_item">
+        <text class="subscribe_info_item_key">服务机构</text>
 
-    <view class="subscribe_info_item">
-      <text class="subscribe_info_item_key">服务类型</text>
+        <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx; font-weight: 500;font-size: 32rpx;">{{service_name}}</text>
 
-      <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{service_type}}</text>
-
-      <text style="flex-shrink: 0;color: red;" bindtap="selectService">选择</text>
-    </view>
-
-    <template is="divier_line"></template>
-
-    <view class="subscribe_info_item">
-      <text class="subscribe_info_item_key">服务机构</text>
-
-      <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx; font-weight: 500;font-size: 32rpx;">{{service_name}}</text>
-
-    </view>
-
-    <template is="divier_line"></template>
-
-    <view class="subscribe_info_item" style="align-items: center;justify-content: center;">
-      <text class="subscribe_info_item_key">服务时间</text>
-
-      <view class="wrap">
-        <picker mode="date" value="{{curDate}}" start="2021年01月01日" end="2021年01月01日" bindchange="onDateChangeLeft">
-          <text class="date">{{start_time}}</text>
-        </picker>
-
-        <text class="middle">-</text>
-
-        <picker mode="date" value="{{curDate}}" start="2021年01月01日" end="2021年01月01日" bindchange="onDateChangeRight">
-          <text class="date">{{end_time}}</text>
-        </picker>
       </view>
 
-      <!-- <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;"></text> -->
+      <template is="divier_line"></template>
 
-    </view>
+      <view class="subscribe_info_item" style="align-items: center;justify-content: center;">
+        <text class="subscribe_info_item_key">服务时间</text>
 
-    <template is="divier_line"></template>
+        <view class="wrap">
+          <picker mode="date" value="{{curDate}}" start="2021年01月01日" end="2021年01月01日" bindchange="onDateChangeLeft">
+            <text class="date">{{start_time}}</text>
+          </picker>
 
-    <view class="subscribe_info_item">
-      <text class="subscribe_info_item_key">服务地址</text>
+          <text class="middle">-</text>
 
-      <input id="coarse_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入地址" bindinput="onInputChange" maxlength="100" value="{{coarse_address}}" placeholder-class="subscribe_input" />
+          <picker mode="date" value="{{curDate}}" start="2021年01月01日" end="2021年01月01日" bindchange="onDateChangeRight">
+            <text class="date">{{end_time}}</text>
+          </picker>
+        </view>
 
-      <text style="flex-shrink: 0;color: red;" bindtap="selectLocation">自动定位</text>
-    </view>
+        <!-- <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;"></text> -->
 
-    <template is="divier_line"></template>
+      </view>
 
-    <view class="subscribe_info_item">
-      <text class="subscribe_info_item_key">详细地址</text>
+      <template is="divier_line"></template>
 
-      <input id="service_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入详细地址" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />
+      <view class="subscribe_info_item">
+        <text class="subscribe_info_item_key">服务地址</text>
 
-    </view>
+        <input id="coarse_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入地址" bindinput="onInputChange" maxlength="100" value="{{coarse_address}}" placeholder-class="subscribe_input" />
 
-    <template is="divier_line"></template>
+        <text style="flex-shrink: 0;color: red;" bindtap="selectLocation">自动定位</text>
+      </view>
 
-    <view class="subscribe_info_item">
-      <text class="subscribe_info_item_key">联系人</text>
+      <template is="divier_line"></template>
 
-      <input id="contact" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系人姓名" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />
+      <view class="subscribe_info_item">
+        <text class="subscribe_info_item_key">详细地址</text>
 
-    </view>
+        <input id="service_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入详细地址" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />
 
-    <template is="divier_line"></template>
+      </view>
 
-    <view class="subscribe_info_item">
-      <text class="subscribe_info_item_key">联系电话</text>
+      <template is="divier_line"></template>
 
-      <input id="phone" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系电话" bindinput="onInputChange" type="number" maxlength="100" placeholder-class="subscribe_input"/>
+      <view class="subscribe_info_item">
+        <text class="subscribe_info_item_key">联系人</text>
 
-    </view>
+        <input id="contact" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系人姓名" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />
 
-    <template is="divier_line"></template>
+      </view>
 
-    <view class="subscribe_info_item">
-      <text class="subscribe_info_item_key">需求描述</text>
+      <template is="divier_line"></template>
 
-      <input id="desc" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入需求描述" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />
+      <view class="subscribe_info_item">
+        <text class="subscribe_info_item_key">联系电话</text>
 
-    </view>
+        <input id="phone" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系电话" bindinput="onInputChange" type="number" maxlength="100" placeholder-class="subscribe_input" />
 
-    <template is="divier_line"></template>
+      </view>
 
-    <view style="height: 100rpx;background-color: rgba(26, 115, 214, 1);display: flex;justify-content: center;align-items: center;margin-bottom: 32rpx;margin-top: 32rpx;border-radius: 18rpx;" bindtap="submitOrder">
-      <text style="color: white;font-size: 38rpx;">确定提交 </text>
+      <template is="divier_line"></template>
+
+      <view class="subscribe_info_item">
+        <text class="subscribe_info_item_key">需求描述</text>
+
+        <input id="desc" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入需求描述" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />
+
+      </view>
+
+      <template is="divier_line"></template>
+
+      <view style="height: 100rpx;background-color: rgba(26, 115, 214, 1);display: flex;justify-content: center;align-items: center;margin-bottom: 32rpx;margin-top: 32rpx;border-radius: 18rpx;" bindtap="submitOrder">
+        <text style="color: white;font-size: 38rpx;">确定提交 </text>
+      </view>
     </view>
   </view>
-
-
-  <view style="display: flex;flex-direction: column; padding: 32rpx;" wx:if="{{status == 1}}">
+  <!-- 订单详情页 -->
+  <view style="display: flex;flex-direction: column; padding: 32rpx;" wx:if="{{status >= 1}}">
     <template is="divier_line"></template>
 
     <view class="subscribe_info_item">
@@ -244,8 +245,121 @@
       <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{desc}}</text>
     </view>
     <template is="divier_line"></template>
-    <view style="height: 100rpx;background-color: rgba(67, 186, 135, 0.5);display: flex;justify-content: center;align-items: center;margin-bottom: 32rpx;margin-top: 32rpx;border-radius: 18rpx;" bindtap="submitOrder">
-      <text style="color: white;font-size: 38rpx;">待接单</text>
+
+    <!-- 商家版 -->
+    <!-- 0 待下单 1 待接单 2 已接单 3 已完成 4 商家取消订单 5 用户取消订单 -->
+    <!-- 上 右 下 左  -->
+    <view style="margin: 64rpx 0rpx 32rpx 0rpx;">
+      <block wx:if="{{roles == 1}}">
+
+        <view wx:if="{{status == 1}}" class="bottom_operation_btn_container">
+          <!-- 接单和取消订单 -->
+          <view bindtap="merchantAcceptOrder" class="bottom_operation_btn_item" style="margin-right: 32rpx;">
+            <text style="color: white;font-size: 38rpx;">接单</text>
+          </view>
+
+          <view bindtap="merchantCancelOrder" class="bottom_operation_btn_item" style="margin-right: 32rpx;">
+            <text style="color: white;font-size: 38rpx;">取消订单</text>
+          </view>
+
+          <view bindtap="callUserPhone" class="bottom_operation_btn_item">
+            <text style="color: white;font-size: 38rpx;">联系用户</text>
+          </view>
+
+        </view>
+
+        <view wx:if="{{status == 2}}" class="bottom_operation_btn_container">
+          <view bindtap="merchantCancelOrder" class="bottom_operation_btn_item" style="margin-right: 32rpx;">
+            <text style="color: white;font-size: 38rpx;">取消订单</text>
+          </view>
+
+          <view bindtap="merchantCompleteOrder" class="bottom_operation_btn_item" style="margin-right: 32rpx;">
+            <text style="color: white;font-size: 38rpx;">订单完成</text>
+          </view>
+
+          <view class="bottom_operation_btn_item" bindtap="callUserPhone">
+            <text style="color: white;font-size: 38rpx;">联系用户</text>
+          </view>
+        </view>
+
+        <view wx:if="{{status == 3}}" class="bottom_operation_btn_container">
+      
+          <view class="bottom_operation_btn_item" bindtap="callUserPhone">
+            <text style="color: white;font-size: 38rpx;">联系用户</text>
+          </view>
+        </view>
+
+        <view wx:if="{{status == 4}}" class="bottom_operation_btn_container">
+          <view class="bottom_operation_btn_item_disable" style="margin-right: 32rpx;">
+            <text style="color: white;font-size: 38rpx;">您已取消订单</text>
+          </view>
+
+          <view class="bottom_operation_btn_item" bindtap="callUserPhone">
+            <text style="color: white;font-size: 38rpx;">联系用户</text>
+          </view>
+        </view>
+
+        <view wx:if="{{status == 5}}" class="bottom_operation_btn_container">
+          <view class="bottom_operation_btn_item_disable" style="margin-right: 32rpx;">
+            <text style="color: white;font-size: 38rpx;">用户已取消订单</text>
+          </view>
+
+
+          <view class="bottom_operation_btn_item" bindtap="callUserPhone">
+            <text style="color: white;font-size: 38rpx;">联系用户</text>
+          </view>
+        </view>
+
+      </block>
+      <!-- 用户版本 -->
+      <!-- 0 下单 1 待接单 2 已接单 3 已完成 4 商家取消订单 5 用户取消订单 -->
+      <block wx:if="{{roles == 0}}">
+        <view wx:if="{{status == 1}}" class="bottom_operation_btn_container">
+          <!-- 接单和取消订单 -->
+          <view class="bottom_operation_btn_item" style="margin-right: 32rpx;" bindtap="userCancelOrder">
+            <text style="color: white;font-size: 38rpx;">取消订单</text>
+          </view>
+
+          <view class="bottom_operation_btn_item" bindtap="callMerchantPhone">
+            <text style="color: white;font-size: 38rpx;">联系商家</text>
+          </view>
+
+        </view>
+
+        <view wx:if="{{status == 2}}" class="bottom_operation_btn_container">
+          <view class="bottom_operation_btn_item" bindtap="callMerchantPhone">
+            <text style="color: white;font-size: 38rpx;">联系商家</text>
+          </view>
+        </view>
+        <!-- 商家接单后，就不允许用户取消订单 -->
+        <view wx:if="{{status == 3}}" class="bottom_operation_btn_container">
+          <view class="bottom_operation_btn_item" bindtap="callMerchantPhone">
+            <text style="color: white;font-size: 38rpx;">联系商家</text>
+          </view>
+        </view>
+
+        <view wx:if="{{status == 4}}" class="bottom_operation_btn_container">
+          <view class="bottom_operation_btn_item_disable" style="margin-right: 32rpx;">
+            <text style="color: white;font-size: 38rpx;">商家已取消订单</text>
+          </view>
+
+          <view class="bottom_operation_btn_item" bindtap="callMerchantPhone">
+            <text style="color: white;font-size: 38rpx;">联系商家</text>
+          </view>
+        </view>
+
+        <view wx:if="{{status == 5}}" class="bottom_operation_btn_container">
+          <view class="bottom_operation_btn_item_disable" style="margin-right: 32rpx;">
+            <text style="color: white;font-size: 38rpx;">您已取消订单</text>
+          </view>
+
+
+          <view class="bottom_operation_btn_item" bindtap="callMerchantPhone">
+            <text style="color: white;font-size: 38rpx;">联系商家</text>
+          </view>
+        </view>
+
+      </block>
     </view>
   </view>
 </view>

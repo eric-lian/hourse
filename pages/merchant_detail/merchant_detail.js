@@ -1,4 +1,5 @@
 // pages/merchant_detail/merchant_detail.js
+const app = getApp()
 Page({
 
   /**
@@ -8,7 +9,8 @@ Page({
     id: "",
     merchant_detail_info: {},
     //0 加载中  1 加载成功 2 加载失败 3 加载为空
-    status: 0
+    status: 0,
+    is_merchant: false
   },
 
   /**
@@ -122,6 +124,8 @@ Page({
   },
 
   subscribe() {
+    // 判断用户是否登录
+
     wx.navigateTo({
       url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + this.data.merchant_detail_info.name + "&merchant_id=" + this.data.merchant_detail_info._id + "&merchant_open_id=" + this.data.merchant_detail_info.merchant_open_id,
     })
@@ -141,6 +145,7 @@ Page({
 
   // 家政人员预约
   immediately_subscribe(e) {
+    // 判断用户是否登录
     const merchant_id = e.currentTarget.dataset.merchant_id
     const merchant_name = e.currentTarget.dataset.merchant_name
     console.log(merchant_id)

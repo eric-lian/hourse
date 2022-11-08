@@ -8,13 +8,7 @@ Page({
   data: {
     userOrders: [],
     merchantOrders: [],
-    order_status_text: {
-      '1': "待接单",
-      '2': "已接单",
-      '3': "已完成",
-      '4': "商家已取消",
-      '5': "用户已取消"
-    },
+    order_status_text: {},
     // -1 未登录 0 用户 1商家
     roles: -1
   },
@@ -38,14 +32,48 @@ Page({
    */
   onShow() {
     const roles = app.globalData.userInfo.roles
-    if (this.data.roles != roles) {
+    console.log("============ onShow")
+    console.log(roles)
+    if (!app.globalData.logined) {
       this.setData({
-        roles: roles
+        roles: -1,
+        order_status_text: {},
+        userOrders: [],
+        merchantOrders: []
       })
+    } else if (this.data.roles != roles) {
+      // 已登录角色发生变化
       if (roles == 0) {
+        this.setData({
+          roles: roles,
+          order_status_text: {
+            '1': "待接单",
+            '2': "已接单",
+            '3': "已完成",
+            '4': "商家已取消",
+            '5': "您已取消"
+          }
+        })
         this.loadUserOrders(true)
       } else if (roles == 1) {
+        this.setData({
+          roles: roles,
+          order_status_text: {
+            '1': "待接单",
+            '2': "已接单",
+            '3': "已完成",
+            '4': "您已取消",
+            '5': "用户已取消"
+          }
+        })
         this.loadMerchantOrders(true)
+      } else {
+        this.setData({
+          roles: roles,
+          order_status_text: {},
+          userOrders: [],
+          merchantOrders: []
+        })
       }
     }
   },
@@ -181,6 +209,14 @@ Page({
       }).catch(reason => {
         console.log(reason)
       })
+  },
+
+  gotoOrderDetail(e) {
+    const order_id = e.currentTarget.dataset.order_id
+    console.log(order_id)
+    wx.navigateTo({
+      url: '/pages/merchant_subscribe/merchant_subscribe?order_id=' + order_id,
+    })
   }
 
 })

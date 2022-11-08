@@ -98,3 +98,27 @@
   color: rgba(129, 134, 143, 1);
   font-weight: 400;
 }
+
+.bottom_operation_btn_item {
+  height: 100rpx;
+  background-color: rgba(21, 92, 205, 1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 18rpx;
+  flex: 1;
+}
+
+.bottom_operation_btn_item_disable {
+  height: 100rpx;
+  background-color: rgba(21, 92, 205, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 18rpx;
+  flex: 1;
+}
+
+.bottom_operation_btn_container {
+  display: flex;
+}

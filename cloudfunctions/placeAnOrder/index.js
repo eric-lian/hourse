@@ -9,7 +9,7 @@ exports.main = async (event, context) => {
   console.log("用户下单")
   console.log(event)
   const db = cloud.database()
-  if (event.status === "1") {
+  if (event.status == "1") {
     console.log("用户开始结果")
     event._createTime = Date.now()
     event._updateTime = Date.now()

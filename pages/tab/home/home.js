@@ -118,6 +118,7 @@ Page({
     this.setData({
       topNavContainerHeight: this.data.statusBarHeight + this.data.navigationBarHeight
     })
+
     // 请求首屏banner数据
     this.requestBanners()
     //  请求首页新闻列表数据
@@ -260,7 +261,6 @@ Page({
       this.onLookService()
       return
     }
-
     var name = e.currentTarget.dataset.name
     console.log(e)
     var search_key = null
@@ -333,7 +333,7 @@ Page({
   },
 
   onLookService() {
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/look_service/look_service',
     })
   },

@@ -6,19 +6,18 @@ Page({
    */
   data: {
     // 0 下单 1 待接单 2 已接单 3 已完成 4 商家取消订单 5 用户取消订单
-    status: "0",
+    status: "-1",
     coarse_address: "",
     service_name: "",
     start_time: "",
     end_time: "",
     merchant_id: "",
     service_type: "",
-    start_time: "",
-    end_time: "",
     service_address: "",
     contact: "",
     phone: "",
     desc: "",
+    user_open_id: "",
     merchant_open_id: "",
     inputCheck: {
       service_type: {
@@ -44,7 +43,9 @@ Page({
         emptyTip: "请输入需求描述",
       }
     },
-    home: ""
+    home: "",
+    order_id: "",
+    roles: -1
   },
 
 
@@ -62,16 +63,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.setData({
-      start_time: this.getCurrentData(),
-      end_time: this.getCurrentData(),
-      service_name: options.service_merchant_name,
-      merchant_id: options.merchant_id,
-      merchant_open_id: options.merchant_open_id
-    })
+    // 检查订单id参数是否存在，如果存在则表示是订单详情页，否则是下单页面
+    const order_id = options.order_id
+    this.updateRoles()
+    if (!app.isNullOrEmpty(order_id)) {
+      this.setData({
+        order_id: order_id
+      })
+      this.queryOrder()
+    } else {
+      // 下单
+      this.setData({
+        status: '0',
+        start_time: this.getCurrentData(),
+        end_time: this.getCurrentData(),
+        service_name: options.service_merchant_name,
+        merchant_id: options.merchant_id,
+        merchant_open_id: options.merchant_open_id
+      })
+    }
     console.log(options)
   },
 
+  updateRoles() {
+    this.setData({
+      roles: app.globalData.logined ? app.globalData.userInfo.roles : -1
+    })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -218,6 +236,8 @@ Page({
     // 确认是否登录
     if (!app.globalData.logined) {
       app.login(res => {
+        // 登陆成功，更新角色
+        this.updateRoles()
         // 登录成功，下单 
         this.checkAcceptOrderMsgTemplateId()
       }, reason => {
@@ -233,31 +253,39 @@ Page({
 
   checkAcceptOrderMsgTemplateId() {
     // 检测是否开启订阅消息权限
-    const templateId = app.globalData.MERCHANT_ACCEPT_ORDER_MSG__TEMPLATE_ID
-    app.checkAcceptOrderMsgTemplateId(templateId, res => {
-      if (res) {
-        // 永久同意消息订阅 ，直接下单
-        this.placeAnOrder()
-      } else {
-        // 申请权限
-        app.requestSubscribeMessage(templateId, res => {
-          // 同意消息订阅，下单
-          if (res) {
-            this.placeAnOrder()
-          } else {
-            wx.showToast({
-              title: '请同意开启消息订阅，方便接受订单最新状态',
-              icon: 'none'
-            })
-          }
-        })
-      }
-    })
+    // const templateId = app.globalData.MERCHANT_ACCEPT_ORDER_MSG__TEMPLATE_ID
+    // app.checkAcceptOrderMsgTemplateId(templateId, res => {
+    //   if (res) {
+    //     // 永久同意消息订阅 ，直接下单
+    //     this.placeAnOrder()
+    //   } else {
+    //     // 申请权限
+    //     app.requestSubscribeMessage(templateId, res => {
+    //       // 同意消息订阅，下单
+    //       if (res) {
+    //         this.placeAnOrder()
+    //       } else {
+    //         wx.showToast({
+    //           title: '请同意开启消息订阅，方便接受订单最新状态',
+    //           icon: 'none'
+    //         })
+    //       }
+    //     })
+    //   }
+    // })
+    this.placeAnOrder()
   }
 
   ,
   placeAnOrder() {
-
+    // 如果是商家角色， 不允许提交订单
+    if (this.data.roles == 1) {
+      wx.showToast({
+        title: '对不起，该功能暂未对商家开放',
+        icon: 'none'
+      })
+      return
+    }
     const subscribe = {
       status: "1",
       service_name: this.data.service_name,
@@ -283,7 +311,6 @@ Page({
       name: "placeAnOrder",
       data: subscribe
     }).then(res => {
-      // 下单成功，给商家发送下单消息
       this.setData({
         status: "1"
       })
@@ -307,5 +334,115 @@ Page({
         })
       }
     })
+  },
+
+  queryOrder() {
+    wx.showLoading({
+      title: '加载中...',
+    })
+    wx.cloud.callFunction({
+        name: "query_order",
+        data: {
+          order_id: this.data.order_id
+        }
+      }).then(res => {
+        console.log("======= 查询订单信息成功")
+        this.setOrderData(res.result)
+        wx.hideLoading({
+          success: (res) => {},
+        })
+      })
+      .catch(error => {
+        wx.hideLoading({
+          success: (res) => {},
+        })
+        wx.showToast({
+          title: '网络错误，请稍后再试',
+        })
+        wx.navigateBack({
+          delta: 0,
+        })
+      })
+  },
+  setOrderData(order) {
+    try {
+      console.log(this.data)
+      this.setData(order)
+      console.log(this.data)
+    } catch (error) {
+      wx.showToast({
+        title: '订单异常',
+      })
+      wx.navigateBack({
+        delta: 0,
+      })
+    }
+  },
+  callUserPhone() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.phone,
+    })
+  },
+
+  callMerchantPhone() {
+    wx.makePhoneCall({
+      phoneNumber: this.data.merchant.phone,
+    })
+  },
+
+  merchantAcceptOrder(e) {
+    console.log(e)
+    this.merchantChangeOrder('2', "您确定接受该订单吗？")
+  },
+
+  merchantCancelOrder(e) {
+    console.log(e)
+    this.merchantChangeOrder('4', "您确定取消该订单吗？")
+  },
+
+  merchantCompleteOrder(e) {
+    console.log(e)
+    this.merchantChangeOrder('3', "您确定更改为订单完成吗？")
+  },
+
+  merchantChangeOrder(to_status, content) {
+    const that = this
+    wx.showModal({
+      title: "提示",
+      content: content,
+      success(res) {
+        if (res.confirm) {
+          wx.showLoading({
+            title: '提交中...',
+          })
+          wx.cloud.callFunction({
+            name: "change_order_status",
+            data: {
+              order_id: that.data.order_id,
+              to_status: to_status
+            }
+          }).then(res => {
+            that.setOrderData(res.result)
+            wx.hideLoading({
+              success: (res) => {},
+            })
+          }).catch(error => {
+            console.log(error)
+            wx.hideLoading({
+              success: (res) => {},
+            })
+            wx.showToast({
+              title: '订单操作失败，请稍后再试',
+            })
+          })
+        }
+      }
+    })
+  },
+
+  userCancelOrder(e) {
+    console.log(e)
+    this.merchantChangeOrder('5', "您确定取消该订单吗？")
   }
+
 })
