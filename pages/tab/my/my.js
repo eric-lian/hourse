@@ -90,9 +90,7 @@ Page({
   },
 
   enterOrderManager(e) {
-    wx.navigateTo({
-      url: '/pages/merchant/order_manager/order_manager',
-    })
+    
   },
 
   logout() {
@@ -116,5 +114,12 @@ Page({
         icon: 'none'
       })
     })
+  },
+
+  onMerchantEnter() {
+    wx.navigateTo({
+      url: '/pages/tab/merchants/merchants',
+    })
   }
+
 })

@@ -39,13 +39,13 @@ App({
         }
         // 检查数据是否包含roles 字段，没有清空数据，重新登陆
         const userInfo = JSON.parse(res.data)
-        console.log("userInfo :" +  userInfo)
-        console.log("roles :" +  userInfo.roles)
+        console.log("userInfo :" + userInfo)
+        console.log("roles :" + userInfo.roles)
         if (this.isNull(userInfo.roles)) {
           // 无角色退出登录
-          console.log("无角色退出登录") 
+          console.log("无角色退出登录")
           this.logout()
-          return 
+          return
         }
         this.globalData.userInfo = userInfo
         this.globalData.logined = true
@@ -180,10 +180,14 @@ App({
       success: res => {
         this.globalData.userInfo = {}
         this.globalData.logined = false
-        _success()
+        if (_success != undefined) {
+          _success()
+        }
       },
       fail: reason => {
-        _fail(reason)
+        if (_fail != undefined) {
+          _fail(reason)
+        }
       }
     })
   },

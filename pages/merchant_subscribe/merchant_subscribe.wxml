@@ -3,8 +3,6 @@
   <view class="min_line"></view>
 </template>
 
-
-
 <view>
   <view wx:if="{{status >= 0}}">
     <view style="display: flex;flex-direction: row; height: 180rpx;align-items: center;justify-content: center;">
@@ -18,7 +16,7 @@
         <text class="status_title">下单</text>
       </view>
 
-      <view style="display: flex;flex-direction: column; align-items: center;">
+      <view wx:if="{{status != '4' && status != '5'}}" style="display: flex;flex-direction: column; align-items: center;">
         <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
           <view class="status_line_alpha_50" wx:if="{{status < 1}}" />
           <view class="status_line" wx:if="{{status >= 1}}" />
@@ -32,7 +30,7 @@
       </view>
 
 
-      <view style="display: flex;flex-direction: column; align-items: center;">
+      <view wx:if="{{status != '4' && status != '5'}}" style="display: flex;flex-direction: column; align-items: center;">
         <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
           <view class="status_line_alpha_50" wx:if="{{status < 2}}" />
           <view class="status_line" wx:if="{{status >= 2}}" />
@@ -59,7 +57,7 @@
       <text class="status_title">上门</text>
     </view> -->
 
-      <view style="display: flex;flex-direction: column; align-items: center;">
+      <view wx:if="{{status != '4' && status != '5'}}" style="display: flex;flex-direction: column; align-items: center;">
         <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
           <view class="status_line_alpha_50" wx:if="{{status < 3}}" />
           <view class="status_line" wx:if="{{status >= 3}}" />
@@ -69,6 +67,16 @@
         </view>
 
         <text class="status_title" bindtap="evaluate">已完成</text>
+      </view>
+      
+      <view wx:if="{{status == '4' || status == '5'}}" style="display: flex;flex-direction: column; align-items: center;">
+        <view style="display: flex;flex-direction: row;align-items: center;justify-content: center;">
+          <view class="status_line" />
+          <view class="status_circle" />
+          <view class="status_line_translate" />
+        </view>
+
+        <text class="status_title" bindtap="evaluate">已取消</text>
       </view>
     </view>
     <!-- 上 左 下 右  -->
@@ -283,7 +291,7 @@
         </view>
 
         <view wx:if="{{status == 3}}" class="bottom_operation_btn_container">
-      
+
           <view class="bottom_operation_btn_item" bindtap="callUserPhone">
             <text style="color: white;font-size: 38rpx;">联系用户</text>
           </view>

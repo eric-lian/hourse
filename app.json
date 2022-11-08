@@ -11,8 +11,7 @@
     "pages/evaluate/evaluate",
     "pages/look_service/look_service",
     "pages/tab/tab_message/tab_message",
-    "pages/order/order",
-    "pages/merchant/order_manager/order_manager"
+    "pages/order/order"
   ],
   "window": {
     "backgroundTextStyle": "light",

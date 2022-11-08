@@ -1,35 +1,58 @@
 <!--pages/order/order.wxml-->
+<wxs module="dateUtils" src="./../utils/index.wxs"></wxs>
 <view style="background-color: #F6F6F6;width: 100%; display: flex; flex-direction: column; height: 100%;">
   <!-- 未登录 -->
-  <block wx:if="{{(roles != 0 && roles != 1)}}">
+  <block wx:if="{{(!logined)}}">
     <view style="height: 100%;  display: flex; align-items: center;justify-content: center;flex-direction: column;">
       <image src="/pages/images/order/empty_order.png" style="width: 147rpx; height: 116rpx;"></image>
       <text style="color: #81868F; font-size: 28rpx; margin-top: 32rpx;">登录后再来查看你的订单吧~~</text>
-    </view>
-  </block>
-
-  <block wx:if="{{(roles == 0 && userOrders.length > 0) || (roles == 1 && merchantOrders.length > 0)}}" wx:for="{{roles == 1 ? merchantOrders : userOrders}}" wx:key="index">
-    <view class="order_item_container" data-order_id="{{item._id}}" bindtap="gotoOrderDetail">
-      <view class="order_item_order_code_container">
-        <text class="order_item_order_code_text">订单号： {{item._id}}</text>
-        <image src="/pages/images/order/right_arrow.png" style="width: 9rpx; height: 20rpx;align-items: center;"></image>
+      <view>
+        <button style="color: white;background-color: rgba(21, 92, 205); border-radius: 60rpx; margin-top: 32rpx;" bindtap="gotoLoginTab">去登录</button>
       </view>
-      <!-- 订单状态 -->
-      <text style="font-size: 28rpx; color: #29313D;margin-top: 12rpx;">订单状态：{{order_status_text[item.status]}}</text>
-      <!-- 公司 -->
-      <text style="font-size: 28rpx; color: #29313D;margin-top: 12rpx">订单类型：{{item.service_type}}</text>
-      <!-- 地址 -->
-      <text style="font-size: 28rpx; color: #29313D;;margin-top: 12rpx">家政公司: {{item.service_name}}</text>
-    </view>
-
-  </block>
-
-  <block wx:if="{{(roles == 1 && merchantOrders.length == 0) || (roles == 0 && userOrders.length == 0)}}">
-    <view style="height: 100%;  display: flex; align-items: center;justify-content: center;flex-direction: column;">
-      <image src="/pages/images/order/empty_order.png" style="width: 147rpx; height: 116rpx;"></image>
-      <text style="color: #81868F; font-size: 28rpx; margin-top: 32rpx;">您还没有任何订单~</text>
     </view>
   </block>
+  <block wx:if="{{(logined)}}">
+    <block wx:if="{{(roles == 0 && userOrders.length > 0) || (roles == 1 && merchantOrders.length > 0)}}" wx:for="{{roles == 1 ? merchantOrders : userOrders}}" wx:key="index">
+      <view class="order_item_container" data-order_id="{{item._id}}" bindtap="gotoOrderDetail">
+        <!-- 订单号 -->
+        <view class="order_item_order_code_container">
+          <text class="order_item_order_code_text">订单号： {{item._id}}</text>
+          <image src="/pages/images/order/right_arrow.png" style="width: 14rpx; height: 30rpx;align-items: center; margin-top: 10rpx;"></image>
+        </view>
 
-
+        <!-- 订单状态 -->
+        <view style="margin-top: 12rpx">
+          <text class="order_item_key">订单状态：: </text>
+          <text class="order_item_value">{{order_status_text[item.status]}}</text>
+        </view>
+        <!-- 订单类型 -->
+        <view style="margin-top: 12rpx">
+          <text class="order_item_key">订单类型：: </text>
+          <text class="order_item_value">{{item.service_type}}</text>
+        </view>
+        <!-- 地址 -->
+        <view style="margin-top: 12rpx">
+          <text class="order_item_key">服务地址: </text>
+          <text class="order_item_value">{{item.service_address}}</text>
+        </view>
+        <!-- 公司 -->
+        <view wx:if="{{roles == 0}}" style="margin-top: 12rpx">
+          <text class="order_item_key">家政公司: </text>
+          <text class="order_item_value">{{item.service_name}}</text>
+        </view>
+        <!-- 下单日期 -->
+        <view style="margin-top: 12rpx">
+          <text class="order_item_key">下单日期: </text>
+          <text class="order_item_value">{{dateUtils.newFormatTime(item._createTime)}}</text>
+        </view>
+      </view>
+    </block>
+    <!-- 刷新成功数据为空 -->
+    <block wx:if="{{status == 2}}">
+      <view style="height: 100%;  display: flex; align-items: center;justify-content: center;flex-direction: column;">
+        <image src="/pages/images/order/empty_order.png" style="width: 147rpx; height: 116rpx;"></image>
+        <text style="color: #81868F; font-size: 28rpx; margin-top: 32rpx;">您还没有任何订单~</text>
+      </view>
+    </block>
+  </block>
 </view>

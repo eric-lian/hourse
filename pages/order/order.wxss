@@ -14,9 +14,18 @@
   justify-content: space-between;
 }
 
-.order_item_order_code_text{
+.order_item_order_code_text {
   font-size: 26rpx;
   line-height: 36rpx;
   color: #29313D;
 }
 
+.order_item_key {
+  font-size: 28rpx;
+  color: #29313D;
+}
+
+.order_item_value {
+  font-size: 28rpx;
+  color: #29313D;
+}
