@@ -10,7 +10,7 @@ exports.main = async (event, context) => {
   const $ = _.aggregate
   const serverMills = new Date().getTime()
 
-  return db.collection("look_service")
+  const look_service = await db.collection("look_service")
     .aggregate()
     .lookup({
       from: 'merchants',
@@ -21,8 +21,8 @@ exports.main = async (event, context) => {
     // 排序
     .replaceRoot({
       newRoot: $.mergeObjects([$.arrayElemAt(['$merchants', 0]), '$$ROOT'])
-    }) 
-    .addFields({ 
+    })
+    .addFields({
       serverMills: serverMills
     })
     .project({
@@ -35,4 +35,7 @@ exports.main = async (event, context) => {
       list: $.push('$$ROOT')
     })
     .end()
+  look_service.list.reverse()
+  return look_service
+
 }
