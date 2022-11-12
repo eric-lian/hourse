@@ -19,11 +19,13 @@ exports.main = async (event, context) => {
   // 已下单, 发送新订单消息给商家
   // const serviceTime = event.start_time + "-" + event.end_time
 
+  const page = '/pages/merchant_subscribe/merchant_subscribe?order_id=' + event._id
+
   if (event.status == '1') {
     const result = await cloud.openapi.subscribeMessage.send({
       "touser": event.merchant_open_id,
       "templateId": MERCHANT_ACCEPT_ORDER_MSG_TEMPLATE_ID,
-      "page": '/pages/merchant_detail/merchant_detail',
+      "page": page,
       "miniprogramState": MINIPROGRAM_STATE,
       "data": {
         // 订单号
@@ -56,7 +58,7 @@ exports.main = async (event, context) => {
     const result = await cloud.openapi.subscribeMessage.send({
       "touser": event.user_open_id,
       "templateId": USER_ACCPET_ORDER_MSG_TEMPLATE_ID,
-      "page": '/pages/merchant_detail/merchant_detail',
+      "page": page,
       "miniprogramState": MINIPROGRAM_STATE,
       "data": {
         // 订单号
@@ -87,7 +89,7 @@ exports.main = async (event, context) => {
     const result = await cloud.openapi.subscribeMessage.send({
       "touser": event.user_open_id,
       "templateId": USER_ACCPET_ORDER_MSG_TEMPLATE_ID,
-      "page": '/pages/merchant_detail/merchant_detail',
+      "page": page,
       "miniprogramState": MINIPROGRAM_STATE,
       "data": {
         // 订单号
@@ -118,7 +120,7 @@ exports.main = async (event, context) => {
     const result = await cloud.openapi.subscribeMessage.send({
       "touser": event.user_open_id,
       "templateId": USER_ACCPET_ORDER_MSG_TEMPLATE_ID,
-      "page": '/pages/merchant_detail/merchant_detail',
+      "page": page,
       "miniprogramState": MINIPROGRAM_STATE,
       "data": {
         // 订单号
@@ -149,7 +151,7 @@ exports.main = async (event, context) => {
     const result = await cloud.openapi.subscribeMessage.send({
       "touser": event.merchant_open_id,
       "templateId": MERCHANT_ACCEPT_ORDER_MSG_TEMPLATE_ID,
-      "page": '/pages/merchant_detail/merchant_detail',
+      "page": page,
       "miniprogramState": MINIPROGRAM_STATE,
       "data": {
         // 订单号
