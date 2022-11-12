@@ -127,7 +127,7 @@ Page({
     // 判断用户是否登录
 
     wx.navigateTo({
-      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + this.data.merchant_detail_info.name + "&merchant_id=" + this.data.merchant_detail_info._id + "&merchant_open_id=" + this.data.merchant_detail_info.merchant_open_id,
+      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + this.data.merchant_detail_info.name + "&merchant_id=" + this.data.merchant_detail_info._id + "&merchant_open_id=" + this.data.merchant_detail_info.merchant_open_id + "&merchant_phone=" + this.data.merchant_detail_info.phone
     })
   },
 
@@ -150,7 +150,7 @@ Page({
     const merchant_name = e.currentTarget.dataset.merchant_name
     console.log(merchant_id)
     wx.navigateTo({
-      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name + "&merchant_id=" + merchant_id + "&merchant_open_id=" + this.data.merchant_detail_info.merchant_open_id,
+      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name + "&merchant_id=" + merchant_id + "&merchant_open_id=" + this.data.merchant_detail_info.merchant_open_id + "&merchant_phone=" + this.data.merchant_detail_info.phone
     })
   }
 })

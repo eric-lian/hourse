@@ -88,13 +88,17 @@ Page({
       this.queryOrder()
     } else {
       // 下单
+      console.log(options)
       this.setData({
         status: '0',
         start_time: this.getCurrentData(),
         end_time: this.getCurrentData(),
         service_name: options.service_merchant_name,
         merchant_id: options.merchant_id,
-        merchant_open_id: options.merchant_open_id
+        merchant_open_id: options.merchant_open_id,
+        merchant: {
+          phone: options.merchant_phone
+        }
       })
     }
     console.log(options)

@@ -15,7 +15,7 @@ Page({
     // 5 加载更多成功， 数据为空  6加载更多失败
     status: -1,
     logined: false,
-    subscribe_message_completed: false
+    subscribe_message_completed: true
   },
 
   /**
