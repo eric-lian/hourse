@@ -45,7 +45,22 @@ Page({
     },
     home: "",
     order_id: "",
-    roles: -1
+    roles: -1,
+    serviceTypeList: ["保洁",
+      "保姆",
+      "开锁",
+      "搬家",
+      "保育员",
+      "母婴护理",
+      "养老护理",
+      "家电维修",
+      "水电安装",
+      "家电清洗",
+      "家具维修",
+      "甲醛治理",
+      "收纳干洗",
+      "其他"
+    ]
   },
 
 
@@ -139,17 +154,9 @@ Page({
 
   },
 
-  selectService() {
-    // ,"家电维修", "养老护理", "搬家", "收纳干洗", "甲醛治理", "保育员", "开锁", "其他"
-    const _itemList = ["保洁", "母婴护理", "保姆", "疏通管道", "水电安装", "家电清洗"]
-    wx.showActionSheet({
-      itemList: _itemList,
-      success: res => {
-        const tapIndex = res.tapIndex
-        this.setData({
-          service_type: _itemList[tapIndex]
-        })
-      }
+  selectService(e) {
+    this.setData({
+      service_type: this.data.serviceTypeList[e.detail.value]
     })
   },
 

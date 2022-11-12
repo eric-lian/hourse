@@ -35,7 +35,25 @@ exports.main = async (event, context) => {
       list: $.push('$$ROOT')
     })
     .end()
-  look_service.list.reverse()
+  // look_service.list.reverse()
+  const services = ["保洁",
+    "保姆",
+    "开锁",
+    "保育员",
+    "母婴护理",
+    "养老护理",
+    "家电维修",
+    "水电安装",
+    "家电清洗",
+    "家具维修",
+    "甲醛治理",
+    "收纳干洗",
+    "其他"
+  ]
+  look_service.list.sort(function (serviceA, serviceB) {
+    const aID = serviceA._id
+    const bID = serviceB._id
+    return services.indexOf(aID) - services.indexOf(bID)
+  })
   return look_service
-
 }
