@@ -86,14 +86,13 @@ Page({
       icon: "none"
     })
     const openid = getApp().globalData.userInfo.openid
-    console.log(userInfo)
     db.collection("evaluate")
       .add({
         data: {
           evaluate: this.data.evaluate,
           openid: openid,
-          _createTime: db.serverDate(),
-          _updateTime: db.serverDate()
+          _createTime:  Date.now(),
+          _updateTime:  Date.now()
         }
       }).then(res => {
         wx.hideLoading({

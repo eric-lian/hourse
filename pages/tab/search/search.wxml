@@ -58,6 +58,6 @@
   <button style="padding: 18rpx 24rpx 24rpx 18rpx; background-color: rgba(26, 115, 214, 1); border-radius: 18rpx; margin-top: 18rpx; color: white;" bindtap="gotoGuidePrice">查阅服务指导价</button>
   <view id="search_container" wx:if="{{showSearchBar != 'false'}}">
     <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png" mode="aspectFit"></image>
-    <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="{{focus}}" value="{{searchShowKey}}" bindconfirm="goToSearch" bindfocus="onFocus" bindinput="onSearchInputChanged"/>
+    <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="{{focus}}" value="{{searchShowKey}}" bindconfirm="goToSearch" bindfocus="onFocus" bindinput="onSearchInputChanged" confirm-type="search"/>
   </view>
 </view>

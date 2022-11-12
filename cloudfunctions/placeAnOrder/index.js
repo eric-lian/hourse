@@ -24,15 +24,17 @@ exports.main = async (event, context) => {
     console.log("用户下单结果")
     console.log(event)
     // 发送通知给商家，有新订单
-    // try {
-    //   const sendSubscribeResult = await cloud.callFunction({
-    //     name: 'send_subscribe',
-    //     data: event
-    //   })
-    //   console.log("发送商家新订单消息结果")
-    //   console.log(sendSubscribeResult)
-    // } catch (error) {
-    //   console.log(error)
-    // }    
+    try {
+      const sendSubscribeResult = await cloud.callFunction({
+        name: 'send_subscribe',
+        data: event
+      }) 
+      console.log("发送商家新订单消息结果")
+      console.log(sendSubscribeResult)
+    } catch (error) {
+      console.log("发送商家新订单消息失败")
+      console.log(error)
+    }    
+    return result
   }
 }

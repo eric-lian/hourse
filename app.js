@@ -8,7 +8,7 @@ App({
     userInfo: {},
     homeSearchKeyOptimized: [],
     globalConfig: {},
-    MERCHANT_ACCEPT_ORDER_MSG__TEMPLATE_ID: "fUP2d5u8celV0E-lxxjxugU4yvq1RDRChPV3-4vx-zY",
+    MERCHANT_ACCEPT_ORDER_MSG_TEMPLATE_ID: "fUP2d5u8celV0E-lxxjxugU4yvq1RDRChPV3-4vx-zY",
     USER_ACCPET_ORDER_MSG_TEMPLATE_ID: "fUP2d5u8celV0E-lxxjxukgDGkLSF4rmE0Wvfd3xrWk"
   },
 
@@ -193,12 +193,20 @@ App({
   },
   // 是否是商家
   isMerchants() {
-    return this.globalData.logined && this.globalConfig.userInfo.roles == 1
+    return this.globalData.logined && this.globalData.userInfo.roles == 1
   },
+
   isNullOrEmpty(content) {
-    if (content == undefined || content == null || content.trim() == '') {
+    if (content == undefined || content == null) {
       return true
     }
+
+    if ((typeof content == 'string') &&
+      content.constructor == String &&
+      content.trim().length == 0) {
+      return true
+    }
+
     return false
   },
 
@@ -261,6 +269,16 @@ App({
         fail('error')
       }
     })
+  },
+
+  getCurrentRolesTemplateId() {
+    if (this.isMerchants()) {
+      console.log("======== 商家")
+      return this.globalData.MERCHANT_ACCEPT_ORDER_MSG_TEMPLATE_ID
+    } else {
+      console.log("======== 普通用户")
+      return this.globalData.USER_ACCPET_ORDER_MSG_TEMPLATE_ID
+    }
   }
 
 })

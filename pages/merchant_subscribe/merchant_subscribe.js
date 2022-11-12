@@ -20,17 +20,17 @@ Page({
     user_open_id: "",
     merchant_open_id: "",
     inputCheck: {
-      service_type: {
-        emptyTip: "请选择服务类型",
-      },
+      // service_type: {
+      //   emptyTip: "请选择服务类型",
+      // },
 
       coarse_address: {
         emptyTip: "请输入服务地址",
       },
 
-      service_address: {
-        emptyTip: "请输入详细地址",
-      },
+      // service_address: {
+      //   emptyTip: "请输入详细地址",
+      // },
       contact: {
         emptyTip: "请输入联系人姓名",
       },
@@ -39,9 +39,9 @@ Page({
         minLength: 11,
         minLengthTip: "请输入正确手机号"
       },
-      desc: {
-        emptyTip: "请输入需求描述",
-      }
+      // desc: {
+      //   emptyTip: "请输入需求描述",
+      // }
     },
     home: "",
     order_id: "",
@@ -180,7 +180,7 @@ Page({
   onInputChange(e) {
     const value = e.detail.value
     const id = e.currentTarget.id
-    console.log("=========" + value)
+    // console.log("=========" + value)
     if ("service_address" == id) {
       this.setData({
         service_address: value
@@ -210,7 +210,8 @@ Page({
     for (let key in submitValue) {
       // tip 为空说明改字段值可以为空
       const checkValue = this.data.inputCheck[key]
-      if (checkValue == undefined) {
+      if (app.isNullOrEmpty(checkValue)) {
+        // 不在检查内
         continue
       }
       const value = submitValue[key]
@@ -310,6 +311,14 @@ Page({
       // _updateTime: db.serverDate(),
       // _createTime: db.serverDate()
     }
+
+    for (let key in subscribe) {
+      if (app.isNullOrEmpty(subscribe[key])) {
+        subscribe[key] = "无"
+        this.data[key] = "无"
+      }
+    }
+
     console.log(subscribe)
     wx.showLoading({
       title: '提交中...',
@@ -318,11 +327,17 @@ Page({
       name: "placeAnOrder",
       data: subscribe
     }).then(res => {
-      this.setData({
-        status: "1"
-      })
+      console.log("placeAnOrder")
+      console.log(res)
+      this.data.order_id = res.result._id
+      this.data.status = subscribe.status
+      this.setData(this.data)
       wx.hideLoading({
-        success: (res) => {},
+        success: (res) => {
+          wx.showToast({
+            title: '下单成功'
+          })
+        },
       })
     }).catch(reason => {
       console.log(reason)

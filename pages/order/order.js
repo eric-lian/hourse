@@ -14,7 +14,8 @@ Page({
     // -1 初始化 0 加载中 1 刷新成功， 数据不为空 2 刷新成功 ，数据为空 3  刷新数据失败 4 加载更多成功，数据不为空
     // 5 加载更多成功， 数据为空  6加载更多失败
     status: -1,
-    logined: false
+    logined: false,
+    subscribe_message_completed: false
   },
 
   /**
@@ -40,6 +41,25 @@ Page({
    */
   onShow() {
     this.checkRoles(true, false)
+    if (this.data.logined) {
+      const templateId = app.getCurrentRolesTemplateId()
+      app.checkAcceptOrderMsgTemplateId(templateId, res => {
+        this.setData({
+          subscribe_message_completed: res
+        })
+      }, error => {
+        this.setData({
+          subscribe_message_completed: false
+        })
+        wx.showToast({
+          title: '请在设置中打开 订单管理-通知管理-接受通知 开关',
+        })
+      })
+    } else {
+      this.setData({
+        subscribe_message_completed: false
+      })
+    }
   },
 
   checkRoles(isRefresh, ignoreRolesNoChanged) {
@@ -53,6 +73,7 @@ Page({
         merchantOrders: []
       })
     } else if (this.data.roles != roles || ignoreRolesNoChanged) {
+      console.log("xxxxxxfksjfkldsjlk")
       // 已登录角色发生变化
       if (roles == 0) {
         if (this.data.roles != roles) {
@@ -66,7 +87,7 @@ Page({
               '4': "商家已取消",
               '5': "您已取消"
             }
-          })
+          }) 
         }
         this.loadUserOrders(isRefresh)
       } else if (roles == 1) {
@@ -122,9 +143,6 @@ Page({
    */
   onReachBottom() {
     this.checkRoles(false, true)
-    wx.showToast({
-      title: '触发了加载更多',
-    })
   },
 
   /**
@@ -135,6 +153,7 @@ Page({
   },
 
   loadUserOrders(isRefresh) {
+    console.log("==============" + isRefresh)
     // 正在加载中
     if (this.data.status == 0) {
       return
@@ -230,6 +249,7 @@ Page({
   },
 
   loadMerchantOrders(isRefresh) {
+    console.log("xxxxxxxx" + isRefresh)
     // 正在加载中
     if (this.data.status == 0) {
       return
@@ -247,19 +267,24 @@ Page({
 
     // 计算最后一个元素时间
     var lastCreateTime = Date.now()
+    console.log("==========" + isRefresh)
     if (!isRefresh) {
       const orders = this.data.merchantOrders
       const length = orders.length
       if (length > 0) {
         lastCreateTime = orders[length - 1]._createTime
       }
+
+      console.log("old orders===============")
+      console.log(orders)
     }
+  
     const db = wx.cloud.database()
     const _ = db.command
     const openid = app.globalData.userInfo.openid
     db.collection('subscribe').orderBy("_createTime", "desc").where({
         merchant_open_id: openid,
-        _createTime: _.lte(lastCreateTime)
+        _createTime: _.lt(lastCreateTime)
       })
       .limit(20)
       .get()
@@ -338,10 +363,21 @@ Page({
     })
   },
 
-  gotoLoginTab(e){
+  gotoLoginTab(e) {
     wx.switchTab({
       url: '/pages/tab/my/my',
     })
+  },
+  subscribe_message(e) {
+    const templateId = app.getCurrentRolesTemplateId()
+    app.requestSubscribeMessage(templateId, res => {
+      this.setData({
+        subscribe_message_completed: res
+      })
+    }, error => {
+      this.setData({
+        subscribe_message_completed: false
+      })
+    })
   }
-
 })

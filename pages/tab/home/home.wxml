@@ -1,8 +1,8 @@
 <wxs module="dateUtils" src="./../../utils/index.wxs"></wxs>
 
 <!-- rgba(23,115,215,1)  -->
-<view>
-  <view style="height: 260rpx;background-color: rgba(23,115,215,1)">
+<view style="background-color: rgba(23,115,215,1)">
+  <view style="height: 260rpx;">
 
   </view>
   <swiper id="top_banners" indicator-dots="true" indicator-active-color="rgba(236, 106, 56, 1)" indicator-color="rgba(4, 5, 7, 0.16)" autoplay="true" interval="2000" circular="true">

@@ -87,8 +87,7 @@ Page({
   },
 
   goToSearch(event) {
-    const searchKey = event.detail.value.trim()
-    this._goToSearch(searchKey)
+    this._goToSearch(this.data.searchShowKey)
   },
 
   _goToSearch(searchKey) {

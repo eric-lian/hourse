@@ -86,6 +86,7 @@
       <!-- value 属性表示默认选中哪一个 -->
       <picker bindchange="selectService" range="{{serviceTypeList}}">
         <view class="subscribe_info_item">
+          <text style="color: tomato;width: 30rpx;"></text>
           <text class="subscribe_info_item_key">服务类型</text>
 
           <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;">{{service_type}}</text>
@@ -98,6 +99,7 @@
       <template is="divier_line"></template>
 
       <view class="subscribe_info_item">
+        <text style="color: tomato;width: 30rpx;"></text>
         <text class="subscribe_info_item_key">服务机构</text>
 
         <text style="width: 100%;margin-left: 24rpx;margin-right: 24rpx; font-weight: 500;font-size: 32rpx;">{{service_name}}</text>
@@ -107,6 +109,7 @@
       <template is="divier_line"></template>
 
       <view class="subscribe_info_item" style="align-items: center;justify-content: center;">
+      <text style="color: tomato;width: 20rpx;"></text>
         <text class="subscribe_info_item_key">服务时间</text>
 
         <view class="wrap">
@@ -128,6 +131,9 @@
       <template is="divier_line"></template>
 
       <view class="subscribe_info_item">
+
+        <text style="color: tomato;width: 50rpx;">*</text>
+
         <text class="subscribe_info_item_key">服务地址</text>
 
         <input id="coarse_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入地址" bindinput="onInputChange" maxlength="100" value="{{coarse_address}}" placeholder-class="subscribe_input" />
@@ -138,6 +144,7 @@
       <template is="divier_line"></template>
 
       <view class="subscribe_info_item">
+        <text style="color: tomato;width: 30rpx;"></text>
         <text class="subscribe_info_item_key">详细地址</text>
 
         <input id="service_address" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入详细地址" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />
@@ -147,24 +154,27 @@
       <template is="divier_line"></template>
 
       <view class="subscribe_info_item">
+        <text style="color: tomato;width: 40rpx;">*</text>
         <text class="subscribe_info_item_key">联系人</text>
 
-        <input id="contact" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系人姓名" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />
+        <input id="contact" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系人姓名" bindinput="onInputChange" maxlength="11" placeholder-class="subscribe_input" />
 
       </view>
 
       <template is="divier_line"></template>
 
       <view class="subscribe_info_item">
+        <text style="color: tomato;width: 40rpx;">*</text>
         <text class="subscribe_info_item_key">联系电话</text>
 
-        <input id="phone" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系电话" bindinput="onInputChange" type="number" maxlength="100" placeholder-class="subscribe_input" />
+        <input id="phone" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入联系电话" bindinput="onInputChange" type="number" maxlength="11" placeholder-class="subscribe_input" />
 
       </view>
 
       <template is="divier_line"></template>
 
       <view class="subscribe_info_item">
+        <text style="color: tomato;width: 40rpx;"></text>
         <text class="subscribe_info_item_key">需求描述</text>
 
         <input id="desc" style="width: 100%;margin-left: 24rpx;margin-right: 24rpx;" placeholder="请输入需求描述" bindinput="onInputChange" maxlength="100" placeholder-class="subscribe_input" />

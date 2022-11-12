@@ -8,7 +8,7 @@ page {
   display: flex;
   flex-direction: row;
   align-items: center;
-  width: 686rpx;
+  width: 600rpx;
   height: 74rpx;
   background: #F3F5F7;
   border: 2rpx solid #F3F5F7;

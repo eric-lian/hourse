@@ -8,10 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    banners: [{
-      img_url: "cloud://house-keeping-7gact5ex37e05233.686f-house-keeping-7gact5ex37e05233-1313608840/banner/Frame 43.png",
-      type: 3
-    }],
+    banners: [],
     menus: [{
         name: "保洁",
         search_key: ["保洁"],
