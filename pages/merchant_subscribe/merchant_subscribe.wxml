@@ -368,14 +368,20 @@
           </view>
 
         </view>
-
+        <!-- 商家接单后，就不允许用户取消订单 -->
         <view wx:if="{{status == 2}}" class="bottom_operation_btn_container">
           <view class="bottom_operation_btn_item" bindtap="callMerchantPhone">
             <text style="color: white;font-size: 38rpx;">联系商家</text>
           </view>
         </view>
-        <!-- 商家接单后，就不允许用户取消订单 -->
+
         <view wx:if="{{status == 3}}" class="bottom_operation_btn_container">
+
+          <!-- 订单已完成 ，开始评价 -->
+          <!-- <view class="bottom_operation_btn_item" style="margin-right: 32rpx;" bindtap="enter_evalute">
+            <text style="color: white;font-size: 38rpx;">评价</text>
+          </view> -->
+
           <view class="bottom_operation_btn_item" bindtap="callMerchantPhone">
             <text style="color: white;font-size: 38rpx;">联系商家</text>
           </view>

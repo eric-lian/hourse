@@ -43,7 +43,9 @@
 
     </view>
   </view>
-  <text style="color: #22464D5A;height: 100rpx; align-items: center;display: flex;font-size: 22rpx">没有更多数据了</text>
+  <view>
+    <text style="color: #22464D5A;height: 100rpx; align-items: center;display: flex;font-size: 22rpx">没有更多数据了</text>
+  </view>
 </block>
 
 <view wx:if="{{status == 4}}" style="height: 100%;display: flex; flex-direction: column;">
@@ -56,8 +58,13 @@
 
 <view style=" position: fixed;background-color: white;width: 100%; display: flex;flex-direction: column;align-items: center;">
   <button style="padding: 18rpx 24rpx 24rpx 18rpx; background-color: rgba(26, 115, 214, 1); border-radius: 18rpx; margin-top: 18rpx; color: white;" bindtap="gotoGuidePrice">查阅服务指导价</button>
-  <view id="search_container" wx:if="{{showSearchBar != 'false'}}">
-    <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png" mode="aspectFit"></image>
-    <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="{{focus}}" value="{{searchShowKey}}" bindconfirm="goToSearch" bindfocus="onFocus" bindinput="onSearchInputChanged" confirm-type="search"/>
+  <view style="display: flex; flex-direction: row;align-items: center;" wx:if="{{showSearchBar != 'false'}}">
+    <view id="search_container">
+      <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png" mode="aspectFit"></image>
+      <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="{{focus}}" value="{{searchShowKey}}" bindconfirm="goToSearch" bindfocus="onFocus" bindinput="onSearchInputChanged" />
+    </view>
+
+    <text style="margin-left: 24rpx;" bindtap="goToSearch">搜索</text>
   </view>
+
 </view>

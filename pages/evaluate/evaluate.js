@@ -5,14 +5,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    evaluate: ""
+    evaluate: "",
+    order_id: ""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    wx.setNavigationBarTitle({
+      title: '评价',
+    })
+    this.setData({
+      order_id: options.order_id
+    })
 
+    // 查询当前订单下是否已经有评论， 有评论展示评论，无评论
   },
 
   /**
@@ -86,13 +94,16 @@ Page({
       icon: "none"
     })
     const openid = getApp().globalData.userInfo.openid
+    console.log(openid)
     db.collection("evaluate")
       .add({
         data: {
           evaluate: this.data.evaluate,
-          openid: openid,
-          _createTime:  Date.now(),
-          _updateTime:  Date.now()
+          user_open_id: openid,
+          order_id: this.data.order_id,
+          status: 0,
+          _createTime: Date.now(),
+          _updateTime: Date.now()
         }
       }).then(res => {
         wx.hideLoading({

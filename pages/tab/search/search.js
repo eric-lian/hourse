@@ -87,8 +87,7 @@ Page({
   },
 
   goToSearch(event) {
-    const searchKey = event.detail.value.trim()
-    this._goToSearch(searchKey)
+    this._goToSearch(this.data.searchShowKey)
   },
 
   _goToSearch(searchKey) {
@@ -108,35 +107,16 @@ Page({
       title: '搜索中...',
       icon: 'none'
     })
-    const db = wx.cloud.database()
-    const _ = db.command
-    // 模糊匹配服务
-    db.collection("merchants")
-      // .where({
-      //   scope_of_business: db.RegExp({
-      //     regexp: searchKey,
-      //   })
-      // })
-      .where(_.or([{
-        status: 1,
-        scope_of_business: db.RegExp({
-          regexp: searchKey
-        })
-      }, {
-        status: 1,
-        name: db.RegExp({
-          regexp: searchKey
-        })
-      }]))
-      // 到序排序
-      .orderBy('weight', "desc")
-      // .orderBy('min_service_price', "asc")
-      //  最多获取50条
-      .limit(50)
-      .get()
+
+    wx.cloud.callFunction({
+        name: "search_merchant",
+        data: {
+          searchKey: searchKey
+        }
+      })
       .then(res => {
-        console.log(res.data)
-        const resultData = res.data
+        console.log(res.result.data)
+        const resultData = res.result.data
         if (resultData.length > 0) {
           this.setData({
             status: 2,

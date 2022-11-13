@@ -1,13 +1,17 @@
 <!--pages/evaluate/evaluate.wxml-->
-<view>
+<view style="display: flex;flex-direction: column; padding: 30rpx;align-items: center;">
   <view>
-    <view style="justify-content: center;">
-      <textarea auto-focus="true" placeholder="请输入评论内容" style="padding: 24rpx; height: 500rpx;width: 600rpx;margin: 48rpx;" bindinput="evaluteInputChange" maxlength="200"/>
-    </view>
-
-
-    <view style="height: 100rpx;background-color: rgba(26, 115, 214, 1);display: flex;justify-content: center;align-items: center;margin-bottom: 100rpx;border-radius: 18rpx;margin: 48rpx;" bindtap="submitOrder">
-      <text style="color: white;font-size: 38rpx;">确定提交 </text>
-    </view>
+    <text style="color: #EC6A38; font-size: 26rpx;">— 真实客观的评价有助于他人的决策 —</text>
   </view>
+
+  <view style="margin-top: 60rpx;width: 100%;display: flex;">
+    <textarea auto-focus="true" placeholder="请输入评论内容" style=" width: 100%;padding: 24rpx;background-color: #F3F5F7;font-size: 28rpx;" bindinput="evaluteInputChange" maxlength="200" placeholder="从多个角度评价，可以帮助更多的人" placeholder-class="evaluate_placeholder" />
+  </view>
+
+  <view style="background-color: rgba(26, 115, 214, 1);height: 98rpx;width: 100%;display: flex;flex-direction: column; align-items: center;justify-content: center; margin-top: 60rpx;border-radius: 18rpx;"
+  bindtap="submitOrder">
+    <text style="color: white;font-size: 28rpx;border-radius: 18rpx;">发布</text>
+  </view>
+
+
 </view>

@@ -474,6 +474,12 @@ Page({
   userCancelOrder(e) {
     console.log(e)
     this.merchantChangeOrder('5', "您确定取消该订单吗？")
+  },
+
+  enter_evalute(e) {
+    wx.navigateTo({
+      url: '/pages/evaluate/evaluate?order_id=' + this.data.order_id,
+    })
   }
 
 })

@@ -43,7 +43,9 @@
 
     </view>
   </view>
-  <text style="color: #22464D5A;height: 100rpx; align-items: center;display: flex;font-size: 22rpx">没有更多数据了</text>
+  <view>
+    <text style="color: #22464D5A;height: 100rpx; align-items: center;display: flex;font-size: 22rpx">没有更多数据了</text>
+  </view>
 </block>
 
 <view wx:if="{{status == 4}}" style="height: 100%;display: flex; flex-direction: column;">

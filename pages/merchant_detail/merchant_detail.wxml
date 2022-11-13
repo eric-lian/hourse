@@ -135,6 +135,7 @@
         <image src="/pages/images/order/collect_default.png" class="merchant_detail_bottom_icon" />
         <text class="merchant_detail_bottom_operation">收藏</text>
       </view>
+      
       <view class="merchant_detail_bottom_item" bindtap="evaluate">
         <image src="/pages/images/order/pingjia.png" class="merchant_detail_bottom_icon" />
         <text class="merchant_detail_bottom_operation">评价</text>
