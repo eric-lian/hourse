@@ -18,8 +18,24 @@ function slice(array, start, end) {
   return array.slice(start, end)
 }
 
+
+function isNullOrEmpty(content) {
+  if (content == undefined || content == null) {
+    return true
+  }
+
+  if ((typeof content == 'string') &&
+    content.constructor == "String" &&
+    content.trim().length == 0) {
+    return true
+  }
+
+  return false
+}
+
 module.exports = {
   newFormatTime: newFormatTime,
   getDateYearDiff: getDateYearDiff,
-  slice: slice
+  slice: slice,
+  isNullOrEmpty: isNullOrEmpty
 }

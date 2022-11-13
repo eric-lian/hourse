@@ -24,7 +24,6 @@ Page({
     })
     this.queryMerchant(res => {
       const merchant_detail_info_array = res.result.list
-
       if (merchant_detail_info_array.length > 0) {
         const merchant_detail_info = merchant_detail_info_array[0]
         this.setData({
@@ -147,10 +146,21 @@ Page({
   immediately_subscribe(e) {
     // 判断用户是否登录
     const merchant_id = e.currentTarget.dataset.merchant_id
-    const merchant_name = e.currentTarget.dataset.merchant_name
-    console.log(merchant_id)
+    const merchant_name = this.data.merchant_detail_info.name
+    const service_person_name = e.currentTarget.dataset.service_person_name
+    const service_person_id = e.currentTarget.dataset.service_person_id
+    const service_name = e.currentTarget.dataset.service_name
+    console.log("家政人员服务名称：" + service_person_name)
+    console.log("家政人员服务ID" + service_person_id)
+    console.log("家政人员服务类型" + service_name)
     wx.navigateTo({
-      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name + "&merchant_id=" + merchant_id + "&merchant_open_id=" + this.data.merchant_detail_info.merchant_open_id + "&merchant_phone=" + this.data.merchant_detail_info.phone
+      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name +
+        "&merchant_id=" + merchant_id +
+        "&merchant_open_id=" + this.data.merchant_detail_info.merchant_open_id +
+        "&merchant_phone=" + this.data.merchant_detail_info.phone +
+        "&service_person_name=" + service_person_name +
+        "&service_person_id=" + service_person_id +
+        "&service_type=" + service_name
     })
   }
 })

@@ -98,7 +98,10 @@ Page({
         merchant_open_id: options.merchant_open_id,
         merchant: {
           phone: options.merchant_phone
-        }
+        },
+        service_person_name: options.service_person_name,
+        service_person_id: options.service_person_id,
+        service_type: options.service_type,
       })
     }
     console.log(options)
@@ -311,7 +314,9 @@ Page({
       phone: this.data.phone,
       desc: this.data.desc,
       user_open_id: app.globalData.userInfo.openid,
-      merchant_open_id: this.data.merchant_open_id
+      merchant_open_id: this.data.merchant_open_id,
+      service_person_name: this.data.service_person_name,
+      service_person_id: this.data.service_person_id
       // _updateTime: db.serverDate(),
       // _createTime: db.serverDate()
     }

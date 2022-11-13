@@ -131,6 +131,7 @@ Page({
       .orderBy('weight', "desc")
       // .orderBy('min_service_price', "asc")
       //  最多获取50条
+      // 最多只让获取20条
       .limit(50)
       .get()
       .then(res => {
