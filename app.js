@@ -40,18 +40,20 @@ App({
         // 检查数据是否包含roles 字段，没有清空数据，重新登陆
         const userInfo = JSON.parse(res.data)
         console.log("userInfo :" + userInfo)
-        console.log("roles :" + userInfo.roles)
-        if (this.isNull(userInfo.roles)) {
+        // 主要是针对已经登录的老用户
+        if (!this.checkUserInfo(userInfo)) {
           // 无角色退出登录
-          console.log("无角色退出登录")
+          console.log("检查登录信息失败，退出登录")
           this.logout()
           return
         }
         this.globalData.userInfo = userInfo
         this.globalData.logined = true
         // 网络再次更新最新数据
-        this.updateOpenInfo(userInfo, res => {
+        this.updateOpenInfo(res => {
           console.log("更新openInfo 数据成功")
+        }, _ => {
+          console.log("用户未登录，未完善用户信息")
         }, reason => {
           console.log("更新openInfo 数据失败")
         })
@@ -117,63 +119,82 @@ App({
         }
       })
   },
-
-  login(onSuccess, onFail) {
+  login(logined, unlogin, fail) {
     // 推荐使用 wx.getUserProfile 获取用户信息，开发者每次通过该接口获取用户个人信息均需用户确认
     // 开发者妥善保管用户快速填写的头像昵称，避免重复弹窗
     // if (this.data.logined) {
     //   return
     // }
+    /**
+     * 1. 先判断服务端是否已经有用户资料信息
+     * 2. 如果有资料信息，则登录成功
+     * 3. 如果无资料，则强制用户更新资料
+     */
+
     wx.showLoading({
       title: '登录中...',
     })
-    wx.getUserProfile({
-      desc: '用于完善会员资料' // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
-    }).then(res => {
-      const userInfo = res.userInfo
-      console.log(userInfo)
-      this.updateOpenInfo(userInfo, onSuccess, onFail)
-    }).catch(reason => {
-      console.error(reason)
-      wx.hideLoading({
-        success: (res) => {
-          onFail()
-        },
+    this.updateOpenInfo(res => {
+      logined(res)
+      wx.hideLoading()
+    }, _ => {
+      unlogin()
+      wx.hideLoading()
+      // 跳转到信息补全页面
+      wx.navigateTo({
+        url: '/pages/user/user_info_fill/user_info_edit',
       })
+    }, reason => {
+      fail(reason)
+      wx.hideLoading()
     })
+
   },
-  updateOpenInfo(userInfo, onSuccess, onFail) {
+
+  updateOpenInfo(logined, unlogin, fail) {
     // 执行云函数，获取openid, 获取用户角色
     wx.cloud.callFunction({
       name: "get_openid",
+      data: {
+        new_login_style: true
+      }
     }).then(res => {
-      // 缓存userInfo 和 openId
-      userInfo.openid = res.result.openid
-      userInfo.roles = res.result.roles
+      console.log("=============== get_openid")
+      console.log(res)
+      // 检查res.result 对象 ,如果对象为空，表示信息未填写
+      const userInfo = res.result
+      if (!this.checkUserInfo(userInfo)) {
+        unlogin()
+        return
+      }
       this.globalData.logined = true
       this.globalData.userInfo = userInfo
       const userInfoStr = JSON.stringify(userInfo)
-      console.log("=====" + userInfoStr)
       wx.setStorage({
         data: userInfoStr,
-        key: 'userInfo',
-        complete: res => {
-          wx.hideLoading({
-            success: (res) => {
-              onSuccess(userInfo)
-            },
-          })
-        }
+        key: 'userInfo'
       })
+      // 登录成功
+      logined(userInfo)
     }).catch(reason => {
-      wx.hideLoading({
-        success: (res) => {
-          onFail(reason)
-        },
-      })
+      fail(reason)
       console.error(reason)
     })
   },
+
+  checkUserInfo(userInfo) {
+    if (this.isNullOrEmpty(userInfo) ||
+      this.isNullOrEmpty(userInfo.roles) ||
+      this.isNullOrEmpty(userInfo.openid) ||
+      this.isNullOrEmpty(userInfo.nickname) ||
+      this.isNullOrEmpty(userInfo.avatarUrl)) {
+      return false
+    } else {
+      return true
+    }
+  }
+
+  ,
   logout(_success, _fail) {
     wx.removeStorage({
       key: 'userInfo',
@@ -207,13 +228,6 @@ App({
       return true
     }
 
-    return false
-  },
-
-  isNull(content) {
-    if (content == undefined || content == null) {
-      return true
-    }
     return false
   },
 

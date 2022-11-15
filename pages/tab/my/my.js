@@ -14,7 +14,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    this.updateLoginData()
+    wx.setNavigationBarTitle({
+      title: '我的',
+    })
   },
 
   /**
@@ -29,8 +31,7 @@ Page({
    */
   onShow() {
     // 获取当前最新角色信息
-
-
+    this.updateLoginData()
   },
 
   /**
@@ -80,17 +81,19 @@ Page({
   getUserProfile(e) {
     app.login(res => {
         this.updateLoginData()
+      }, _ => {
+
       },
       res => {
         console.log("getUserProfile login error ")
       })
   },
   enterMyEvaluate(e) {
-    
+
   },
 
   enterOrderManager(e) {
-    
+
   },
 
   logout() {

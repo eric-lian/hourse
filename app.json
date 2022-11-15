@@ -11,7 +11,8 @@
     "pages/evaluate/evaluate",
     "pages/look_service/look_service",
     "pages/tab/tab_message/tab_message",
-    "pages/order/order"
+    "pages/order/order",
+    "pages/user/user_info_fill/user_info_edit"
   ],
   "window": {
     "backgroundTextStyle": "light",

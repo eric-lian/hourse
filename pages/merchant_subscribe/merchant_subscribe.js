@@ -255,6 +255,8 @@ Page({
         this.updateRoles()
         // 登录成功，下单 
         this.checkAcceptOrderMsgTemplateId()
+      }, _ => {
+
       }, reason => {
         wx.showToast({
           title: '登录后再预约吧~',

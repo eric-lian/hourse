@@ -12,9 +12,29 @@ exports.main = async (event, context) => {
     unionid: wxContext.UNIONID,
   }
 
+  const db = cloud.database()
+
+  // let accountInfo = wx.getAccountInfoSync()
+  // let envVersion = accountInfo.miniProgram.envVersion;
+  // let version = accountInfo.miniProgram.version;
+  // console.log(accountInfo.miniProgram)
+  if (event.new_login_style) {
+    // 查找用户信息
+    const userInfoResult = await db.collection("user_list").where({
+      _id: accountResult.openid,
+    }).get()
+    const user = userInfoResult.data[0]
+    if (user != null) {
+      accountResult.status = user.status
+      accountResult.nickname = user.nickname
+      accountResult.avatarUrl = user.avatarUrl
+    } else {
+      // 表示用户未在本小程序注册，返回空数据
+      return {}
+    }
+  }
   try {
     // 当前登录的openid查找是否为商家
-    const db = cloud.database()
     const merchantResult = await db.collection("merchants").where({
       merchant_open_id: accountResult.openid,
       status: 1
@@ -29,6 +49,9 @@ exports.main = async (event, context) => {
     accountResult.roles = 0
     console.log(error)
   }
-  // console.log(accountResult)
+
+
+
+
   return accountResult
 }

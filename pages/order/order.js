@@ -27,6 +27,9 @@ Page({
     })
     // 检查用户角色
     this.checkRoles(true, true)
+    wx.setNavigationBarTitle({
+      title: '我的订单',
+    })
   },
 
   /**

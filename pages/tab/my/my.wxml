@@ -10,7 +10,7 @@
 <block wx:else>
   <view style="display: flex; flex-direction: column;align-items: center;">
     <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
-    <text class="nickName">{{userInfo.nickName}}</text>
+    <text class="nickName">{{userInfo.nickname}}</text>
     <view class="min_line" style="margin-top: 58rpx;" />
     <view class="item_container" bindtap="enterMyEvaluate">
       <image src="/pages/images/my/mine_evaluate.png" class="item_img" />

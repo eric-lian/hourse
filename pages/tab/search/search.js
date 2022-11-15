@@ -35,6 +35,9 @@ Page({
         showSearchBar: _showSearchBar
       })
     }
+    wx.setNavigationBarTitle({
+      title: '找商家',
+    })
   },
 
   /**

@@ -153,7 +153,7 @@ Page({
       const status = this.data.merchant_register_info.status
       console.log("============= status")
       console.log(status)
-      const main_title = "Hey,  " + this.data.userInfo.nickName
+      const main_title = "Hey,  " + this.data.userInfo.nickname
       let sub_title
       // 待审核
       if (status == 0 || status == 4) {
@@ -235,7 +235,9 @@ Page({
     app.login(res => {
       // 登录成功，刷新用户状态
       this._refreshMerchant(false)
-    }, reason => {
+    }, _ => {
+
+    },reason => {
       console.log(reason)
     })
   },
