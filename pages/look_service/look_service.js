@@ -81,6 +81,12 @@ Page({
       currentSelectIndex: index,
       topNum: 0
     })
+    if (wx.pageScrollTo) {
+      wx.pageScrollTo({
+        duration: 0,
+        scrollTop: 0
+      })
+    }
   },
 
   loadService() {
