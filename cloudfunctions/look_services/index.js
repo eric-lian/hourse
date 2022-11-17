@@ -26,7 +26,18 @@ exports.main = async (event, context) => {
       serverMills: serverMills
     })
     .project({
-      merchants: 0
+      merchants: 0,
+      address: 0,
+      company_main_img: 0,
+      credit_code: 0,
+      introducation: 0,
+      min_service_price: 0,
+      photo_of_business_license: 0,
+      scope_of_business: 0,
+      weight: 0,
+      status: 0,
+      _createTime: 0,
+      _updateTime: 0
     })
     .group({
       // 分组标识
