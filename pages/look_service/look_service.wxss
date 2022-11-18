@@ -19,10 +19,22 @@ text {
 }
 
 #immediately_subscribe {
-  font-size: 26rpx;
+  font-size: 22rpx;
   background-color: rgba(21, 92, 205, 1);
-  padding: 10rpx 32rpx;
   border-radius: 80rpx;
   color: white;
   font-weight: 400;
+  padding: 4rpx 12rpx 4rpx 12rpx;  
+}
+
+
+
+#immediately_call {
+  font-size: 22rpx;
+  background-color: rgba(21, 92, 205, 1);
+  border-radius: 80rpx;
+  color: white;
+  font-weight: 400;
+  padding: 4rpx 12rpx 4rpx 12rpx;  
+  
 }
