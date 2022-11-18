@@ -9,7 +9,8 @@ App({
     homeSearchKeyOptimized: [],
     globalConfig: {},
     MERCHANT_ACCEPT_ORDER_MSG_TEMPLATE_ID: "fUP2d5u8celV0E-lxxjxugU4yvq1RDRChPV3-4vx-zY",
-    USER_ACCPET_ORDER_MSG_TEMPLATE_ID: "fUP2d5u8celV0E-lxxjxukgDGkLSF4rmE0Wvfd3xrWk"
+    USER_ACCPET_ORDER_MSG_TEMPLATE_ID: "fUP2d5u8celV0E-lxxjxukgDGkLSF4rmE0Wvfd3xrWk",
+    defaultLookServiceName: "保洁"
   },
 
   onLaunch() {

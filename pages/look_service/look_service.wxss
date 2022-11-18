@@ -1,5 +1,7 @@
 /* pages/look_service/look_service.wxss */
-
+page {
+  height: 100%;
+}
 text {
   /* 控制text分行 */
   word-break: break-all;

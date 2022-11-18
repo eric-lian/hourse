@@ -1,6 +1,5 @@
 // pages/look_service/look_service.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -33,7 +32,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    // 获取当前全局配置指定选中服务名
+    const defaultLookServiceName = getApp().globalData.defaultLookServiceName
+    console.log("===============" + defaultLookServiceName)
+    // 查找与当前选中的是否相同
+    let selectIndex  = this.data.currentSelectIndex
+    console.log(selectIndex)
+    this.data.services.find((value, index) => {
+        if(value._id == defaultLookServiceName){
+          selectIndex = index
+          return true
+        } 
+    })
+    console.log(selectIndex)
+    console.log(defaultLookServiceName)
+    this.switchItem(selectIndex)
   },
 
   /**
@@ -74,9 +87,13 @@ Page({
   onSwitchServiceMenu(e) {
     const index = e.currentTarget.dataset.index
     console.log(index)
+    this.switchItem(index)
+  },
+  switchItem(index) {
     if (this.data.currentSelectIndex == index) {
       return
     }
+    getApp().globalData.defaultLookServiceName = this.data.services[index]._id
     this.setData({
       currentSelectIndex: index,
       topNum: 0
@@ -88,7 +105,6 @@ Page({
       })
     }
   },
-
   loadService() {
     this.setData({
       status: 0

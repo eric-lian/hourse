@@ -258,6 +258,19 @@ Page({
       this.onLookService()
       return
     }
+
+    const serviceName = this.data.menus.find((value, index) => {
+      return value.type == type
+    }).name
+
+    if (["保洁", "母婴护理", "保姆", "养老护理"].indexOf(serviceName) >= 0) {
+      // 找服务页面选中指定的服务名
+      app.globalData.defaultLookServiceName = serviceName
+      wx.switchTab({
+        url: '/pages/look_service/look_service',
+      })
+      return
+    }
     var name = e.currentTarget.dataset.name
     console.log(e)
     var search_key = null

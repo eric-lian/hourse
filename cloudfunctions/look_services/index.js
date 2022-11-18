@@ -47,12 +47,13 @@ exports.main = async (event, context) => {
     })
     .end()
   // look_service.list.reverse()
-  const services = ["保洁",
+  const services = [
+    "保洁", 
     "保姆",
-    "开锁",
-    "保育员",
     "母婴护理",
     "养老护理",
+    "开锁",
+    "保育员",
     "家电维修",
     "水电安装",
     "家电清洗",
@@ -66,5 +67,6 @@ exports.main = async (event, context) => {
     const bID = serviceB._id
     return services.indexOf(aID) - services.indexOf(bID)
   })
+  // look_service['甲醛治理'].list=[]
   return look_service
 }
