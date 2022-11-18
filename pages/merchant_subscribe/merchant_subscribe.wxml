@@ -28,7 +28,7 @@
           <view class="status_line_alpha_50" wx:if="{{status < 1}}" />
         </view>
 
-        <text class="status_title">待接单</text>
+        <text class="status_title">商家未接单</text>
       </view>
 
 
@@ -42,7 +42,7 @@
           <view class="status_line_alpha_50" wx:if="{{status < 2}}" />
         </view>
 
-        <text class="status_title">已接单</text>
+        <text class="status_title">商家已接单</text>
       </view>
 
 
@@ -68,7 +68,7 @@
           <view class="status_line_translate" />
         </view>
 
-        <text class="status_title" bindtap="evaluate">已完成</text>
+        <text class="status_title" bindtap="evaluate">订单完成</text>
       </view>
 
       <view wx:if="{{status == '4' || status == '5'}}" style="display: flex;flex-direction: column; align-items: center;">
