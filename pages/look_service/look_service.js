@@ -142,7 +142,7 @@ Page({
     const merchant_id = e.currentTarget.dataset.merchant_id
     const merchant_name = e.currentTarget.dataset.merchant_name
     const service_person_name = e.currentTarget.dataset.service_person_name
-    const service_person_id = e.currentTarget.dataset._id
+    const service_person_id = e.currentTarget.dataset.service_person_id
     const service_name = e.currentTarget.dataset.service_name
     const merchant_phone = e.currentTarget.dataset.phone
     const merchant_open_id = e.currentTarget.dataset.merchant_open_id

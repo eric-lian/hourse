@@ -233,7 +233,7 @@ Page({
       .where({
         status: 1
       })
-      // .orderBy('createTime', 'desc')
+      .orderBy('weight', 'desc')
       .limit(50)
       .get()
       .then(res => {
