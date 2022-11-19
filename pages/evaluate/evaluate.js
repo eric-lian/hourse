@@ -6,7 +6,10 @@ Page({
    */
   data: {
     evaluate: "",
-    order_id: ""
+    order_id: "",
+    star: 5,
+    // 0 加载中 1. 无评论 2.有评论  3.加载失败
+    status: 1
   },
 
   /**
@@ -14,13 +17,50 @@ Page({
    */
   onLoad(options) {
     wx.setNavigationBarTitle({
-      title: '评价',
+      title: '我的评价',
     })
     this.setData({
       order_id: options.order_id
     })
 
     // 查询当前订单下是否已经有评论， 有评论展示评论，无评论
+    this.queryOrder()
+  },
+
+  queryOrder(e) {
+    this.setData({
+      status: 0
+    })
+
+    wx.cloud.callFunction({
+      name: "evaluate",
+      data: {
+        operate: 'query',
+        order_id: this.data.order_id
+      }
+    }).then(res => {
+      console.log(res)
+      const data = res.result.data[0]
+      // 有缓存
+      if (data != null) {
+        this.setData({
+          status: 2,
+          evaluate: data.evaluate,
+          star: data.star
+        })
+      } else {
+        this.setData({
+          status: 1
+        })
+      }
+    }).catch(reason => {
+      console.log(reason)
+      this.setData({
+        status: 3
+      })
+    })
+
+
   },
 
   /**
@@ -95,37 +135,54 @@ Page({
     })
     const openid = getApp().globalData.userInfo.openid
     console.log(openid)
-    db.collection("evaluate")
-      .add({
-        data: {
-          evaluate: this.data.evaluate,
-          user_open_id: openid,
-          order_id: this.data.order_id,
-          status: 0,
-          _createTime: Date.now(),
-          _updateTime: Date.now()
-        }
-      }).then(res => {
-        wx.hideLoading({
-          success: (res) => {},
-        })
 
-        wx.navigateBack({
-          delta: 1,
-        })
-
-        wx.showToast({
-          title: '评论成功',
-          icon: "none"
-        })
-      }).catch(reason => {
-        wx.hideLoading({
-          success: (res) => {},
-        })
-        wx.showToast({
-          title: '评论失败',
-          icon: "none"
-        })
+    wx.cloud.callFunction({
+      name: "evaluate",
+      data: { 
+        operate: 'add',
+        order_id: this.data.order_id,
+        evaluate: this.data.evaluate,
+        user_open_id: openid,
+        status: 0,
+        star: this.data.star,
+        _createTime: Date.now(),
+        _updateTime: Date.now()
+      }
+    }).then(res => {
+      console.log(res)
+      wx.hideLoading({
+        success: (res) => {},
       })
+
+      wx.navigateBack({
+        delta: 1,
+      })
+
+      wx.showToast({
+        title: '评论成功',
+        icon: "none"
+      })
+    }).catch(reason => {
+      wx.hideLoading({
+        success: (res) => {},
+      })
+      wx.showToast({
+        title: '评论失败',
+        icon: "none"
+      })
+    })
+  },
+
+  onStarClick(e) {
+    const star = e.currentTarget.dataset.star
+    this.setData({
+      star: star
+    })
+  },
+
+  back(e) {
+    wx.navigateBack({
+      delta: 0,
+    })
   }
 })

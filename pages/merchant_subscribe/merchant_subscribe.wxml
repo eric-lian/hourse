@@ -96,7 +96,7 @@
 
       <template is="divier_line"></template>
       <!-- value 属性表示默认选中哪一个 -->
-      <picker bindchange="selectService" disabled="{{!Utils.isNullOrEmpty(service_person_name)}}" range="{{serviceTypeList}}"> 
+      <picker bindchange="selectService" disabled="{{!Utils.isNullOrEmpty(service_person_name)}}" range="{{serviceTypeList}}">
         <view class="subscribe_info_item">
           <text style="color: tomato;width: 30rpx;"></text>
           <text class="subscribe_info_item_key">服务类型</text>
@@ -378,9 +378,9 @@
         <view wx:if="{{status == 3}}" class="bottom_operation_btn_container">
 
           <!-- 订单已完成 ，开始评价 -->
-          <!-- <view class="bottom_operation_btn_item" style="margin-right: 32rpx;" bindtap="enter_evalute">
+          <view class="bottom_operation_btn_item" style="margin-right: 32rpx;" bindtap="enter_evalute">
             <text style="color: white;font-size: 38rpx;">评价</text>
-          </view> -->
+          </view>
 
           <view class="bottom_operation_btn_item" bindtap="callMerchantPhone">
             <text style="color: white;font-size: 38rpx;">联系商家</text>

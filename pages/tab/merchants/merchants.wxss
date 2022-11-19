@@ -15,7 +15,7 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 80rpx;
+  border-radius: 18rpx;
 }
 
 .register_status_container {
@@ -35,17 +35,6 @@ page {
   flex-direction: column;
 }
 
-.common_btn {
-  background-color: rgba(21, 92, 205, 1);
-  color: white;
-  font-weight: 600;
-  font-size: 28rpx;
-  border-radius: 80rpx;
-  justify-content: center;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-}
 
 .register_status_title {
   font-size: 28rpx;

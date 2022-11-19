@@ -1,17 +1,49 @@
 <!--pages/evaluate/evaluate.wxml-->
-<view style="display: flex;flex-direction: column; padding: 30rpx;align-items: center;">
+<block wx:if="{{status == 0}}">
   <view>
-    <text style="color: #EC6A38; font-size: 26rpx;">— 真实客观的评价有助于他人的决策 —</text>
+    <loading>加载中...</loading>
   </view>
+</block>
 
-  <view style="margin-top: 60rpx;width: 100%;display: flex;">
-    <textarea auto-focus="true" placeholder="请输入评论内容" style=" width: 100%;padding: 24rpx;background-color: #F3F5F7;font-size: 28rpx;" bindinput="evaluteInputChange" maxlength="200" placeholder="从多个角度评价，可以帮助更多的人" placeholder-class="evaluate_placeholder" />
+<!-- 无评论 -->
+<block wx:if="{{status == 1 || status == 2}}">
+  <view style="display: flex;flex-direction: column; padding: 30rpx;align-items: center;">
+    <view>
+      <text style="color: #EC6A38; font-size: 26rpx;">— 真实客观的评价有助于他人的决策 —</text>
+    </view>
+
+    <view style="margin-top: 60rpx;width: 100%;display: flex;">
+      <textarea auto-focus="true" placeholder="请输入评论内容" style=" width: 100%;padding: 24rpx;background-color: #F3F5F7;font-size: 28rpx;" bindinput="evaluteInputChange" maxlength="200" placeholder="从多个角度评价，可以帮助更多的人" placeholder-class="evaluate_placeholder" disabled="{{status == 2}}" value="{{evaluate}}" />
+    </view>
+
+
+
+    <view style="display: flex; flex-direction: row;margin-top: 60rpx; align-items: center; width: 100%;">
+      <text style="font-size: 32rpx;">满意度</text>
+      <block wx:for="{{[1,2,3,4,5]}}" wx:key="index">
+        <view style="padding: 20rpx;"> 
+          <image wx:if="{{item <= star}}" src="/pages/images/evaluate/evaluate_good_star.png" class="star" data-star="{{item}}" bindtap="{{status == 2 ? '' : 'onStarClick'}}" />
+
+          <image wx:else src="/pages/images/evaluate/evaluate_bad_star.png" class="star" data-star="{{item}}" bindtap="{{status == 2 ? '' : 'onStarClick'}}" />
+        </view>
+      </block>
+    </view>
+    <!-- 无评论展示提交按钮 -->
+    <view style="background-color: rgba(26, 115, 214, 1);height: 98rpx;width: 100%;display: flex;flex-direction: column; align-items: center;justify-content: center; margin-top: 60rpx;border-radius: 18rpx;" bindtap="submitOrder" wx:if="{{status == 1}}">
+      <text class="common_btn">发布</text>
+    </view>
+    <!-- 有评论展示返回键 -->
+    <view style="background-color: rgba(26, 115, 214, 1);height: 98rpx;width: 100%;display: flex;flex-direction: column; align-items: center;justify-content: center; margin-top: 60rpx;border-radius: 18rpx;" bindtap="back" wx:if="{{status == 2}}">
+      <text class="common_btn">返回</text>
+    </view>
   </view>
+</block>
 
-  <view style="background-color: rgba(26, 115, 214, 1);height: 98rpx;width: 100%;display: flex;flex-direction: column; align-items: center;justify-content: center; margin-top: 60rpx;border-radius: 18rpx;"
-  bindtap="submitOrder">
-    <text style="color: white;font-size: 28rpx;border-radius: 18rpx;">发布</text>
+<!-- 网络错误  -->
+<block wx:if="{{status == 3}}">
+  <view style="display: flex; flex-direction: column; align-items: center;">
+    <text style="margin-top: 60%;font-weight: 600; font-size: 28rpx;color: rgba(4, 5, 7, 1);">请求失败</text>
+    <text style="margin-top: 32rpx;font-weight: 400; font-size: 26rpx;color: rgba(129, 134, 143, 1);">检查网络连接权限及当前网络状态</text>
+    <button class="common_btn" style="width: 630rpx; height: 98rpx; margin-top: 60rpx;" bindtap="queryOrder">点击重试</button>
   </view>
-
-
-</view>
+</block>

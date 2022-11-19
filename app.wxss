@@ -31,5 +31,18 @@ page {
   font-size: 22rpx;
   color: #EC6A38;
   padding: 5rpx 12rpx;
-  border-radius: 80rpx;
+  border-radius: 18rpx;
+}
+
+
+.common_btn {
+  background-color: rgba(21, 92, 205, 1);
+  color: white;
+  font-weight: 600;
+  font-size: 28rpx;
+  border-radius: 18rpx;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }

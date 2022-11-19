@@ -29,5 +29,5 @@ page {
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 80rpx;
+  border-radius: 18rpx;
 }
