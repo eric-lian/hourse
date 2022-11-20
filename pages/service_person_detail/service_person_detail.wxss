@@ -1,0 +1,39 @@
+/* pages/service_person_detail/service_person_detail.wxss */
+
+.authentication_itme {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.authentication_img {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
+}
+
+.authentication_text {
+  font-size: 24rpx;
+  color: rgba(129, 134, 143, 1);
+}
+
+.person_info_column_title {
+  background-color: rgba(237, 246, 243, 1);
+  border-radius: 4rpx;
+  padding: 6rpx 12rpx;
+  font-size: 30rpx;
+  color: rgba(4, 5, 7, 1);
+  font-weight: 500;
+}
+
+.person_info_column_content {
+  font-size: 28rpx;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 400;
+  /* 英文字符自动换行 */
+  word-break: break-all;
+}
+
+.person_info_column_content_item {
+  margin: 38rpx 12rpx;
+}

@@ -1,0 +1,85 @@
+<view style="display: flex; flex-direction: column;padding-bottom: 160rpx;">
+  <!-- 头部个人信息 -->
+  <view>
+    <view style="display: flex; flex-direction: row; padding: 100rpx 32rpx 100rpx 32rpx;background: linear-gradient(105.5deg, rgba(21, 92, 205, 1) 0.54%,rgba(21, 92, 205, 1) 100%);">
+      <!-- 头像 -->
+      <view>
+        <image src="{{person_photo}}" style="width: 160rpx;height: 215rpx;background-color: rgba(243, 245, 247, 1);border-radius: 6rpx;" />
+
+      </view>
+      <!-- 服务信息 -->
+      <view style="display: flex; flex-direction: column;margin-left: 32rpx;color: white;">
+        <text style="font-size: 48rpx;font-weight: 500;">{{person_name}}</text>
+        <!-- 满意度 -->
+        <view style="display: flex; flex-direction: row;align-items: center; width: 100%;margin-top: 12rpx;">
+          <block wx:for="{{[1,2,3,4,5]}}" wx:key="index">
+            <view>
+              <image wx:if="{{item <= evaluation_stars}}" src="/pages/images/evaluate/evaluate_good_star.png" style="width: 32rpx; height: 32rpx;margin-right: 10rpx;" data-star="{{item}}" />
+
+              <image wx:else src="/pages/images/evaluate/evaluate_bad_star.png" style="width: 32rpx; height: 32rpx;" data-star="{{item}}" />
+            </view>
+          </block>
+        </view>
+        <!-- 服务 -->
+        <text style="font-weight: 500;font-size: 28rpx;margin-top: 10rpx;">服务 : {{service_name}}</text>
+        <!-- 公司 -->
+        <text style="font-weight: 500;font-size: 28rpx;margin-top: 10rpx;">公司 : {{name}}</text>
+      </view>
+    </view>
+  </view>
+  <!-- 个人认证 -->
+  <view style="height: 90rpx; display: flex; flex-direction: row; justify-content: space-around;">
+    <view class="authentication_itme">
+      <image class="authentication_img" src="/pages/images/service_person_detail/shenfenzheng.png" />
+      <text class="authentication_text">身份证</text>
+    </view>
+    <view class="authentication_itme">
+      <image class="authentication_img" src="/pages/images/service_person_detail/keshichangguitijian.png" />
+      <text class="authentication_text">已体检</text>
+    </view>
+    <view class="authentication_itme">
+      <image class="authentication_img" src="/pages/images/service_person_detail/renzheng.png" />
+      <text class="authentication_text">已认证</text>
+    </view>
+  </view>
+  <!-- 分割线 -->
+  <view class="line_32" />
+  <!-- 其他信息  -->
+  <view style="padding: 32rpx; display: flex; flex-direction: column;">
+    <view wx:if="{{skill}}" style="display: flex;flex-direction: column;">
+      <view>
+        <text class="person_info_column_title">技能以擅长</text>
+      </view>
+      <view class="person_info_column_content_item">
+        <text class="person_info_column_content">{{skill}}</text>
+      </view>
+    </view>
+
+    <view wx:if="{{evaluation}}" style="display: flex;flex-direction: column;">
+      <view>
+        <text class="person_info_column_title">综合评价</text>
+      </view>
+      <view class="person_info_column_content_item">
+        <text class="person_info_column_content">{{evaluation}}</text>
+      </view>
+    </view>
+    <view wx:if="{{certificate_photos}}" style="display: flex;flex-direction: column;">
+      <view>
+        <text class="person_info_column_title">荣誉照片</text>
+      </view>
+      <view style="display: flex;flex-wrap: wrap;margin-top: 38rpx;">
+        <block wx:for="{{certificate_photos}}" wx:key="index">
+          <image style="background-color: rgba(243, 245, 247, 1); width: 48%;height: 229rpx; margin-left: 2%; margin-bottom: 2%;border-radius: 16rpx;" src="{{item}}" data-index="{{index}}" bindtap="previewCertificatePhotos"></image>
+        </block>
+      </view>
+    </view>
+
+
+  </view>
+
+  <view style="display: flex;flex-direction: column;position: fixed; bottom: 0rpx; width: 100%;background-color: white;">
+    <view class="min_line"></view>
+    <button class="common_btn" style="height: 89rpx; width: 90%;margin-bottom: 32rpx;margin-top: 32rpx;" bindtap="immediately_subscribe">立即预约</button>
+  </view>
+
+</view>

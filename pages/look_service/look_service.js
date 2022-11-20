@@ -149,12 +149,12 @@ Page({
     console.log(merchant_id)
     wx.navigateTo({
       url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name +
-      "&merchant_id=" + merchant_id +
-      "&merchant_open_id=" + merchant_open_id +
-      "&merchant_phone=" + merchant_phone +
-      "&service_person_name=" + service_person_name +
-      "&service_person_id=" + service_person_id +
-      "&service_type=" + service_name
+        "&merchant_id=" + merchant_id +
+        "&merchant_open_id=" + merchant_open_id +
+        "&merchant_phone=" + merchant_phone +
+        "&service_person_name=" + service_person_name +
+        "&service_person_id=" + service_person_id +
+        "&service_type=" + service_name
     })
   },
   gotoMerchantDetail(e) {
@@ -164,11 +164,18 @@ Page({
       url: '/pages/merchant_detail/merchant_detail?_id=' + _id,
     })
   },
-
   immediately_call(e) {
     const phone = e.currentTarget.dataset.phone
     wx.makePhoneCall({
       phoneNumber: phone,
+    })
+  },
+
+  enter_service_person_detail(e) {
+    console.log(e)
+    const item = e.currentTarget.dataset.item
+    wx.navigateTo({
+      url: '/pages/service_person_detail/service_person_detail?item=' + JSON.stringify(item),
     })
   }
 })

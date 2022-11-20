@@ -25,6 +25,12 @@ page {
   height: 10rpx;
 }
 
+.line_32 {
+  background-color: #F9FAFB;
+  height: 32rpx;
+}
+
+
 .varify_passed_tag {
   background-color: rgba(248, 234, 225, 1);
   font-weight: 400;
