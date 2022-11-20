@@ -84,7 +84,7 @@
       <view>
         <text class="moudle_item_tag">人员信息</text>
       </view>
-      <view style="display: flex; flex-direction: column;" wx:for="{{merchant_detail_info.persons}}" wx:key="index">
+      <view style="display: flex; flex-direction: column;" wx:for="{{merchant_detail_info.persons}}" wx:key="index" bindtap="enter_service_person_detail" data-item="{{item}}">
         <view class="person_item">
           <view style="margin-right: 24rpx;">
             <image style="width: 176rpx; height: 235rpx;background-color: rgba(243, 245, 247, 1);border-radius: 16rpx;" src="{{item.person_photo}}"></image>

@@ -162,5 +162,17 @@ Page({
         "&service_person_id=" + service_person_id +
         "&service_type=" + service_name
     })
+  },
+
+  enter_service_person_detail(e) {
+    const item = e.currentTarget.dataset.item
+    item.merchant_open_id = this.data.merchant_detail_info.merchant_open_id
+    item.phone = this.data.phone
+    item.name = this.data.merchant_detail_info.name
+    console.log(e)
+    wx.navigateTo({
+      url: '/pages/service_person_detail/service_person_detail?item=' + JSON.stringify(item),
+    })
   }
+
 })

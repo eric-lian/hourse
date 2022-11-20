@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    
   },
 
   /**
@@ -80,7 +80,7 @@ Page({
     console.log(e)
     const merchant_id = this.data.company_name
     const merchant_name = this.data.name
-    const service_person_name = this.data.service_person_name
+    const service_person_name = this.data.person_name
     const service_person_id = this.data._id
     const service_name = this.data.service_name
     const merchant_phone = this.data.phone
