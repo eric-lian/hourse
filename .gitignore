@@ -1,5 +1,6 @@
 */node_modules/*
 cloudfunctions/search_merchant/node_modules/*
+cloudfunctions/look_services_filter/node_modules/*
 cloudfunctions/evaluate/node_modules/.bin/pbjs
 cloudfunctions/evaluate/node_modules/.bin/pbts
 cloudfunctions/evaluate/node_modules/.bin/semver

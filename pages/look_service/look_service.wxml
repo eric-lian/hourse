@@ -1,44 +1,72 @@
 <!--pages/look_service/look_service.wxml-->
 <wxs module="dateUtils" src="./../utils/index.wxs"></wxs>
+
+
 <view style="display: flex; flex-direction: row;" wx:if="{{status == 3}}">
-  <scroll-view scroll-y="{{true}}" style="width: 200rpx;position: fixed;">
-    <view wx:for="{{services}}" wx:key="index" style="width: 200rpx;height: 100rpx;justify-content: center; align-items: center; display: flex;background-color: {{currentSelectIndex == index ? '#F3F5F7': '#FFFFFF'}};" data-index="{{index}}" bindtap="onSwitchServiceMenu">
-      <text style="color: {{currentSelectIndex == index ? 'rgba(21, 92, 205, 1);': 'rgba(4, 5, 7, 1)'}};font-size: {{currentSelectIndex == index ? 34: 32}}rpx;font-weight: {{currentSelectIndex == index ? 500: 400}};">{{item._id}}</text>
-    </view>
-  </scroll-view>
-  <view style="margin-left: 200rpx;display: flex;flex-direction: column;">
-    <block wx:for="{{services[currentSelectIndex].list}}" wx:key="index">
-      <view class="person_item" bindtap="enter_service_person_detail" data-item="{{item}}">
-        <view style="margin-right: 24rpx;">
-          <image style="width: 193rpx; height: 256rpx;background-color: rgba(243, 245, 247, 1);border-radius: 16rpx;" src="{{item.person_photo}}"></image>
-        </view>
-
-        <view style="display: flex; flex-direction: column;width: 100%;height: auto;">
-          <view style="display: flex;flex-direction: row; align-items: center;justify-content: space-between;">
-            <text style="font-size: 28rpx;font-weight: 500;margin-right: 24rpx;color: #040507;">{{item.person_name}}</text>
-
-            <text class="varify_passed_tag">持证</text>
-          </view>
-
-          <view style="margin-top: 10rpx;">
-            <text style="font-size: 22rpx; color: rgba(70, 77, 90, 1);"> {{dateUtils.getDateYearDiff(item.brithday, item.serverMills)}}岁 | {{item.province}} | {{dateUtils.getDateYearDiff(item.work_begin_date, item.serverMills)}}年经验</text>
-          </view>
-
-          <view style="margin-top: 8rpx;padding: 0rpx 8rpx 0rpx 8rpx;background-color: #EDF6F3;" data-merchant_id="{{item.company_name}}" bindtap="gotoMerchantDetail">
-            <text style="font-size: 24rpx;color: rgba(70, 77, 90, 1);">{{item.name}}</text>
-          </view>
-
-
-          <view style="margin-top: 20rpx;display: flex; flex-direction: row;justify-content: space-around;">
-
-            <!-- 立即预约 -->
-            <text id="immediately_subscribe" data-merchant_id="{{item.company_name}}" data-merchant_name="{{item.name}}" data-service_person_name="{{item.master}}" data-service_person_id="{{item._id}}" data-service_name="{{item.service_name}}" data-phone="{{item.phone}}" data-merchant_open_id="{{item.merchant_open_id}}" bindtap="immediately_subscribe">立即预约</text>
-            <!-- 拨打 -->
-            <text id="immediately_call" data-phone="{{item.phone}}" data-merchant_name="{{item.name}}" bindtap="immediately_call">电话咨询</text>
-          </view>
-        </view>
+  <view style="display: flex;height: 100vh;">
+    <scroll-view scroll-y="{{true}}" style="width: 200rpx">
+      <view wx:for="{{services}}" wx:key="index" style="width: 200rpx;height: 100rpx;justify-content: center; align-items: center; display: flex;background-color: {{currentSelectIndex == index ? '#F3F5F7': '#FFFFFF'}};" data-index="{{index}}" bindtap="onSwitchServiceMenu">
+        <text style="color: {{currentSelectIndex == index ? 'rgba(21, 92, 205, 1);': 'rgba(4, 5, 7, 1)'}};font-size: {{currentSelectIndex == index ? 34: 32}}rpx;font-weight: {{currentSelectIndex == index ? 500: 400}};">{{item._id}}</text>
       </view>
-    </block>
+    </scroll-view>
+  </view>
+  <view style="display: flex;height: 100vh;position: relative;">
+
+    <scroll-view scroll-y scroll-top="{{topNum}}" style="margin-top: 100rpx;width: 100%;">
+      <block wx:for="{{services[currentSelectIndex].list}}" wx:key="index">
+        <view class="person_item" bindtap="enter_service_person_detail" data-item="{{item}}">
+          <view style="margin-right: 24rpx;">
+            <image style="width: 193rpx; height: 256rpx;background-color: rgba(243, 245, 247, 1);border-radius: 16rpx;" src="{{item.person_photo}}"></image>
+          </view>
+
+          <view style="display: flex; flex-direction: column;width: 100%;height: auto;">
+            <view style="display: flex;flex-direction: row; align-items: center;justify-content: space-between;">
+              <text style="font-size: 28rpx;font-weight: 500;margin-right: 24rpx;color: #040507;">{{item.person_name}}</text>
+
+              <text class="varify_passed_tag">持证</text>
+            </view>
+
+            <view style="margin-top: 10rpx;">
+              <text style="font-size: 22rpx; color: rgba(70, 77, 90, 1);"> {{dateUtils.getDateYearDiff(item.brithday, item.serverMills)}}岁 | {{item.province}} | {{dateUtils.getDateYearDiff(item.work_begin_date, item.serverMills)}}年经验</text>
+            </view>
+
+            <view style="margin-top: 8rpx;padding: 0rpx 8rpx 0rpx 8rpx;background-color: #EDF6F3;" data-merchant_id="{{item.company_name}}" bindtap="gotoMerchantDetail">
+              <text style="font-size: 24rpx;color: rgba(70, 77, 90, 1);">{{item.name}}</text>
+            </view>
+
+
+            <view style="margin-top: 20rpx;display: flex; flex-direction: row;justify-content: space-around;">
+
+              <!-- 立即预约 -->
+              <text id="immediately_subscribe" data-merchant_id="{{item.company_name}}" data-merchant_name="{{item.name}}" data-service_person_name="{{item.master}}" data-service_person_id="{{item._id}}" data-service_name="{{item.service_name}}" data-phone="{{item.phone}}" data-merchant_open_id="{{item.merchant_open_id}}" bindtap="immediately_subscribe">立即预约</text>
+              <!-- 拨打 -->
+              <text id="immediately_call" data-phone="{{item.phone}}" data-merchant_name="{{item.name}}" bindtap="immediately_call">电话咨询</text>
+            </view>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+
+    <view style="height: 100rpx;background-color: white; width: 100%;position: absolute;display: flex; flex-direction: row;justify-content: space-around;align-items: center;">
+      <!-- 找到对应item下的条件列表 --> 
+      <view style="display: flex;flex-direction: row;align-items: center;" wx:for="{{services[currentSelectIndex].filter_list}}" bindtap="onFilterClick" data-key="{{item.key}}" wx:key="{{index}}">
+        <!-- 显示当前选中的name --> 
+        <block wx:for="{{item.filters}}" wx:for-index="eleIndex" wx:for-item="eleItem" wx:key="eleIndex" wx:if="{{eleItem.selected}}">
+          <text>{{eleItem.nick}}</text>
+          <image style="width: 32rpx;height: 36rpx;margin-left: 12rpx;" src="/pages/images/filter/filter_arrow_{{item.selected ? 'up' : 'down'}}.png" />
+        </block>
+      </view>
+    </view>
+
+    <view style="background-color: rgba(4, 5, 7, 0.5); height: 100%; width: 100%;position: absolute;top: 100rpx;display: flex;flex-direction: column;" wx:if="{{services[currentSelectIndex].current_filter_click}}" bindtap="close_filter_click">
+      <view style="background-color: white; flex-direction: row;display: flex;flex-wrap: wrap;justify-content: space-around;padding: 20rpx 0rpx 50rpx 0rpx">
+        <block wx:for="{{services[currentSelectIndex].current_filter_click.filters}}" wx:key="index">
+          <!-- 根据是否选中设置颜色 -->
+          <text style="background-color: {{item.selected ? '#155CCD' : '#E9EBED'}};border-radius: 30rpx;padding: 6rpx 24rpx;color: {{item.selected ? '#ffffff':'#000000'}};" bindtap="onEleSelected" data-key="{{services[currentSelectIndex].current_filter_click.key}}" data-ele_key="{{item.key}}" bindtap="onEleSelected">{{item.name}}</text>
+        </block>
+      </view>
+    </view>
+
   </view>
 </view>
 

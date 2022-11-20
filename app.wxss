@@ -42,6 +42,7 @@ page {
 
 
 .common_btn {
+  /* 155CCD */
   background-color: rgba(21, 92, 205, 1);
   color: white;
   font-weight: 600;

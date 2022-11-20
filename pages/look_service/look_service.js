@@ -115,7 +115,81 @@ Page({
       const list = res.result.list
       // 1 判断list 是否为空
       if (list.length > 0) {
+        // 为每一组数据设置一个默认的过滤条件
         // 不为空赋值数据 , 默认选中第一个数据
+        list.forEach(value => {
+          value.filter_list = [{
+            // 工龄
+            key: 'work_begin_date',
+            filters: [{
+              key: 'all',
+              name: '全部',
+              nick: "从业年限",
+              selected: true,
+              sort: 0
+            }, {
+              key: 'down',
+              name: '由高到低',
+              nick: "从业年限",
+              selected: false,
+              sort: 1
+            }, {
+              key: 'up',
+              name: '由低到高',
+              nick: "从业年限",
+              selected: false,
+              sort: -1
+            }],
+            selected: false
+          }, {
+            // 年龄
+            key: 'brithday',
+            filters: [{
+              key: 'all',
+              name: '全部',
+              nick: "年龄",
+              selected: true,
+              sort: 0
+            }, {
+              key: 'down',
+              name: '由高到低',
+              nick: "年龄",
+              selected: false,
+              sort: 1
+            }, {
+              key: 'up',
+              name: '由低到高',
+              nick: "年龄",
+              selected: false,
+              sort: -1
+            }],
+            selected: false
+          }, {
+            // 性别
+            key: 'province',
+            filters: [{
+              key: 'all',
+              name: '全部',
+              nick: "性别",
+              selected: true,
+              sort: 0
+            }, {
+              key: 'down',
+              name: '男',
+              nick: "性别",
+              selected: false,
+              sort: -1
+            }, {
+              key: 'up',
+              name: '女',
+              nick: "性别",
+              selected: false,
+              sort: 1
+            }],
+            selected: false
+          }]
+          value.current_filter_click = undefined
+        })
         this.setData({
           services: list,
           status: 3
@@ -176,6 +250,104 @@ Page({
     const item = e.currentTarget.dataset.item
     wx.navigateTo({
       url: '/pages/service_person_detail/service_person_detail?item=' + JSON.stringify(item),
+    })
+  },
+
+  closeFilter() {
+    return true
+  },
+
+  onFilterClick(e) {
+    const key = e.currentTarget.dataset.key
+    // 获取当前是否选中， 如果当前被选中，则取消选中，并关闭弹窗对象
+    const current_service = this.data.services[this.data.currentSelectIndex];
+    const filter_list = current_service.filter_list
+    const current_filter_click = filter_list.find(res => {
+      return res.key == key
+    })
+
+    // 当前未被选中， 需要重置所有的条件为未选中状态
+    if (!current_filter_click.selected) {
+      filter_list.forEach(value => {
+        value.selected = false
+      })
+      // 设置当前变量条件被选中
+      current_filter_click.selected = true
+      current_service.current_filter_click = current_filter_click
+    } else {
+      // 当前已经被选中
+      current_filter_click.selected = false
+      current_service.current_filter_click = undefined
+    }
+    console.log(current_filter_click)
+    // 设置当前对象被选中
+    this.setData({
+      services: this.data.services
+    })
+  },
+  close_filter_click(e) {
+    const current_filter_click = this.data.services[this.data.currentSelectIndex].current_filter_click
+    console.log("===============")
+    console.log(current_filter_click)
+    if (current_filter_click) {
+      current_filter_click.selected = false
+      this.data.services[this.data.currentSelectIndex].current_filter_click = undefined
+      this.setData({
+        services: this.data.services
+      })
+    }
+
+  },
+  // 点击了搜索条件 ，设置当前搜索选中的数据
+  onEleSelected(e) {
+    // 已经选中的不会再选中
+    // 先获取当前过滤类型展示的对象
+    const current_filter_click = this.data.services[this.data.currentSelectIndex].current_filter_click
+    console.log(e)
+    console.log(current_filter_click)
+    // 先获取点击的那个类型的标签
+    const key = e.currentTarget.dataset.key
+    const ele_key = e.currentTarget.dataset.ele_key
+    // 遍历设置标签选中状态
+    current_filter_click.filters.forEach(value => {
+      value.selected = ele_key == value.key
+    })
+    current_filter_click.selected = false
+    // 关闭标签
+    console.log(current_filter_click)
+    this.setData({
+      services: this.data.services
+    })
+    this.data.services[this.data.currentSelectIndex].current_filter_click = undefined
+    this.setData({
+      services: this.data.services
+    })
+    wx.showLoading({
+      title: '加载中...',
+    })
+    // 根据当前的查词结果进行排序
+    wx.cloud.callFunction({
+      name: 'look_services_filter',
+      data: {
+        service_name: this.data.services[this.data.currentSelectIndex]._id,
+        filters: this.data.services[this.data.currentSelectIndex].filter_list,
+        key: key
+      }
+    }).then(res => {
+      const result = res.result.list[0]
+      const service = this.data.services.find(service => {
+        return service._id == result._id
+      })
+      service.list = result.list
+      this.setData({
+        services: this.data.services
+      })
+      wx.hideLoading()
+    }).catch(error => {
+      wx.hideLoading()
+      wx.showToast({
+        title: '加载失败,请稍后再试~',
+      })
     })
   }
 })
