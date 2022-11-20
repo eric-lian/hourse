@@ -1,7 +1,7 @@
 <view style="display: flex; flex-direction: column;padding-bottom: 160rpx;">
   <!-- 头部个人信息 -->
   <view>
-    <view style="display: flex; flex-direction: row; padding: 180rpx 32rpx 100rpx 32rpx;background-color: rgba(21, 92, 205, 1);">
+    <view style="display: flex; flex-direction: row; padding: 100rpx 32rpx 100rpx 32rpx;background-color: rgba(21, 92, 205, 1);">
       <!-- 头像 -->
       <view>
         <image src="{{person_photo}}" style="width: 160rpx;height: 215rpx;background-color: rgba(243, 245, 247, 1);border-radius: 6rpx;" />
