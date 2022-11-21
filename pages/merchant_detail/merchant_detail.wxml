@@ -84,7 +84,7 @@
       <view>
         <text class="moudle_item_tag">人员信息</text>
       </view>
-      <view style="display: flex; flex-direction: column;" wx:for="{{merchant_detail_info.persons}}" wx:key="index" bindtap="enter_service_person_detail" data-item="{{item}}">
+      <view style="display: flex; flex-direction: column;" wx:for="{{merchant_detail_info.persons}}" wx:key="index" catchtap="enter_service_person_detail" data-item="{{item}}">
         <view class="person_item">
           <view style="margin-right: 24rpx;">
             <image style="width: 176rpx; height: 235rpx;background-color: rgba(243, 245, 247, 1);border-radius: 16rpx;" src="{{item.person_photo}}"></image>
@@ -108,7 +108,7 @@
 
             <!-- 立即预约 -->
             <view style="margin-top: 30rpx;">
-              <text class="immediately_subscribe" bindtap="immediately_subscribe"
+              <text class="immediately_subscribe" catchtap="immediately_subscribe"
                data-merchant_id="{{item.company_name}}" data-service_person_name="{{item.person_name}}"
                data-service_person_id="{{item._id}}"
                data-service_name="{{item.service_name}}"
@@ -136,10 +136,10 @@
         <text class="merchant_detail_bottom_operation">收藏</text>
       </view>
       
-      <view class="merchant_detail_bottom_item" bindtap="evaluate">
+      <!-- <view class="merchant_detail_bottom_item" bindtap="evaluate">
         <image src="/pages/images/order/pingjia.png" class="merchant_detail_bottom_icon" />
         <text class="merchant_detail_bottom_operation">评价</text>
-      </view>
+      </view> -->
 
       <view class="merchant_detail_bottom_item" bindtap="callPhone">
         <image src="/pages/images/order/iphone.png" class="merchant_detail_bottom_icon" />

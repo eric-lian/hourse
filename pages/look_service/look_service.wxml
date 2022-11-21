@@ -30,7 +30,7 @@
               <text style="font-size: 22rpx; color: rgba(70, 77, 90, 1);"> {{dateUtils.getDateYearDiff(item.brithday, item.serverMills)}}岁 | {{item.province}} | {{dateUtils.getDateYearDiff(item.work_begin_date, item.serverMills)}}年经验</text>
             </view>
 
-            <view style="margin-top: 8rpx;padding: 0rpx 8rpx 0rpx 8rpx;background-color: #EDF6F3;" data-merchant_id="{{item.company_name}}" bindtap="gotoMerchantDetail">
+            <view style="margin-top: 8rpx;padding: 0rpx 8rpx 0rpx 8rpx;background-color: #EDF6F3;" data-merchant_id="{{item.company_name}}" catchtap="gotoMerchantDetail">
               <text style="font-size: 24rpx;color: rgba(70, 77, 90, 1);">{{item.name}}</text>
             </view>
 
@@ -38,9 +38,9 @@
             <view style="margin-top: 20rpx;display: flex; flex-direction: row;justify-content: space-around;">
 
               <!-- 立即预约 -->
-              <text id="immediately_subscribe" data-merchant_id="{{item.company_name}}" data-merchant_name="{{item.name}}" data-service_person_name="{{item.master}}" data-service_person_id="{{item._id}}" data-service_name="{{item.service_name}}" data-phone="{{item.phone}}" data-merchant_open_id="{{item.merchant_open_id}}" bindtap="immediately_subscribe">立即预约</text>
+              <text id="immediately_subscribe" data-merchant_id="{{item.company_name}}" data-merchant_name="{{item.name}}" data-service_person_name="{{item.master}}" data-service_person_id="{{item._id}}" data-service_name="{{item.service_name}}" data-phone="{{item.phone}}" data-merchant_open_id="{{item.merchant_open_id}}" catchtap="immediately_subscribe">立即预约</text>
               <!-- 拨打 -->
-              <text id="immediately_call" data-phone="{{item.phone}}" data-merchant_name="{{item.name}}" bindtap="immediately_call">电话咨询</text>
+              <text id="immediately_call" data-phone="{{item.phone}}" data-merchant_name="{{item.name}}" catchtap="immediately_call">电话咨询</text>
             </view>
           </view>
         </view>
@@ -58,7 +58,7 @@
       </view>
     </view>
 
-    <view style="background-color: rgba(4, 5, 7, 0.5); height: 100%; width: 100%;position: absolute;top: 100rpx;display: flex;flex-direction: column;" wx:if="{{services[currentSelectIndex].current_filter_click}}" bindtap="close_filter_click">
+    <view style="background-color: rgba(4, 5, 7, 0.5); height: 100%; width: 100%;position: absolute;top: 100rpx;display: flex;flex-direction: column;" wx:if="{{services[currentSelectIndex].current_filter_click}}" catchtap="close_filter_click">
       <view style="background-color: white; flex-direction: row;display: flex;flex-wrap: wrap;justify-content: space-around;padding: 20rpx 0rpx 50rpx 0rpx">
         <block wx:for="{{services[currentSelectIndex].current_filter_click.filters}}" wx:key="index">
           <!-- 根据是否选中设置颜色 -->
