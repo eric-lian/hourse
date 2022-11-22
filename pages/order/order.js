@@ -180,7 +180,7 @@ Page({
     const openid = app.globalData.userInfo.openid
     db.collection('subscribe').orderBy("_createTime", "desc").where({
         user_open_id: openid,
-        _createTime: _.lte(lastCreateTime)
+        _createTime: _.lt(lastCreateTime)
       })
       .limit(20)
       .get()
@@ -277,9 +277,6 @@ Page({
       if (length > 0) {
         lastCreateTime = orders[length - 1]._createTime
       }
-
-      console.log("old orders===============")
-      console.log(orders)
     }
   
     const db = wx.cloud.database()
