@@ -7,6 +7,8 @@ Page({
   data: {
     evaluate: "",
     order_id: "",
+    service_person_id: "",
+    merchant_id: "",
     star: 5,
     // 0 加载中 1. 无评论 2.有评论  3.加载失败
     status: 1
@@ -20,7 +22,9 @@ Page({
       title: '我的评价',
     })
     this.setData({
-      order_id: options.order_id
+      order_id: options.order_id,
+      merchant_id: options.merchant_id,
+      service_person_id: options.service_person_id
     })
 
     // 查询当前订单下是否已经有评论， 有评论展示评论，无评论
@@ -36,7 +40,9 @@ Page({
       name: "evaluate",
       data: {
         operate: 'query',
-        order_id: this.data.order_id
+        order_id: this.data.order_id,
+        service_person_id: this.data.service_person_id,
+        merchant_id: this.data.merchant_id
       }
     }).then(res => {
       console.log(res)
@@ -128,7 +134,7 @@ Page({
       })
       return;
     }
-    const db = wx.cloud.database()
+
     wx.showLoading({
       title: '提交中...',
       icon: "none"
@@ -138,11 +144,13 @@ Page({
 
     wx.cloud.callFunction({
       name: "evaluate",
-      data: { 
+      data: {
         operate: 'add',
         order_id: this.data.order_id,
         evaluate: this.data.evaluate,
         user_open_id: openid,
+        service_person_id: this.data.service_person_id,
+        merchant_id: this.data.merchant_id,
         status: 0,
         star: this.data.star,
         _createTime: Date.now(),

@@ -479,8 +479,11 @@ Page({
   },
 
   enter_evalute(e) {
+    //
     wx.navigateTo({
-      url: '/pages/evaluate/evaluate?order_id=' + this.data.order_id,
+      url: '/pages/evaluate/evaluate?order_id=' + this.data.order_id
+      +"&service_person_id=" + this.data.service_person_id
+      +"&merchant_id=" + this.data.merchant_id
     })
   }
 
