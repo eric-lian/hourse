@@ -1,6 +1,6 @@
 <!--pages/search/search.wxml-->
 <block wx:if="{{status == 2}}">
-  <view style="margin-top: {{ showSearchBar != 'false' ? 200 : 100}}rpx;">
+  <view style="margin-top: {{ showSearchBar != 'false' ? 300 : 200}}rpx;">
     <view wx:for="{{companyList}}" wx:key="index">
       <view style="padding: 20rpx;margin-top: 32rpx; display: flex; flex-direction: row;justify-content: start;" bindtap="gotoDetail" data-id="{{item._id}}">
         <!-- 门店头图 -->
@@ -16,9 +16,17 @@
           </view>
           <view style="height: 100%;" />
 
-          <!-- <view style="margin-left: 24rpx;margin-top: 12rpx;" >
-            <text id="merchant_introducation">{{item.introducation}}</text>
-          </view> -->
+          <view style="display: flex; flex-direction: row;align-items: center; width: 100%;margin-top: 12rpx;margin-left: 24rpx;">
+          <block wx:for="{{[1,2,3,4,5]}}" wx:for-item="starItem" 
+          wx:key-index="starIndex" wx:key="starIndex">
+            <view>
+              <image wx:if="{{starItem <= item.evaluation_stars}}" src="/pages/images/evaluate/evaluate_good_star.png" style="width: 32rpx; height: 32rpx;margin-right: 10rpx;" data-star="{{starItem}}" />
+
+              <image wx:else src="/pages/images/evaluate/evaluate_bad_star.png" style="width: 32rpx; height: 32rpx;" data-star="{{starItem}}" />
+            </view>
+          </block>
+        </view>
+
           <!-- 门店地址1 -->
           <view style="margin-left: 24rpx;margin-top: 12rpx;">
             <text id="merchant_address" style="font-size: 24rpx;color: rgba(129, 134, 143, 1);background-color: rgba(237, 246, 243, 1);">{{item.address}}</text>
@@ -49,22 +57,44 @@
 </block>
 
 <view wx:if="{{status == 4}}" style="height: 100%;display: flex; flex-direction: column;">
-  <text style="color: #22464D5A;margin-top: 300rpx; font-size: 22rpx;">对不起，暂未找到你想要的服务</text>
+  <text style="color: #22464D5A;margin-top: 500rpx; font-size: 22rpx;">对不起，暂未找到你想要的服务</text>
 </view>
 
 <view wx:if="{{status == 3}}" style="height: 100%;display: flex; flex-direction: column;">
-  <text style="color: #22464D5A;margin-top: 300rpx; font-size: 22rpx;">网络错误，请检查网络</text>
+  <text style="color: #22464D5A;margin-top: 500rpx; font-size: 22rpx;">网络错误，请检查网络</text>
 </view>
 
-<view style=" position: fixed;background-color: white;width: 100%; display: flex;flex-direction: column;align-items: center;">
-  <button style="padding: 18rpx 24rpx 24rpx 18rpx; background-color: rgba(26, 115, 214, 1); border-radius: 18rpx; margin-top: 18rpx; color: white;" bindtap="gotoGuidePrice">查阅服务指导价</button>
-  <view style="display: flex; flex-direction: row;align-items: center;" wx:if="{{showSearchBar != 'false'}}">
-    <view id="search_container">
-      <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png" mode="aspectFit"></image>
-      <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="{{focus}}" value="{{searchShowKey}}" bindconfirm="goToSearch" bindfocus="onFocus" bindinput="onSearchInputChanged" />
+<view style=" position: fixed;width: 100%; display: flex;flex-direction: column;align-items: center;height: 100%;" catchtouchmove='true'>
+  <view style="display: flex;flex-direction: column;background-color: white;width: 100%; align-items: center;">
+    <button style="padding: 18rpx 24rpx 24rpx 18rpx; background-color: rgba(26, 115, 214, 1); border-radius: 18rpx; margin-top: 18rpx; color: white;" bindtap="gotoGuidePrice">查阅服务指导价</button>
+    <view style="display: flex; flex-direction: row;align-items: center;" wx:if="{{showSearchBar != 'false'}}">
+      <view id="search_container">
+        <image id="top_search_bar_icon" src="/pages/images/search/top_search_bar_icon.png" mode="aspectFit"></image>
+        <input id="top_search_bar_icon_input" placeholder-style="color:#22464D5A" placeholder="搜索需要的家政服务" type="text" confirm-type="搜索" focus="{{focus}}" value="{{searchShowKey}}" bindconfirm="goToSearch" bindfocus="onFocus" bindinput="onSearchInputChanged" />
+      </view>
+
+      <text style="margin-left: 24rpx;" bindtap="goToSearch">搜索</text>
     </view>
 
-    <text style="margin-left: 24rpx;" bindtap="goToSearch">搜索</text>
+    <view style="height: 100rpx; width: 100%;display: flex; flex-direction: row;justify-content: space-around;align-items: center;">
+      <!-- 找到对应item下的条件列表 -->
+      <view style="display: flex;flex-direction: row;align-items: center;" wx:for="{{filter_list}}" bindtap="onFilterClick" data-key="{{item.key}}" wx:key="{{index}}">
+        <!-- 显示当前选中的name -->
+        <block wx:for="{{item.filters}}" wx:for-index="eleIndex" wx:for-item="eleItem" wx:key="eleIndex" wx:if="{{eleItem.selected}}">
+          <text>{{eleItem.nick}}</text>
+          <image style="width: 32rpx;height: 36rpx;margin-left: 12rpx;" src="/pages/images/filter/filter_arrow_{{item.selected ? 'up' : 'down'}}.png" />
+        </block>
+      </view>
+    </view>
+  </view>
+
+  <view style="background-color: rgba(4, 5, 7, 0.5); height: 100%; width: 100%;display: flex;flex-direction: column;" wx:if="{{current_filter_click}}" catchtap="close_filter_click">
+    <view style="background-color: white; flex-direction: row;display: flex;flex-wrap: wrap;justify-content: space-evenly;padding: 20rpx 0rpx 50rpx 0rpx">
+      <block wx:for="{{current_filter_click.filters}}" wx:key="index">
+        <!-- 根据是否选中设置颜色 -->
+        <text style="background-color: {{item.selected ? '#155CCD' : '#E9EBED'}};border-radius: 30rpx;color: {{item.selected ? '#ffffff':'#000000'}}; width: 28%;line-height: 60rpx;align-content: center; font-size: 28rpx;display: flex;align-content: center;justify-content: center;margin: 12rpx" catchtap="onEleSelected" data-key="{{current_filter_click.key}}" data-ele_key="{{item.key}}" bindtap="onEleSelected">{{item.name}}</text>
+      </block>
+    </view>
   </view>
 
 </view>

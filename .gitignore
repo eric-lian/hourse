@@ -1,6 +1,7 @@
 */node_modules/*
 cloudfunctions/search_merchant/node_modules/*
 cloudfunctions/trigger/node_modules/*
+cloudfunctions/merchant_filter/node_modules/*
 cloudfunctions/look_services_filter/node_modules/*
 cloudfunctions/evaluate/node_modules/.bin/pbjs
 cloudfunctions/evaluate/node_modules/.bin/pbts
