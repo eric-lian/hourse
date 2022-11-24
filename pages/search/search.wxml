@@ -64,7 +64,7 @@
   <text style="color: #22464D5A;margin-top: 500rpx; font-size: 22rpx;">网络错误，请检查网络</text>
 </view>
 
-<view style=" position: fixed;width: 100%; display: flex;flex-direction: column;align-items: center;height: 100%;" catchtouchmove='true'>
+<view style=" position: fixed;width: 100%; display: flex;flex-direction: column;align-items: center;">
   <view style="display: flex;flex-direction: column;background-color: white;width: 100%; align-items: center;">
     <button style="padding: 18rpx 24rpx 24rpx 18rpx; background-color: rgba(26, 115, 214, 1); border-radius: 18rpx; margin-top: 18rpx; color: white;" bindtap="gotoGuidePrice">查阅服务指导价</button>
     <view style="display: flex; flex-direction: row;align-items: center;" wx:if="{{showSearchBar != 'false'}}">
@@ -88,7 +88,7 @@
     </view>
   </view>
 
-  <view style="background-color: rgba(4, 5, 7, 0.5); height: 100%; width: 100%;display: flex;flex-direction: column;" wx:if="{{current_filter_click}}" catchtap="close_filter_click">
+  <view style="background-color: rgba(4, 5, 7, 0.5); height: 100vh; width: 100%;display: flex;flex-direction: column;" wx:if="{{current_filter_click}}" catchtap="close_filter_click" catchtouchmove='true'>
     <view style="background-color: white; flex-direction: row;display: flex;flex-wrap: wrap;justify-content: space-evenly;padding: 20rpx 0rpx 50rpx 0rpx">
       <block wx:for="{{current_filter_click.filters}}" wx:key="index">
         <!-- 根据是否选中设置颜色 -->

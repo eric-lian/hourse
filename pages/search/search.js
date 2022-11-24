@@ -45,13 +45,13 @@ Page({
         sort: 0
       }, {
         key: 'down',
-        name: '由高到低',
+        name: '由近到远',
         nick: "距离",
         selected: false,
         sort: 1
       }, {
         key: 'up',
-        name: '由低到高',
+        name: '由远到近',
         nick: "距离",
         selected: false,
         sort: -1
