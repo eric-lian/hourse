@@ -93,6 +93,7 @@ exports.main = async (event, context) => {
     var url = 'https://apis.map.qq.com/ws/distance/v1/matrix?from=' + from + '&to=' + to + '&key=R3EBZ-OC26D-M4242-PZPG3-WUAD2-XQBKO&mode=bicycling'
     try {
       const response = await axios.get(url)
+      console.log(response)
       const elements = response.data.result.rows[0].elements
       if (elements.length != result.data.length) {
         // 计算出错

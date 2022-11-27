@@ -90,7 +90,7 @@
 
     <view style="height: 100rpx; width: 100%;display: flex; flex-direction: row;justify-content: space-around;align-items: center;">
       <!-- 找到对应item下的条件列表 -->
-      <view style="display: flex;flex-direction: row;align-items: center;" wx:for="{{filter_list}}" bindtap="onFilterClick" data-key="{{item.key}}" wx:key="{{index}}">
+      <view style="display: flex;flex-direction: row;align-items: center;" wx:for="{{filter_list}}" bindtap="onFilterClick" data-key="{{item.key}}" wx:key="index">
         <!-- 显示当前选中的name -->
         <block wx:for="{{item.filters}}" wx:for-index="eleIndex" wx:for-item="eleItem" wx:key="eleIndex" wx:if="{{eleItem.selected}}">
           <text>{{eleItem.nick}}</text>

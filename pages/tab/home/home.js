@@ -44,7 +44,7 @@ Page({
     //  请求首页新闻列表数据
     this.requestHomeNews()
     //  请求附近商家数据
-    if (!options.refresh_news) {
+    if (app.isNullOrEmpty(options.refresh_news)) {
       this.requestNearby()
     }
   },
