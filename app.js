@@ -10,7 +10,8 @@ App({
     globalConfig: {},
     MERCHANT_ACCEPT_ORDER_MSG_TEMPLATE_ID: "fUP2d5u8celV0E-lxxjxugU4yvq1RDRChPV3-4vx-zY",
     USER_ACCPET_ORDER_MSG_TEMPLATE_ID: "fUP2d5u8celV0E-lxxjxukgDGkLSF4rmE0Wvfd3xrWk",
-    defaultLookServiceName: "保洁"
+    defaultLookServiceName: "保洁",
+    location: {}
   },
 
   onLaunch() {
@@ -111,12 +112,11 @@ App({
         if (res.data.length > 0) {
           const _globalConfig = res.data[0]
           this.globalData.globalConfig = _globalConfig
-          if (_globalConfig.home_news == 1) {
-            wx.reLaunch({
-              url: '/pages/tab/home/home',
-            })
-          }
-
+          // if (_globalConfig.home_news == 1) {
+          //   wx.reLaunch({
+          //     url: '/pages/tab/home/home',
+          //   })
+          // }
         }
       })
   },
@@ -294,6 +294,87 @@ App({
       console.log("======== 普通用户")
       return this.globalData.USER_ACCPET_ORDER_MSG_TEMPLATE_ID
     }
+  },
+
+  _getLocation(success, fail) {
+    const that = this
+    wx.getLocation({
+      type: 'gcj02',
+      success: function (res) {
+        // 经纬度
+        const latitude = res.latitude
+        const longitude = res.longitude
+        that.globalData.location.latitude = latitude
+        that.globalData.location.longitude = longitude
+        success(that.globalData.location)
+      },
+      fail: function () {
+        wx.showToast({
+          title: '授权失败',
+          icon: 'none',
+          duration: 1000
+        })
+        fail()
+      }
+    })
+  },
+
+  getLocation(success, fail) {
+    const that = this
+    const location = that.globalData.location
+    if (location.latitude && location.longitude) {
+      success(location)
+      return
+    }
+
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userLocation'] != undefined && res.authSetting['scope.userLocation'] != true) {
+          //非初始化进入该页面,且未授权
+          wx.showModal({
+            title: '是否授权当前位置',
+            content: '需要获取您的地理位置，请确认授权，否则无法获取您所需数据',
+            success: function (res) {
+              if (res.cancel) {
+                wx.showToast({
+                  title: '授权失败',
+                  icon: 'none',
+                  duration: 1000
+                })
+                fail()
+              } else if (res.confirm) {
+                wx.openSetting({
+                  success: function (dataAu) {
+                    if (dataAu.authSetting["scope.userLocation"] == true) {
+                      wx.showToast({
+                        title: '授权成功',
+                        icon: 'none',
+                        duration: 1000
+                      })
+                      //再次授权，调用getLocationt的API
+                      that._getLocation(success, fail)
+                    } else {
+                      wx.showToast({
+                        title: '授权失败',
+                        icon: 'none',
+                        duration: 1000
+                      })
+                      fail()
+                    }
+                  }
+                })
+              }
+            }
+          })
+        } else if (res.authSetting['scope.userLocation'] == undefined) {
+          //初始化进入
+          that._getLocation(success, fail);
+        } else {
+          //授权后默认加载
+          that._getLocation(success, fail);
+        }
+      }
+    })
   }
 
 })

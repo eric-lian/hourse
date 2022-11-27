@@ -4,7 +4,7 @@
   },
   "triggers": [
     {
-      "name": "evaluation_star_stat",
+      "name": "merchant_address_trigger",
       "type": "timer",
       "config": "0 */59 * * * * *"
     }

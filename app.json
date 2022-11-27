@@ -59,6 +59,12 @@
   "style": "v2",
   "sitemapLocation": "sitemap.json",
   "requiredPrivateInfos": [
-    "chooseLocation"
-  ]
+    "chooseLocation",
+    "getLocation"
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "为你推荐附近优质商家"
+    }
+  }
 }

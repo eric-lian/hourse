@@ -103,7 +103,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
     this.setData({
       firstRow: this.data.menus.slice(0, 4),
       sencondRow: this.data.menus.slice(4, 8),
@@ -120,6 +119,8 @@ Page({
     this.requestBanners()
     //  请求首页新闻列表数据
     this.requestHomeNews()
+    //  请求附近商家数据
+    this.requestNearby()
   },
 
   /**
@@ -352,6 +353,13 @@ Page({
     wx.navigateTo({
       url: '/pages/tab/merchants/merchants',
     })
-  }
+  },
 
+  requestNearby() {
+    app.getLocation(res => {
+
+    }, fail => {
+
+    })
+  }
 })

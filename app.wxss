@@ -32,13 +32,18 @@ page {
 
 
 .varify_passed_tag {
-  background-color: rgba(248, 234, 225, 1);
+  background-color: rgba(229, 84, 43, 0.3);
   font-weight: 400;
   font-size: 22rpx;
+  border-radius: 80rpx;
+  width: 92rpx;
+  height: 32rpx;
+  align-content: center;
+  display: flex;
+  align-content: center;
+  justify-content: center;
   color: #EC6A38;
-  padding: 5rpx 12rpx;
-  border-radius: 18rpx;
-}
+} 
 
 
 .common_btn {

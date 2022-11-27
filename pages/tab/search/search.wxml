@@ -1,4 +1,5 @@
 <!--pages/search/search.wxml-->
+<wxs src="/pages/utils/index.wxs" module="module" />
 <block wx:if="{{status == 2}}">
   <view style="margin-top: {{ showSearchBar != 'false' ? 300 : 200}}rpx;">
     <view wx:for="{{companyList}}" wx:key="index">
@@ -8,24 +9,30 @@
           <image style="width: 180rpx; height: 180rpx; border-radius: 18rpx;" mode="aspectFill" src="{{item.company_main_img}}"></image>
         </view>
 
-        <view style="display: flex; flex-direction: column;  width: 100%">
+        <view style="display: flex; flex-direction: column;  width: 100%;">
           <!-- 门店名字
            -->
-          <view style="margin-left: 24rpx;">
-            <text id="merchant_name">{{item.name}}</text>
+          <view style="display: flex;">
+            <view style="margin-left: 24rpx;margin-right: 24rpx;">
+              <text id="merchant_name">{{item.name}}</text>
+            </view>
           </view>
           <view style="height: 100%;" />
 
-          <view style="display: flex; flex-direction: row;align-items: center; width: 100%;margin-top: 12rpx;margin-left: 24rpx;">
-          <block wx:for="{{[1,2,3,4,5]}}" wx:for-item="starItem" 
-          wx:key-index="starIndex" wx:key="starIndex">
-            <view>
-              <image wx:if="{{starItem <= item.evaluation_stars}}" src="/pages/images/evaluate/evaluate_good_star.png" style="width: 32rpx; height: 32rpx;margin-right: 10rpx;" data-star="{{starItem}}" />
+          <view style="display: flex; flex-direction: row;align-items: center; width: 100%;margin-top: 12rpx;margin-left: 24rpx; align-items: center;">
+            <view style="display: flex; flex-direction: row;">
+              <block wx:for="{{[1,2,3,4,5]}}" wx:for-item="starItem" wx:key-index="starIndex" wx:key="starIndex">
+                <view>
+                  <image wx:if="{{starItem <= item.evaluation_stars}}" src="/pages/images/evaluate/evaluate_good_star.png" style="width: 32rpx; height: 32rpx;margin-right: 10rpx;" data-star="{{starItem}}" />
 
-              <image wx:else src="/pages/images/evaluate/evaluate_bad_star.png" style="width: 32rpx; height: 32rpx;" data-star="{{starItem}}" />
+                  <image wx:else src="/pages/images/evaluate/evaluate_bad_star.png" style="width: 32rpx; height: 32rpx;" data-star="{{starItem}}" />
+                </view>
+              </block>
             </view>
-          </block>
-        </view>
+            <view style="display: flex;margin-left: 24rpx;">
+              <text class="varify_passed_tag">已认证</text>
+            </view>
+          </view>
 
           <!-- 门店地址1 -->
           <view style="margin-left: 24rpx;margin-top: 12rpx;">
@@ -42,7 +49,12 @@
               <text style="font-size: 26rpx;font-weight: 500;color: #EC6A38;">起</text>
             </view> -->
 
-            <text class="varify_passed_tag">已认证</text>
+            <view wx:if="{{item.distance}}" style="display: flex; justify-content: center;">
+              <image src="/pages/images/search/location.png" style="width: 30rpx; height: 30rpx;" />
+
+              <text style="font-size: 24rpx;color: #81868F;">{{module.parseDistance(item.distance)}}</text>
+
+            </view>
           </view>
         </view>
       </view>

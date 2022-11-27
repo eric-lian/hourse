@@ -255,14 +255,13 @@ Page({
     return true
   },
 
-  onFilterClick(e) {
+  _onFilterClick(e) {
     const key = e.currentTarget.dataset.key
     // 获取当前是否选中， 如果当前被选中，则取消选中，并关闭弹窗对象
     const filter_list = this.data.filter_list
     const current_filter_click = filter_list.find(res => {
       return res.key == key
     })
-
     // 当前未被选中， 需要重置所有的条件为未选中状态
     if (!current_filter_click.selected) {
       filter_list.forEach(value => {
@@ -282,6 +281,27 @@ Page({
       filter_list: this.data.filter_list,
       current_filter_click: this.data.current_filter_click
     })
+  },
+
+  onFilterClick(e) {
+    const key = e.currentTarget.dataset.key
+    // 获取当前是否选中， 如果当前被选中，则取消选中，并关闭弹窗对象
+    const filter_list = this.data.filter_list
+    const current_filter_click = filter_list.find(res => {
+      return res.key == key
+    })
+    // 当前为被选中 
+    if (!current_filter_click.selected && current_filter_click.key == 'distance') {
+      // 根据距离选择，弹出距离选择弹窗
+      getApp().getLocation(success => {
+        this._onFilterClick(e)
+      }, fail => {
+
+      })
+      return
+    } else {
+      this._onFilterClick(e)
+    }
   },
   close_filter_click(e) {
     const current_filter_click = this.data.current_filter_click
@@ -354,12 +374,15 @@ Page({
       searchKey = ".*"
     }
 
+    const location = getApp().globalData.location
+    console.log(location)
     wx.cloud.callFunction({
         name: 'merchant_filter',
         data: {
           searchKey: searchKey,
           filters: this.data.filter_list,
-          key: key
+          key: key,
+          location: location
         }
       })
       .then(res => {

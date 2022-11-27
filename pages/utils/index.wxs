@@ -33,9 +33,25 @@ function isNullOrEmpty(content) {
   return false
 }
 
+var parseDistance = function (distance) {
+  if (distance == undefined) return '0米'
+  distance = Number(distance)
+  var reg = getRegExp('\d+\.(\d*)')
+  if (distance < 1000) return distance + '米'
+  if (distance < 1000 * 10000) {
+    var d = distance / 1000
+    var l = d.toString().replace(reg, "$1").length
+    return (l > 2 ? d.toFixed(2) : d) + '千米'
+  }
+  var d = distance / 1000 / 10000
+  var l = d.toString().replace(reg, "$1").length
+  return (l > 2 ? d.toFixed(2) : d) + '万千米'
+}
+
 module.exports = {
   newFormatTime: newFormatTime,
   getDateYearDiff: getDateYearDiff,
   slice: slice,
-  isNullOrEmpty: isNullOrEmpty
+  isNullOrEmpty: isNullOrEmpty,
+  parseDistance: parseDistance
 }
