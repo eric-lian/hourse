@@ -1,0 +1,21 @@
+<!--pages/news_rich_text_detail/detail.wxml-->
+
+<loading wx:if="{{status == 0}}">加载中...</loading>
+
+<!-- 加载成功 -->
+<!-- 上下左右 -->
+<view wx:if="{{status == 1}}" style="padding: 12rpx 32rpx; display: flex; flex-direction: column;">
+  <rich-text nodes="{{newItem.content}}" space="emsp" />
+</view>
+
+<!-- 加载失败 -->
+<!-- justify-content 轴相同 align-items 轴交叉 -->
+<view wx:if="{{status == 2}}" style=" height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+  <text bindtap="loadNewItem" style="background-color: #F3F5F7; padding: 20rpx; border-radius: 15rpx; font-size: 30rpx; color: #464D5A;">加载失败，点击重试</text>
+</view>
+
+<!-- 加载为空 -->
+
+<view wx:if="{{status == 3}}" style=" height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+  <text style="font-size: 30rpx; color: #464D5A;">内容飞走了~</text>
+</view>

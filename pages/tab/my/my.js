@@ -123,6 +123,15 @@ Page({
     wx.navigateTo({
       url: '/pages/tab/merchants/merchants',
     })
-  }
+  },
 
+  enterMyCollect(e) {
+
+  },
+
+  onPrivacyEnter(e) {
+    wx.navigateTo({
+      url: '/pages/user_privacy_agreement/detail',
+    })
+  }
 })

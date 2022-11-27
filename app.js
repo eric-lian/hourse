@@ -11,7 +11,84 @@ App({
     MERCHANT_ACCEPT_ORDER_MSG_TEMPLATE_ID: "fUP2d5u8celV0E-lxxjxugU4yvq1RDRChPV3-4vx-zY",
     USER_ACCPET_ORDER_MSG_TEMPLATE_ID: "fUP2d5u8celV0E-lxxjxukgDGkLSF4rmE0Wvfd3xrWk",
     defaultLookServiceName: "保洁",
-    location: {}
+    location: {},
+    menus: [{
+        name: "保洁",
+        search_key: ["保洁"],
+        icon: "/pages/images/menu/baojie.png",
+        type: "0"
+      },
+      {
+        name: "母婴护理",
+        search_key: ["母婴", "护理", "月嫂", "母婴护理", "育婴师"],
+        icon: "/pages/images/menu/muyinghuli.png",
+        type: "1"
+      }, {
+        name: "保姆",
+        search_key: ["保姆"],
+        icon: "/pages/images/menu/baomu.png",
+        type: "2"
+      },
+      {
+        name: "疏通管道",
+        search_key: ["疏通", "管道", "疏通管道", "疏通管道"],
+        icon: "/pages/images/menu/guandao.png",
+        type: "3"
+      },
+      {
+        name: "水电安装",
+        search_key: ["水电", "安装", "水电安装"],
+        icon: "/pages/images/menu/shuidiananzhuang.png",
+        type: "4"
+      }, {
+        name: "家电清洗",
+        search_key: ["家电", "清洗", "家电清洗"],
+        icon: "/pages/images/menu/jiadianqingxi.png",
+        type: "5"
+      }, {
+        name: "家电维修",
+        search_key: ["家电", "维修", "家电维修"],
+        icon: "/pages/images/menu/jiadianweixiu.png",
+        type: "6"
+      }, {
+        name: "养老护理",
+        search_key: ["养老", "护理", "养老护理", "护工", "老年", "护理", "老年护理",
+          "病人陪护"
+        ],
+        icon: "/pages/images/menu/yanglaohuli.png",
+        type: "7"
+      }, {
+        name: "搬家",
+        search_key: ["搬家"],
+        icon: "/pages/images/menu/banjia.png",
+        type: "8"
+      }, {
+        name: "收纳干洗",
+        search_key: ["收纳", "干洗", "收纳干洗"],
+        icon: "/pages/images/menu/shounaganxi.png",
+        type: "9"
+      },
+
+      // {
+      //   name: "甲醛治理",
+      //   search_key: ["甲醛", "治理", "甲醛治理"],
+      //   icon: "/pages/images/menu/jiaquanzhili.png",
+      //   type: "11"
+      // },
+
+      {
+        name: "家政培训",
+        search_key: ["家政培训"],
+        icon: "/pages/images/menu/jiazhengpeixun.png",
+        type: "12"
+      },
+      {
+        name: "更多服务",
+        search_key: [""],
+        icon: "/pages/images/menu/gengduofuwu.png",
+        type: "13"
+      }
+    ]
   },
 
   onLaunch() {
@@ -112,11 +189,11 @@ App({
         if (res.data.length > 0) {
           const _globalConfig = res.data[0]
           this.globalData.globalConfig = _globalConfig
-          // if (_globalConfig.home_news == 1) {
-          //   wx.reLaunch({
-          //     url: '/pages/tab/home/home',
-          //   })
-          // }
+          if (_globalConfig.home_news == 1) {
+            wx.reLaunch({
+              url: '/pages/tab/home/home?refresh_news=true',
+            })
+          }
         }
       })
   },

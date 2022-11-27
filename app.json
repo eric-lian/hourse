@@ -13,7 +13,8 @@
     "pages/tab/tab_message/tab_message",
     "pages/order/order",
     "pages/user/user_info_fill/user_info_edit",
-    "pages/service_person_detail/service_person_detail"
+    "pages/service_person_detail/service_person_detail",
+    "pages/user_privacy_agreement/detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

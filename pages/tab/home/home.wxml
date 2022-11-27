@@ -101,5 +101,5 @@
 </view>
 <!-- background-color: {{topNavContainerBg}}; opacity: {{nav_opacity}};-->
 <view id="nav_container" style="height: {{topNavContainerHeight}}rpx; background-color: rgba(23,115,215,1);">
-  <text id="nav_title" style="line-height: {{navigationBarHeight}}rpx; margin-top: {{statusBarHeight}}rpx;">谯城区我当家政小程序</text>
+  <text id="nav_title" style="line-height: {{navigationBarHeight}}rpx; margin-top: {{statusBarHeight}}rpx;">谯城区放心家政小程序</text>
 </view>

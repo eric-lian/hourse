@@ -37,3 +37,11 @@
 .person_info_column_content_item {
   margin: 38rpx 12rpx;
 }
+
+
+.person_item {
+  margin: 20rpx;
+  display: flex;
+  flex-direction: row;  
+  padding: 40rpx 32rpx 40rpx 32rpx;
+}

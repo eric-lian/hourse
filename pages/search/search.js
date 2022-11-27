@@ -1,4 +1,5 @@
 // pages/search/search.js
+const app = getApp()
 Page({
 
   /**
@@ -155,7 +156,6 @@ Page({
    */
   onLoad(options) {
     const _searchShowKey = options.searchShowKey
-    const _searchKey = options.searchKey
     const _showSearchBar = options.showSearchBar
     console.log(_showSearchBar)
     // 设置默认搜索词 , 有默认搜索词，直接搜索
@@ -369,8 +369,36 @@ Page({
     })
 
     // 根据当前的查词结果进行排序
+    // 根据当前的查词结果进行排序
     let searchKey = this.data.searchShowKey
-    if (getApp().isNullOrEmpty(searchKey)) {
+    // 查找服务端增强关键词
+    const serverSearchKeyObj = app.globalData.homeSearchKeyOptimized.find(res => {
+      return searchKey == res.name
+    })
+    let search_key
+    if (serverSearchKeyObj && serverSearchKeyObj.search_key.length > 0) {
+      search_key = serverSearchKeyObj.search_key
+      console.log("用服务端缓存关键词搜索：")
+      console.log(search_key)
+    }
+
+    if (search_key == null) {
+      // 获取搜索的内容
+      const menu = app.globalData.menus.find(res => {
+        return searchKey == res.name
+      })
+      if (menu) {
+        search_key = menu.search_key
+        console.log("用客户单缓存关键词搜索：")
+        console.log(search_key)
+      }
+    }
+    if (search_key) {
+      // 拼接正则匹配表达式
+      searchKey = search_key.join('|')
+    }
+
+    if (searchKey) {
       searchKey = ".*"
     }
 

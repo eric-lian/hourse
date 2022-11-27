@@ -1,0 +1,12 @@
+/* pages/news_rich_text_detail/detail.wxss */
+
+page {
+  height: 100%;
+}
+
+#newTitle {
+  font-size: 40rpx;
+  color: #040507;
+  font-weight: 500;
+  margin-top: 12rpx;
+}

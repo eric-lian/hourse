@@ -1,17 +1,24 @@
+<wxs module="dateUtils" src="./../utils/index.wxs"></wxs>
+
 <view style="display: flex; flex-direction: column;padding-bottom: 160rpx;">
   <!-- 头部个人信息 -->
   <view>
-    <view style="display: flex; flex-direction: row; padding: 100rpx 32rpx 100rpx 32rpx;background-color: rgba(21, 92, 205, 1);">
+    <view class="person_item">
       <!-- 头像 -->
       <view>
-        <image src="{{person_photo}}" style="width: 160rpx;height: 215rpx;background-color: rgba(243, 245, 247, 1);border-radius: 6rpx;" />
+        <image src="{{person_photo}}" style="width: 176rpx;height: 234rpx;background-color: rgba(243, 245, 247, 1);border-radius: 6rpx;" />
 
       </view>
       <!-- 服务信息 -->
       <view style="display: flex; flex-direction: column;margin-left: 32rpx;color: white;">
-        <text style="font-size: 48rpx;font-weight: 500;">{{person_name}}</text>
-        <!-- 满意度 -->
-        <view style="display: flex; flex-direction: row;align-items: center; width: 100%;margin-top: 12rpx;">
+        <text style="font-size: 48rpx;font-weight: 500;color: #040507;">{{person_name}}</text>
+
+        <view style="margin-top: 10rpx;">
+          <text style="font-size: 22rpx; color: rgba(70, 77, 90, 1);"> {{dateUtils.getDateYearDiff(brithday, serverMills)}}岁 | {{province}} | {{dateUtils.getDateYearDiff(work_begin_date, serverMills)}}年经验 | {{service_name}}</text>
+        </view>
+
+         <!-- 满意度 -->
+         <view style="display: flex; flex-direction: row;align-items: center; width: 100%;margin-top: 12rpx;">
           <block wx:for="{{[1,2,3,4,5]}}" wx:key="index">
             <view>
               <image wx:if="{{item <= evaluation_stars}}" src="/pages/images/evaluate/evaluate_good_star.png" style="width: 32rpx; height: 32rpx;margin-right: 10rpx;" data-star="{{item}}" />
@@ -20,15 +27,14 @@
             </view>
           </block>
         </view>
-        <!-- 服务 -->
-        <text style="font-weight: 500;font-size: 28rpx;margin-top: 10rpx;">服务 : {{service_name}}</text>
+
         <!-- 公司 -->
-        <text style="font-weight: 500;font-size: 28rpx;margin-top: 10rpx;">公司 : {{name}}</text>
+        <text style="font-weight: 500;font-size: 26rpx;margin-top: 10rpx;color: #464D5A;">{{name}}</text>
       </view>
     </view>
   </view>
 
-  <!-- <view class="line_32"/> -->
+  <view class="line_32"/>
   <!-- 个人认证 -->
   <view style="height: 90rpx; display: flex; flex-direction: row; justify-content: space-around;">
     <view class="authentication_itme">

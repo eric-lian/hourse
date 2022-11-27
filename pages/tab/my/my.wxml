@@ -12,14 +12,19 @@
     <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
     <text class="nickName">{{userInfo.nickname}}</text>
     <view class="min_line" style="margin-top: 58rpx;" />
-    <view class="item_container" bindtap="enterMyEvaluate">
-      <image src="/pages/images/my/mine_evaluate.png" class="item_img" />
-      <text class="item_text">我的评价</text>
+    <view class="item_container" bindtap="enterMyCollect">
+      <image src="/pages/images/my/wodeshoucang.png" class="item_img" />
+      <text class="item_text">我的收藏</text>
     </view>
     <view class="min_line" />
     <view class="item_container" bindtap="onMerchantEnter">
       <image src="/pages/images/my/wodangjiazheng.png" class="item_img" />
       <text class="item_text">我当家政</text>
+    </view>
+    <view class="min_line" />
+    <view class="item_container" bindtap="onPrivacyEnter">
+      <image src="/pages/images/my/yinsixieyi.png" class="item_img" />
+      <text class="item_text">用户协议</text>
     </view>
     <view class="min_line" />
     <!-- <block wx:if="{{}}"> -->
