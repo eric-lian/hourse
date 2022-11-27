@@ -8,7 +8,7 @@ cloud.init({
 // 云函数入口函数
 exports.main = async (event, context) => {
 
-
+  console.log(event)
   const _searchKey = event.searchKey
 
   const _filters = event.filters
@@ -64,7 +64,7 @@ exports.main = async (event, context) => {
   } else {
     query = query.orderBy('weight', "desc")
   }
-  const result = await query.limit(5).get()
+  const result = await query.get()
   // 根据结果搜索查询商家距离
   console.log(distance_filter_ele)
   console.log(result)

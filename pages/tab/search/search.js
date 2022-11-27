@@ -367,13 +367,18 @@ Page({
       title: '搜索中...',
       icon: 'none'
     })
-
     // 根据当前的查词结果进行排序
     // 根据当前的查词结果进行排序
     let searchKey = this.data.searchShowKey
+    if (app.isNullOrEmpty(searchKey)) {
+      searchKey = ".*"
+    }
     // 查找服务端增强关键词
     const serverSearchKeyObj = app.globalData.homeSearchKeyOptimized.find(res => {
-      return searchKey == res.name
+      console.log('--------------')
+      console.log(searchKey)
+      console.log(res)
+      return res.name.indexOf(searchKey) >= 0
     })
     let search_key
     if (serverSearchKeyObj && serverSearchKeyObj.search_key.length > 0) {
@@ -385,7 +390,7 @@ Page({
     if (search_key == null) {
       // 获取搜索的内容
       const menu = app.globalData.menus.find(res => {
-        return searchKey == res.name
+        return res.name.indexOf(searchKey) >= 0
       })
       if (menu) {
         search_key = menu.search_key
@@ -398,10 +403,7 @@ Page({
       searchKey = search_key.join('|')
     }
 
-    if (searchKey) {
-      searchKey = ".*"
-    }
-
+    console.log("---------" + searchKey)
     const location = getApp().globalData.location
     console.log(location)
     wx.cloud.callFunction({
