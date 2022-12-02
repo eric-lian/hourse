@@ -15,7 +15,7 @@ exports.main = async (event, context) => {
 
   const serverMills = new Date().getTime()
 
-  return db.collection("merchants")
+  const result = await db.collection("merchants")
     .aggregate()
     .match({
       _id: merchant_id
@@ -30,4 +30,12 @@ exports.main = async (event, context) => {
       serverMills: serverMills
     })
     .end()
+  console.log(result)
+  const merchant = result.list[0]
+  if (merchant) {
+    merchant.persons.forEach(res => {
+      res.serverMills = serverMills
+    })
+  }
+  return result
 }

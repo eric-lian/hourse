@@ -6,7 +6,7 @@
     {
       "name": "merchant_address_trigger",
       "type": "timer",
-      "config": "0 */59 * * * * *"
+      "config": "0 */10 * * * * *"
     }
   ]
 }

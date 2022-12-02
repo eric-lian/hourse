@@ -117,10 +117,16 @@ exports.main = async (event, context) => {
         })
       }
       // result.data[index]
+
     } catch (error) {
       console.log(error)
     }
   }
   console.log(result)
   return result
+}
+
+
+function sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms))
 }

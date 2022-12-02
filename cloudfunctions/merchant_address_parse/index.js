@@ -34,15 +34,15 @@ exports.main = async (event, context) => {
       const status = response.data.status
       // console.log(status)
       if (status == 0) {
-        const result = response.data.result
+        // const result = response.data.result
         // 可信度参考， 值范围 1 - 10 <高可信>
-        const reliability = result.reliability
+        // const reliability = result.reliability
         // 生成geo 存放到数据库
         if (reliability >= 7) {
           // 11 个等级 ，一般>= 9 即可采用 非必填项
           // const level = result.level
-          const location = result.location
-          value.location = location
+          // const location = result.location
+          // value.location = location
           // console.log(location)
           // console.log(reliability)
           // console.log(level)
@@ -51,9 +51,9 @@ exports.main = async (event, context) => {
         } else {
           //  位置模糊
           // throw Error(response)
-          // console.log("======= 地址模糊 : ")
-          // console.log(response)
-          // console.log(value)
+          console.log("======= 地址模糊 : ")
+          console.log(response)
+          console.log(value)
         }
       } else {
         // throw Error(response)
