@@ -52,9 +52,11 @@ exports.main = async (event, context) => {
       name: db.RegExp({
         regexp: _searchKey
       })
-    }]).and([{
+    }])
+    .and([{
       location: _.exists(true)
-    }]))
+    }])
+    )
   // 到序排序
   // 降序
   console.log(evaluation_stars_filter_ele_sort)
@@ -66,6 +68,7 @@ exports.main = async (event, context) => {
   }
   const result = await query.get()
   // 根据结果搜索查询商家距离
+  console.log("===================")
   console.log(distance_filter_ele)
   console.log(result)
   // 1. 结果有数据
