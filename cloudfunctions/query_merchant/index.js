@@ -33,9 +33,37 @@ exports.main = async (event, context) => {
   console.log(result)
   const merchant = result.list[0]
   if (merchant) {
+    // merchant.persons.forEach(res => {
+    //   res.serverMills = serverMills
+    // })
+    var mergePersons = new Array();
     merchant.persons.forEach(res => {
-      res.serverMills = serverMills
+      // 先查找 mergePersons 是否存在
+      var mergePerson = mergePersons.find(person => {
+        return res.person_name == person.person_name
+      })
+      if (mergePerson == undefined) {
+        mergePersons.push(res)
+        mergePerson = res
+        mergePersons.serverMills = serverMills
+      }
+
+      var service_names = mergePerson.service_names
+      if (service_names == undefined) {
+        service_names = new Array()
+        mergePerson.service_names = service_names
+      }
+      // 判断当前的 service_names 是否已经存在  res.service_name
+      var exist = service_names.some(value => {
+        return value == res.service_name
+      })
+
+      if (!exist) {
+        service_names.push(res.service_name)
+      }
     })
+    console.log(mergePersons)
+    merchant.persons = mergePersons
   }
   return result
 }

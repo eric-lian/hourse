@@ -53,13 +53,13 @@ exports.main = async (event, context) => {
           console.log("======= 地址模糊 : ")
           console.log(response)
           console.log(value)
-          throw Error(response)
+          // throw Error(response)
         }
       } else {
         console.log("======= 地址解析异常 : ")
         console.log(response)
         console.log(value)
-        throw Error(response)
+        // throw Error(response)
       }
     } catch (error) {
       console.log("======= 地址解析错误 : ")
@@ -67,7 +67,7 @@ exports.main = async (event, context) => {
       console.log(error)
     }
     // 延时200ms，控制一下最大并发
-    await sleep(100)
+    await sleep(200)
   }
   const updateLocationData = data.filter(value => {
     return value.location != undefined

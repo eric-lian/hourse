@@ -101,18 +101,16 @@
               <text style="font-size: 22rpx; color: rgba(70, 77, 90, 1);"> {{dateUtils.getDateYearDiff(item.brithday, merchant_detail_info.serverMills)}}岁 | {{item.province}} | {{dateUtils.getDateYearDiff(item.work_begin_date, merchant_detail_info.serverMills)}}年经验</text>
             </view>
 
-            <view style="margin-top: 15rpx;">
+            <view style="display: flex;flex-wrap: wrap;">
               <!-- 技能 -->
-              <text class="varify_passed_tag">{{item.service_name}}</text>
+              <block wx:for="{{item.service_names}}" wx:for-item="service_name_item" wx:for-key="service_name_index" wx:key="service_name_index">
+                <text class="varify_passed_tag" style="margin-right: 10rpx;margin-top: 15rpx;">{{service_name_item}}</text>
+              </block>
             </view>
 
             <!-- 立即预约 -->
             <view style="margin-top: 30rpx;">
-              <text class="immediately_subscribe" catchtap="immediately_subscribe"
-               data-merchant_id="{{item.company_name}}" data-service_person_name="{{item.person_name}}"
-               data-service_person_id="{{item._id}}"
-               data-service_name="{{item.service_name}}"
-               >立即预约</text>
+              <text class="immediately_subscribe" catchtap="immediately_subscribe" data-merchant_id="{{item.company_name}}" data-service_person_name="{{item.person_name}}" data-service_person_id="{{item._id}}" data-service_name="{{item.service_name}}">立即预约</text>
             </view>
           </view>
         </view>
@@ -135,7 +133,7 @@
         <image src="/pages/images/order/collect_default.png" class="merchant_detail_bottom_icon" />
         <text class="merchant_detail_bottom_operation">收藏</text>
       </view>
-      
+
       <!-- <view class="merchant_detail_bottom_item" bindtap="evaluate">
         <image src="/pages/images/order/pingjia.png" class="merchant_detail_bottom_icon" />
         <text class="merchant_detail_bottom_operation">评价</text>
@@ -154,7 +152,7 @@
 </view>
 
 <view wx:if="{{status == 0}}">
-    <loading>加载中...</loading>
+  <loading>加载中...</loading>
 </view>
 
 
@@ -165,5 +163,3 @@
 <view wx:if="{{status == 3}}" style="height: 100%;display: flex; flex-direction: column;">
   <text style="color: #22464D5A;margin-top: 300rpx; font-size: 22rpx;">对不起，暂未找到你想要的服务</text>
 </view>
-
-

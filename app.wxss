@@ -36,7 +36,7 @@ page {
   font-weight: 400;
   font-size: 22rpx;
   border-radius: 80rpx;
-  width: 92rpx;
+  width: 110rpx;
   height: 32rpx;
   align-content: center;
   display: flex;
