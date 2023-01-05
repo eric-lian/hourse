@@ -153,6 +153,7 @@ Page({
         merchant_id: this.data.merchant_id,
         status: 0,
         star: this.data.star,
+        user_name: getApp().globalData.userInfo.nickname,
         _createTime: Date.now(),
         _updateTime: Date.now()
       }

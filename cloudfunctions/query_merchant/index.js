@@ -64,6 +64,13 @@ exports.main = async (event, context) => {
     })
     console.log(mergePersons)
     merchant.persons = mergePersons
+
+    // 查询商家下所有的评论数
+    var totalResult = await db.collection("evaluate").where({
+      merchant_id: merchant_id, 
+      status: 1
+    }).count()
+    merchant.evaluate_count = totalResult.total
   }
   return result
 }

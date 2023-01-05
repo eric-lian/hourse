@@ -12,11 +12,11 @@
     <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
     <text class="nickName">{{userInfo.nickname}}</text>
     <view class="min_line" style="margin-top: 58rpx;" />
-    <view class="item_container" bindtap="enterMyCollect">
+    <!-- <view class="item_container" bindtap="enterMyCollect">
       <image src="/pages/images/my/wodeshoucang.png" class="item_img" />
       <text class="item_text">我的收藏</text>
     </view>
-    <view class="min_line" />
+    <view class="min_line" /> -->
     <view class="item_container" bindtap="onMerchantEnter">
       <image src="/pages/images/my/wodangjiazheng.png" class="item_img" />
       <text class="item_text">我当家政</text>

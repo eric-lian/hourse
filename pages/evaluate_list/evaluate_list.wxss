@@ -1,0 +1,5 @@
+/* pages/evaluate_list/evaluate_list.wxss */
+page {
+  height: 100%;
+  background-color: #F6F6F6;
+}

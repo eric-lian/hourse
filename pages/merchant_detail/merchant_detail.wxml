@@ -129,15 +129,15 @@
     <view class="min_line" />
     <view style="display: flex;flex-direction: row;justify-content: space-around; align-items: center;padding: 32rpx;">
 
-      <view class="merchant_detail_bottom_item" bindtap="collect">
+      <!-- <view class="merchant_detail_bottom_item" bindtap="collect">
         <image src="/pages/images/order/collect_default.png" class="merchant_detail_bottom_icon" />
         <text class="merchant_detail_bottom_operation">收藏</text>
-      </view>
-
-      <!-- <view class="merchant_detail_bottom_item" bindtap="evaluate">
-        <image src="/pages/images/order/pingjia.png" class="merchant_detail_bottom_icon" />
-        <text class="merchant_detail_bottom_operation">评价</text>
       </view> -->
+
+      <view class="merchant_detail_bottom_item" bindtap="evaluate">
+        <image src="/pages/images/order/pingjia.png" class="merchant_detail_bottom_icon" />
+        <text class="merchant_detail_bottom_operation">评价 {{merchant_detail_info.evaluate_count  >= 1000 ? '1000+' : merchant_detail_info.evaluate_count}}</text>
+      </view>
 
       <view class="merchant_detail_bottom_item" bindtap="callPhone">
         <image src="/pages/images/order/iphone.png" class="merchant_detail_bottom_icon" />

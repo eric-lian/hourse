@@ -3,7 +3,7 @@ function newFormatTime(timestamp) {
   var date = getDate(timestamp); //时间戳为10位需*1000
   var Y = date.getFullYear() + '-';
   var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
-  var D = date.getDate() + ' ';
+  var D = (date.getDate() < 10 ? '0' + (date.getDate() + 1) : date.getDate()) + ' ';
   var h = date.getHours() + ':';
   var m = date.getMinutes() + ':';
   var s = date.getSeconds();
@@ -33,6 +33,14 @@ function isNullOrEmpty(content) {
   return false
 }
 
+function simpleFormatTime(timestamp) {
+  var date = getDate(timestamp); //时间戳为10位需*1000
+  var Y = date.getFullYear() + '-';
+  var M = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+  var D = (date.getDate() < 10 ? '0' + (date.getDate() + 1) : date.getDate()) ;
+  return Y + M + D ;
+}
+
 var parseDistance = function (distance) {
   if (distance == undefined) return '0米'
   distance = Number(distance)
@@ -53,5 +61,6 @@ module.exports = {
   getDateYearDiff: getDateYearDiff,
   slice: slice,
   isNullOrEmpty: isNullOrEmpty,
-  parseDistance: parseDistance
+  parseDistance: parseDistance,
+  simpleFormatTime: simpleFormatTime
 }

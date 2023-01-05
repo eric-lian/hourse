@@ -132,7 +132,7 @@ Page({
 
   evaluate() {
     wx.navigateTo({
-      url: '/pages/evaluate/evaluate',
+      url: '/pages/evaluate_list/evaluate_list?merchant_id=' + this.data.id,
     })
   },
 
