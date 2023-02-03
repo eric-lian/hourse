@@ -40,8 +40,24 @@
 
 
 .person_item {
-  margin: 20rpx;
+  margin-top: 40rpx;
+  margin-bottom: 40rpx;
   display: flex;
-  flex-direction: row;  
-  padding: 40rpx 32rpx 40rpx 32rpx;
+  flex-direction: row;
+  /* border-color: #F3F5F7; */
+  /* border-width: 2rpx; */
+  /* border-style: solid; */
+  /* padding: 20rpx; */
+  /* border-radius: 16rpx; */
+}
+
+
+
+.immediately_subscribe {
+  font-size: 26rpx;
+  background-color: rgba(21, 92, 205, 1);
+  padding: 12rpx 32rpx ;
+  border-radius: 18rpx;
+  color: white;
+  font-weight: 400;
 }

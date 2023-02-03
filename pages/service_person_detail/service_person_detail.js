@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+
   },
 
   /**
@@ -18,6 +18,26 @@ Page({
     const _service_person_detail = JSON.parse(options.item)
     console.log(_service_person_detail)
     this.setData(_service_person_detail)
+
+    // 加载请求相关推荐
+    const service_name = [this.data.service_name]
+    if (this.data.service_names) {
+      service_name.push(this.data.service_names)
+    }
+    wx.cloud.callFunction({
+      name: "search_similarity_service",
+      data: {
+        service_name: service_name,
+        person_name: this.data.person_name
+      }
+    }).then(res => {
+      console.log(res.result.list[0])
+      this.setData({
+        recommends: res.result.list
+      })
+    }).catch(error => {
+      console.log(error)
+    })
   },
 
   /**
@@ -96,4 +116,40 @@ Page({
         "&service_type=" + service_name
     })
   },
+  immediately_subscribe_recommend(e) {
+    // 判断用户是否登录
+    const merchant_id = e.currentTarget.dataset.merchant_id
+    const merchant_name = e.currentTarget.dataset.merchant_name
+    const merchant_open_id = e.currentTarget.dataset.merchant_open_id
+    const merchant_phone = e.currentTarget.dataset.phone
+    const service_person_name = e.currentTarget.dataset.service_person_name
+    const service_person_id = e.currentTarget.dataset.service_person_id
+    const service_name = e.currentTarget.dataset.service_name
+    console.log("家政人员服务名称：" + service_person_name)
+    console.log("家政人员服务ID" + service_person_id)
+    console.log("家政人员服务类型" + service_name)
+    wx.navigateTo({
+      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name +
+        "&merchant_id=" + merchant_id +
+        "&merchant_open_id=" + merchant_open_id +
+        "&merchant_phone=" + merchant_phone +
+        "&service_person_name=" + service_person_name +
+        "&service_person_id=" + service_person_id +
+        "&service_type=" + service_name
+    })
+  },
+
+
+  enter_service_person_detail(e) {
+    const item = e.currentTarget.dataset.item
+    item.merchant_open_id = item.merchant.merchant_open_id
+    item.phone = item.merchant.phone
+    item.name = item.merchant.name
+    console.log(e)
+    wx.redirectTo({
+      url: '/pages/service_person_detail/service_person_detail?item=' + JSON.stringify(item),
+    })
+
+  }
+
 })

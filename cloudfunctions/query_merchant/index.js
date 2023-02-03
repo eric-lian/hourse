@@ -45,7 +45,7 @@ exports.main = async (event, context) => {
       if (mergePerson == undefined) {
         mergePersons.push(res)
         mergePerson = res
-        mergePersons.serverMills = serverMills
+        mergePerson.serverMills = serverMills
       }
 
       var service_names = mergePerson.service_names

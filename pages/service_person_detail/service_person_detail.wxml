@@ -17,8 +17,8 @@
           <text style="font-size: 22rpx; color: rgba(70, 77, 90, 1);"> {{dateUtils.getDateYearDiff(brithday, serverMills)}}岁 | {{province}} | {{dateUtils.getDateYearDiff(work_begin_date, serverMills)}}年经验 | {{service_name}}</text>
         </view>
 
-         <!-- 满意度 -->
-         <view style="display: flex; flex-direction: row;align-items: center; width: 100%;margin-top: 12rpx;">
+        <!-- 满意度 -->
+        <view style="display: flex; flex-direction: row;align-items: center; width: 100%;margin-top: 12rpx;">
           <block wx:for="{{[1,2,3,4,5]}}" wx:key="index">
             <view>
               <image wx:if="{{item <= evaluation_stars}}" src="/pages/images/evaluate/evaluate_good_star.png" style="width: 32rpx; height: 32rpx;margin-right: 10rpx;" data-star="{{item}}" />
@@ -34,7 +34,7 @@
     </view>
   </view>
 
-  <view class="line_32"/>
+  <view class="line_32" />
   <!-- 个人认证 -->
   <view style="height: 90rpx; display: flex; flex-direction: row; justify-content: space-around;">
     <view class="authentication_itme">
@@ -79,6 +79,51 @@
         <block wx:for="{{certificate_photos}}" wx:key="index">
           <image style="background-color: rgba(243, 245, 247, 1); width: 48%;height: 229rpx; margin-left: 2%; margin-bottom: 2%;border-radius: 16rpx;" src="{{item}}" data-index="{{index}}" bindtap="previewCertificatePhotos"></image>
         </block>
+      </view>
+    </view>
+
+    <!-- 其他服务人员 -->
+    <view wx:if="{{recommends}}" style="display: flex;flex-direction: column;">
+      <view style="margin-top: 20rpx;">
+        <text class="person_info_column_title">更多推荐</text>
+      </view>
+
+      <view style="display: flex; flex-direction: column;" wx:for="{{recommends}}" wx:key="index" catchtap="enter_service_person_detail" data-item="{{item}}">
+        <view class="person_item">
+          <view style="margin-right: 24rpx;">
+            <image style="width: 176rpx; height: 235rpx;background-color: rgba(243, 245, 247, 1);border-radius: 16rpx;" src="{{item.person_photo}}"></image>
+          </view>
+
+          <view style="display: flex; flex-direction: column;width: 100%;">
+            <view style="display: flex;flex-direction: row; align-items: center;justify-content: space-between;">
+              <text style="font-size: 28rpx;font-weight: 500;margin-right: 24rpx;color: #040507;">{{item.person_name}}</text>
+
+              <text class="varify_passed_tag">已认证</text>
+            </view>
+
+            <view style="margin-top: 10rpx;">
+              <text style="font-size: 22rpx; color: rgba(70, 77, 90, 1);"> {{dateUtils.getDateYearDiff(item.brithday, serverMills)}}岁 | {{item.province}} | {{dateUtils.getDateYearDiff(item.work_begin_date, serverMills)}}年经验</text>
+            </view>
+
+            <!-- 满意度 -->
+            <view style="display: flex; flex-direction: row;align-items: center; width: 100%;margin-top: 12rpx;">
+              <block wx:for="{{[1,2,3,4,5]}}" wx:key="index">
+                <view>
+                  <image wx:if="{{item <= evaluation_stars}}" src="/pages/images/evaluate/evaluate_good_star.png" style="width: 32rpx; height: 32rpx;margin-right: 10rpx;" data-star="{{item}}" />
+
+                  <image wx:else src="/pages/images/evaluate/evaluate_bad_star.png" style="width: 32rpx; height: 32rpx;" data-star="{{item}}" />
+                </view>
+              </block>
+            </view>
+
+            <!-- 立即预约 -->
+            <view style="margin-top: 30rpx;">
+              <text class="immediately_subscribe" catchtap="immediately_subscribe_recommend" data-merchant_id="{{item.merchant._id}}" data-merchant_name="{{item.merchant.name}}" data-merchant_name="{{item.merchant.phone}}" data-service_person_name="{{item.person_name}}" data-service_person_id="{{item._id}}" data-service_name="{{item.service_name}}">立即预约</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="min_line" />
       </view>
     </view>
 
