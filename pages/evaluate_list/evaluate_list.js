@@ -84,6 +84,7 @@ Page({
   },
 
   updateState(state) {
+    console.log(state)
     this.setData({
       state: state
     })
