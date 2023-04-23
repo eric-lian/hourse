@@ -103,3 +103,7 @@
 <view id="nav_container" style="height: {{topNavContainerHeight}}rpx; background-color: rgba(23,115,215,1);">
   <text id="nav_title" style="line-height: {{navigationBarHeight}}rpx; margin-top: {{statusBarHeight}}rpx;">谯城区放心家政小程序</text>
 </view>
+
+<view style="position: fixed;top: 50%;" bindtap="backMainMini">
+  <image style="width: 153rpx; height: 65rpx;" src="/pages/images/home/home_back_main_mini.png"></image>
+</view>

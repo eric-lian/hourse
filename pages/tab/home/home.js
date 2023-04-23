@@ -216,9 +216,12 @@ Page({
         url: jump_detail_link,
       })
     }
-
   },
-
+  backMainMini: function(e) {
+    wx.navigateToMiniProgram({
+      appId: 'wx72d66df5f705003d'
+    })
+  },
   onSearchBarClick(e) {
     wx.navigateTo({
       url: '/pages/search/search'
@@ -261,5 +264,5 @@ Page({
     }, fail => {
 
     })
-  }
+  } 
 })
