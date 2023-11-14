@@ -94,7 +94,7 @@ App({
   onLaunch() {
     // miniprogram-test-4fzwowo753c99a4  测试
     wx.cloud.init({
-      env: 'house-keeping-7gact5ex37e05233',
+      env: 'home-4gvh3hkh7a485ed7',
       traceUser: true
     });
     this.initWindow()

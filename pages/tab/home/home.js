@@ -123,13 +123,14 @@ Page({
         _updateTime: false
       })
       .where({
-        status: 1
+        status: true
       })
-      // .orderBy('weight', 'desc')
+      .orderBy('weight', 'desc')
       .limit(10)
       .get()
       .then(res => {
         const _banners = res.data
+        console.log(_banners)
         // 有效数据更新数据
         if (_banners.length > 0) {
           this.setData({
