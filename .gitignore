@@ -1,4 +1,5 @@
 */node_modules/*
+cloudfunctions/get_openid/node_modules/*
 cloudfunctions/search_similarity_service/node_modules/*
 cloudfunctions/search_merchant/node_modules/*
 cloudfunctions/trigger/node_modules/*

@@ -78,6 +78,7 @@ Page({
     })
     console.log("updateLoginData" + this.data.logined)
   },
+  
   getUserProfile(e) {
     app.login(res => {
         this.updateLoginData()

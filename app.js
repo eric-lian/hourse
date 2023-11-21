@@ -223,6 +223,7 @@ App({
         url: '/pages/user/user_info_fill/user_info_edit',
       })
     }, reason => {
+      console.log("======== login fail")
       fail(reason)
       wx.hideLoading()
     })
