@@ -23,7 +23,7 @@ exports.main = async (event, context) => {
 
   if (event.status == '1') {
     const result = await cloud.openapi.subscribeMessage.send({
-      "touser": event.merchant_open_id,
+      "touser": event.merchant_openid,
       "templateId": MERCHANT_ACCEPT_ORDER_MSG_TEMPLATE_ID,
       "page": page,
       "miniprogramState": MINIPROGRAM_STATE,
@@ -149,7 +149,7 @@ exports.main = async (event, context) => {
   } else if (event.status == '5') {
     //  用户取消订单，通知商家
     const result = await cloud.openapi.subscribeMessage.send({
-      "touser": event.merchant_open_id,
+      "touser": event.merchant_openid,
       "templateId": MERCHANT_ACCEPT_ORDER_MSG_TEMPLATE_ID,
       "page": page,
       "miniprogramState": MINIPROGRAM_STATE,

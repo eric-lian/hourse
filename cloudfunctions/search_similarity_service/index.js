@@ -39,7 +39,7 @@ exports.main = async (event, context) => {
       merchant: {
         name: 1,
         _id: 1,
-        merchant_open_id: 1,
+        merchant_openid: 1,
         phone: 1
       },
       _id: 1,

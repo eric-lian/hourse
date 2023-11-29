@@ -283,7 +283,7 @@ Page({
     const _ = db.command
     const openid = app.globalData.userInfo.openid
     db.collection('subscribe').orderBy("_createTime", "desc").where({
-        merchant_open_id: openid,
+        merchant_openid: openid,
         _createTime: _.lt(lastCreateTime)
       })
       .limit(20)

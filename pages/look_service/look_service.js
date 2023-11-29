@@ -219,12 +219,12 @@ Page({
     const service_person_id = e.currentTarget.dataset.service_person_id
     const service_name = e.currentTarget.dataset.service_name
     const merchant_phone = e.currentTarget.dataset.phone
-    const merchant_open_id = e.currentTarget.dataset.merchant_open_id
+    const merchant_openid = e.currentTarget.dataset.merchant_openid
     console.log(merchant_id)
     wx.navigateTo({
       url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name +
         "&merchant_id=" + merchant_id +
-        "&merchant_open_id=" + merchant_open_id +
+        "&merchant_openid=" + merchant_openid +
         "&merchant_phone=" + merchant_phone +
         "&service_person_name=" + service_person_name +
         "&service_person_id=" + service_person_id +

@@ -104,12 +104,12 @@ Page({
     const service_person_id = this.data._id
     const service_name = this.data.service_name
     const merchant_phone = this.data.phone
-    const merchant_open_id = this.data.merchant_open_id
+    const merchant_openid = this.data.merchant_openid
     console.log(merchant_id)
     wx.navigateTo({
       url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name +
         "&merchant_id=" + merchant_id +
-        "&merchant_open_id=" + merchant_open_id +
+        "&merchant_openid=" + merchant_openid +
         "&merchant_phone=" + merchant_phone +
         "&service_person_name=" + service_person_name +
         "&service_person_id=" + service_person_id +
@@ -120,7 +120,7 @@ Page({
     // 判断用户是否登录
     const merchant_id = e.currentTarget.dataset.merchant_id
     const merchant_name = e.currentTarget.dataset.merchant_name
-    const merchant_open_id = e.currentTarget.dataset.merchant_open_id
+    const merchant_openid = e.currentTarget.dataset.merchant_openid
     const merchant_phone = e.currentTarget.dataset.phone
     const service_person_name = e.currentTarget.dataset.service_person_name
     const service_person_id = e.currentTarget.dataset.service_person_id
@@ -131,7 +131,7 @@ Page({
     wx.navigateTo({
       url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name +
         "&merchant_id=" + merchant_id +
-        "&merchant_open_id=" + merchant_open_id +
+        "&merchant_openid=" + merchant_openid +
         "&merchant_phone=" + merchant_phone +
         "&service_person_name=" + service_person_name +
         "&service_person_id=" + service_person_id +
@@ -142,7 +142,7 @@ Page({
 
   enter_service_person_detail(e) {
     const item = e.currentTarget.dataset.item
-    item.merchant_open_id = item.merchant.merchant_open_id
+    item.merchant_openid = item.merchant.merchant_openid
     item.phone = item.merchant.phone
     item.name = item.merchant.name
     console.log(e)

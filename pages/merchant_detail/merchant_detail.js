@@ -126,7 +126,7 @@ Page({
     // 判断用户是否登录
 
     wx.navigateTo({
-      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + this.data.merchant_detail_info.name + "&merchant_id=" + this.data.merchant_detail_info._id + "&merchant_open_id=" + this.data.merchant_detail_info.merchant_open_id + "&merchant_phone=" + this.data.merchant_detail_info.phone
+      url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + this.data.merchant_detail_info.name + "&merchant_id=" + this.data.merchant_detail_info._id + "&merchant_openid=" + this.data.merchant_detail_info.merchant_openid + "&merchant_phone=" + this.data.merchant_detail_info.phone
     })
   },
 
@@ -156,7 +156,7 @@ Page({
     wx.navigateTo({
       url: '/pages/merchant_subscribe/merchant_subscribe?service_merchant_name=' + merchant_name +
         "&merchant_id=" + merchant_id +
-        "&merchant_open_id=" + this.data.merchant_detail_info.merchant_open_id +
+        "&merchant_openid=" + this.data.merchant_detail_info.merchant_openid +
         "&merchant_phone=" + this.data.merchant_detail_info.phone +
         "&service_person_name=" + service_person_name +
         "&service_person_id=" + service_person_id +
@@ -166,7 +166,7 @@ Page({
 
   enter_service_person_detail(e) {
     const item = e.currentTarget.dataset.item
-    item.merchant_open_id = this.data.merchant_detail_info.merchant_open_id
+    item.merchant_openid = this.data.merchant_detail_info.merchant_openid
     item.phone = this.data.phone
     item.name = this.data.merchant_detail_info.name
     console.log(e)

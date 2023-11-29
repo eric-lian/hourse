@@ -32,12 +32,12 @@ Page({
         minLength: 15,
         minLengthTip: "请输入正确法人身份证号"
       },
-      business_license_number: {
+      license_number: {
         emptyTip: "请输入营业执照编号",
         minLength: 18,
         minLengthTip: "请输入正确营业执照编号"
       },
-      min_service_price: {
+      min_price: {
         emptyTip: "请输入最低价格",
       },
       introduction: {
@@ -180,9 +180,9 @@ Page({
   queryMerchant(onSuccess, onFail) {
     this.data.isRefreshLoading = true
     const db = wx.cloud.database()
-    db.collection('merchants_register_info')
+    db.collection('reg_merchants')
       .where({
-        merchant_open_id: this.data.userInfo.openid
+        merchant_openid: this.data.userInfo.openid
       })
       .limit(1)
       .get()
@@ -283,7 +283,7 @@ Page({
       title: '提交中...'
     })
     const db = wx.cloud.database()
-    submitValue.merchant_open_id = this.data.userInfo.openid
+    submitValue.merchant_openid = this.data.userInfo.openid
     submitValue.status = 1
     const cacheCreateTime = this.data.merchant_register_info._createTime
     if (cacheCreateTime != undefined) {
@@ -294,9 +294,10 @@ Page({
     if (cacheRejectReason != undefined) {
       submitValue.reject_reason = cacheRejectReason
     }
-    submitValue._createTime = db.serverDate()
-    submitValue._updateTime = db.serverDate()
-    db.collection('merchants_register_info')
+    const current = new Date().getTime()
+    submitValue._createTime = current
+    submitValue._updateTime = current
+    db.collection('reg_merchants')
       .doc(this.data.userInfo.openid)
       .set({
         data: submitValue

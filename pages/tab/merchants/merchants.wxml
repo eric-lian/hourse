@@ -64,12 +64,12 @@
 
         <view class="register_info_item">
           <view><text class="register_info_item_title">营业执照编号</text> <text style="color: red;">*</text></view>
-          <input name="business_license_number" class="register_info_item_title_value" placeholder="营业执照编号" value="{{merchant_register_info.business_license_number}}" maxlength="18" />
+          <input name="license_number" class="register_info_item_title_value" placeholder="营业执照编号" value="{{merchant_register_info.license_number}}" maxlength="18" />
         </view>
 
         <view class="register_info_item">
           <view><text class="register_info_item_title">最低服务价格</text> <text style="color: red;">*</text></view>
-          <input name="min_service_price" type="number" class="register_info_item_title_value" placeholder="最低价格" value="{{merchant_register_info.min_service_price}}" maxlength="5" />
+          <input name="min_price" type="number" class="register_info_item_title_value" placeholder="最低价格" value="{{merchant_register_info.min_price}}" maxlength="5" />
         </view>
 
 

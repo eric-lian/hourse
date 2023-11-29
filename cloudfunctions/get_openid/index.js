@@ -38,7 +38,7 @@ exports.main = async (event, context) => {
   try {
     // 当前登录的openid查找是否为商家
     const merchantResult = await db.collection("merchants").where({
-      merchant_open_id: accountResult.openid,
+      merchant_openid: accountResult.openid,
       status: 1
     }).get()
     // 0 普通用户 1 商家角色 2 家政人员角色

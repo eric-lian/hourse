@@ -15,7 +15,7 @@ exports.main = async (event, context) => {
   const $ = _.aggregate
   const count = await db.collection('merchants').where({
     status: 1,
-    merchant_open_id: _.exists(true)
+    merchant_openid: _.exists(true)
   }).count()
   //2. 分批查询获取所有结果 , 每一次更新一百条
   // 计算需分几次取
@@ -27,7 +27,7 @@ exports.main = async (event, context) => {
     const promise = db.collection('merchants')
       .where({
         status: 1,
-        merchant_open_id: _.exists(true)
+        merchant_openid: _.exists(true)
       })
       .field({
         _id: true,

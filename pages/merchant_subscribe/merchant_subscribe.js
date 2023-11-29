@@ -18,7 +18,7 @@ Page({
     phone: "",
     desc: "",
     user_open_id: "",
-    merchant_open_id: "",
+    merchant_openid: "",
     inputCheck: {
       // service_type: {
       //   emptyTip: "请选择服务类型",
@@ -95,7 +95,7 @@ Page({
         end_time: this.getCurrentData(),
         service_name: options.service_merchant_name,
         merchant_id: options.merchant_id,
-        merchant_open_id: options.merchant_open_id,
+        merchant_openid: options.merchant_openid,
         merchant: {
           phone: options.merchant_phone
         },
@@ -316,7 +316,7 @@ Page({
       phone: this.data.phone,
       desc: this.data.desc,
       user_open_id: app.globalData.userInfo.openid,
-      merchant_open_id: this.data.merchant_open_id,
+      merchant_openid: this.data.merchant_openid,
       service_person_name: this.data.service_person_name,
       service_person_id: this.data.service_person_id
       // _updateTime: db.serverDate(),

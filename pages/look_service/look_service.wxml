@@ -38,7 +38,7 @@
               <view style="margin-top: 20rpx;display: flex; flex-direction: row;justify-content: space-around;">
 
                 <!-- 立即预约 -->
-                <text id="immediately_subscribe" data-merchant_id="{{item.company_name}}" data-merchant_name="{{item.name}}" data-service_person_name="{{item.master}}" data-service_person_id="{{item._id}}" data-service_name="{{item.service_name}}" data-phone="{{item.phone}}" data-merchant_open_id="{{item.merchant_open_id}}" catchtap="immediately_subscribe">立即预约</text>
+                <text id="immediately_subscribe" data-merchant_id="{{item.company_name}}" data-merchant_name="{{item.name}}" data-service_person_name="{{item.master}}" data-service_person_id="{{item._id}}" data-service_name="{{item.service_name}}" data-phone="{{item.phone}}" data-merchant_openid="{{item.merchant_openid}}" catchtap="immediately_subscribe">立即预约</text>
                 <!-- 拨打 -->
                 <text id="immediately_call" data-phone="{{item.phone}}" data-merchant_name="{{item.name}}" catchtap="immediately_call">电话咨询</text>
               </view>
